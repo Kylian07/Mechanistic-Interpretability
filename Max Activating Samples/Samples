@@ -1,24 +1,24 @@
-Top 10 SAE features with highest average activation in the last GPT2 layer: [460 272  96 149 168 128 508 323 153 191]
-Max activating samples for each feature (last layer):
-  Feature 460: Sample S36 (Negative), Activation=18.4182
-    Text: 'pumpkin takes an admirable look at the hypocrisy of political correctness , but it does so with such an uneven tone that you never know when humor ends and tragedy begins . '
-  Feature 272: Sample S42 (Negative), Activation=15.7039
-    Text: 'i had to look away - this was god awful . '
-  Feature 96: Sample S45 (Negative), Activation=15.6440
-    Text: 'it does n't believe in itself , it has no sense of humor ... it 's just plain bored . '
-  Feature 149: Sample S45 (Negative), Activation=15.2449
-    Text: 'it does n't believe in itself , it has no sense of humor ... it 's just plain bored . '
-  Feature 168: Sample S45 (Negative), Activation=14.9543
-    Text: 'it does n't believe in itself , it has no sense of humor ... it 's just plain bored . '
-  Feature 128: Sample S42 (Negative), Activation=15.0882
-    Text: 'i had to look away - this was god awful . '
-  Feature 508: Sample S42 (Negative), Activation=14.5424
-    Text: 'i had to look away - this was god awful . '
-  Feature 323: Sample S36 (Negative), Activation=14.5294
-    Text: 'pumpkin takes an admirable look at the hypocrisy of political correctness , but it does so with such an uneven tone that you never know when humor ends and tragedy begins . '
-  Feature 153: Sample S42 (Negative), Activation=14.4416
-    Text: 'i had to look away - this was god awful . '
-  Feature 191: Sample S45 (Negative), Activation=14.1610
-    Text: 'it does n't believe in itself , it has no sense of humor ... it 's just plain bored . '
+Top 10 most frequent activating SAE features in last layer: [ 96  88 266 267 268 384  75 269 381 271]
+Max activating samples for these features:
+Feature 96: Max Activation Sample S36 (Negative), Activation=6.2440, Activated in 50 samples
+  Text: 'pumpkin takes an admirable look at the hypocrisy of political correctness , but it does so with such an uneven tone that you never know when humor ends and tragedy begins . '
+Feature 88: Max Activation Sample S10 (Positive), Activation=4.3688, Activated in 50 samples
+  Text: 'audrey tatou has a knack for picking roles that magnify her outrageous charm , and in this literate french comedy , she 's as morning-glory exuberant as she was in amélie . '
+Feature 266: Max Activation Sample S45 (Negative), Activation=6.9957, Activated in 50 samples
+  Text: 'it does n't believe in itself , it has no sense of humor ... it 's just plain bored . '
+Feature 267: Max Activation Sample S28 (Negative), Activation=4.3001, Activated in 50 samples
+  Text: 'a sometimes tedious film . '
+Feature 268: Max Activation Sample S10 (Positive), Activation=6.7944, Activated in 50 samples
+  Text: 'audrey tatou has a knack for picking roles that magnify her outrageous charm , and in this literate french comedy , she 's as morning-glory exuberant as she was in amélie . '
+Feature 384: Max Activation Sample S47 (Negative), Activation=2.6847, Activated in 50 samples
+  Text: '( w ) hile long on amiable monkeys and worthy environmentalism , jane goodall 's wild chimpanzees is short on the thrills the oversize medium demands . '
+Feature 75: Max Activation Sample S42 (Negative), Activation=11.1495, Activated in 50 samples
+  Text: 'i had to look away - this was god awful . '
+Feature 269: Max Activation Sample S45 (Negative), Activation=8.8501, Activated in 50 samples
+  Text: 'it does n't believe in itself , it has no sense of humor ... it 's just plain bored . '
+Feature 381: Max Activation Sample S36 (Negative), Activation=6.1929, Activated in 50 samples
+  Text: 'pumpkin takes an admirable look at the hypocrisy of political correctness , but it does so with such an uneven tone that you never know when humor ends and tragedy begins . '
+Feature 271: Max Activation Sample S7 (Positive), Activation=4.6996, Activated in 50 samples
+  Text: 'we root for ( clara and paul ) , even like them , though perhaps it 's an emotion closer to pity . '
 
-Done: Listed max activating samples for top 10 SAE features in the last GPT2 layer.
+Done.
