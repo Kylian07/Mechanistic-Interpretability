@@ -1,0 +1,24 @@
+Top 10 SAE features with highest average activation in the last GPT2 layer: [460 272  96 149 168 128 508 323 153 191]
+Max activating samples for each feature (last layer):
+  Feature 460: Sample S36 (Negative), Activation=18.4182
+    Text: 'pumpkin takes an admirable look at the hypocrisy of political correctness , but it does so with such an uneven tone that you never know when humor ends and tragedy begins . '
+  Feature 272: Sample S42 (Negative), Activation=15.7039
+    Text: 'i had to look away - this was god awful . '
+  Feature 96: Sample S45 (Negative), Activation=15.6440
+    Text: 'it does n't believe in itself , it has no sense of humor ... it 's just plain bored . '
+  Feature 149: Sample S45 (Negative), Activation=15.2449
+    Text: 'it does n't believe in itself , it has no sense of humor ... it 's just plain bored . '
+  Feature 168: Sample S45 (Negative), Activation=14.9543
+    Text: 'it does n't believe in itself , it has no sense of humor ... it 's just plain bored . '
+  Feature 128: Sample S42 (Negative), Activation=15.0882
+    Text: 'i had to look away - this was god awful . '
+  Feature 508: Sample S42 (Negative), Activation=14.5424
+    Text: 'i had to look away - this was god awful . '
+  Feature 323: Sample S36 (Negative), Activation=14.5294
+    Text: 'pumpkin takes an admirable look at the hypocrisy of political correctness , but it does so with such an uneven tone that you never know when humor ends and tragedy begins . '
+  Feature 153: Sample S42 (Negative), Activation=14.4416
+    Text: 'i had to look away - this was god awful . '
+  Feature 191: Sample S45 (Negative), Activation=14.1610
+    Text: 'it does n't believe in itself , it has no sense of humor ... it 's just plain bored . '
+
+Done: Listed max activating samples for top 10 SAE features in the last GPT2 layer.
