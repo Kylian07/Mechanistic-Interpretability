@@ -1,0 +1,51 @@
+Top 10 most frequent features: [14519, 4679, 9663, 20159, 9810, 8947, 21448, 20016, 17630, 16789]
+
+Feature 14519:
+Activation: 7.0585
+Sentence: try as i may , i ca n't think of a single good reason to see this movie , even though everyone in my group extemporaneously shouted , ` thank you ! ' 
+Label: negative
+
+Feature 4679:
+Activation: 32.3331
+Sentence: ( lawrence bounces ) all over the stage , dancing , running , sweating , mopping his face and generally displaying the wacky talent that brought him fame in the first place . 
+Label: positive
+
+Feature 9663:
+Activation: 2.4030
+Sentence: stealing harvard aspires to comedic grand larceny but stands convicted of nothing more than petty theft of your time . 
+Label: negative
+
+Feature 20159:
+Activation: 0.5743
+Sentence: not only are the special effects and narrative flow much improved , and daniel radcliffe more emotionally assertive this time around as harry , but the film conjures the magic of author j.k. rowling 's books . 
+Label: positive
+
+Feature 9810:
+Activation: 0.0000
+Sentence: it 's a charming and often affecting journey . 
+Label: positive
+
+Feature 8947:
+Activation: 10.6427
+Sentence: the continued good chemistry between carmen and juni is what keeps this slightly disappointing sequel going , with enough amusing banter -- blessedly curse-free -- to keep both kids and parents entertained . 
+Label: positive
+
+Feature 21448:
+Activation: 8.3580
+Sentence: for all its impressive craftsmanship , and despite an overbearing series of third-act crescendos , lily chou-chou never really builds up a head of emotional steam . 
+Label: negative
+
+Feature 20016:
+Activation: 0.0000
+Sentence: it 's a charming and often affecting journey . 
+Label: positive
+
+Feature 17630:
+Activation: 5.0442
+Sentence: the band 's courage in the face of official repression is inspiring , especially for aging hippies ( this one included ) . 
+Label: positive
+
+Feature 16789:
+Activation: 27.7427
+Sentence: every nanosecond of the the new guy reminds you that you could be doing something else far more pleasurable . 
+Label: negative
