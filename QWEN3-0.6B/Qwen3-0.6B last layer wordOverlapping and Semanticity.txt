@@ -1,0 +1,39 @@
+Feature 2 activates in 100 sentences.
+Top common words in activating sentences: [('.', 93), ('the', 87), (',', 77), ('a', 67), ('and', 56), ('of', 53), ('to', 40), ('it', 34), ('is', 33), ("'s", 32)]
+Average semantic similarity between activating sentences: 0.9611
+
+Feature 3 activates in 100 sentences.
+Top common words in activating sentences: [('.', 93), ('the', 87), (',', 77), ('a', 67), ('and', 56), ('of', 53), ('to', 40), ('it', 34), ('is', 33), ("'s", 32)]
+Average semantic similarity between activating sentences: 0.9611
+
+Feature 4 activates in 100 sentences.
+Top common words in activating sentences: [('.', 93), ('the', 87), (',', 77), ('a', 67), ('and', 56), ('of', 53), ('to', 40), ('it', 34), ('is', 33), ("'s", 32)]
+Average semantic similarity between activating sentences: 0.9611
+
+Feature 5 activates in 100 sentences.
+Top common words in activating sentences: [('.', 93), ('the', 87), (',', 77), ('a', 67), ('and', 56), ('of', 53), ('to', 40), ('it', 34), ('is', 33), ("'s", 32)]
+Average semantic similarity between activating sentences: 0.9611
+
+Feature 6 activates in 100 sentences.
+Top common words in activating sentences: [('.', 93), ('the', 87), (',', 77), ('a', 67), ('and', 56), ('of', 53), ('to', 40), ('it', 34), ('is', 33), ("'s", 32)]
+Average semantic similarity between activating sentences: 0.9611
+
+Feature 7 activates in 100 sentences.
+Top common words in activating sentences: [('.', 93), ('the', 87), (',', 77), ('a', 67), ('and', 56), ('of', 53), ('to', 40), ('it', 34), ('is', 33), ("'s", 32)]
+Average semantic similarity between activating sentences: 0.9611
+
+Feature 9 activates in 100 sentences.
+Top common words in activating sentences: [('.', 93), ('the', 87), (',', 77), ('a', 67), ('and', 56), ('of', 53), ('to', 40), ('it', 34), ('is', 33), ("'s", 32)]
+Average semantic similarity between activating sentences: 0.9611
+
+Feature 10 activates in 100 sentences.
+Top common words in activating sentences: [('.', 93), ('the', 87), (',', 77), ('a', 67), ('and', 56), ('of', 53), ('to', 40), ('it', 34), ('is', 33), ("'s", 32)]
+Average semantic similarity between activating sentences: 0.9611
+
+Feature 11 activates in 100 sentences.
+Top common words in activating sentences: [('.', 93), ('the', 87), (',', 77), ('a', 67), ('and', 56), ('of', 53), ('to', 40), ('it', 34), ('is', 33), ("'s", 32)]
+Average semantic similarity between activating sentences: 0.9611
+
+Feature 13 activates in 100 sentences.
+Top common words in activating sentences: [('.', 93), ('the', 87), (',', 77), ('a', 67), ('and', 56), ('of', 53), ('to', 40), ('it', 34), ('is', 33), ("'s", 32)]
+Average semantic similarity between activating sentences: 0.9611
