@@ -1,0 +1,51 @@
+Top 10 frequent features indices: [8100, 18258, 21800, 4018, 19038, 17981, 17035, 667, 2190, 12484]
+
+Feature 8100 activates in 432 sentences.
+Top common words in activating sentences: [('.', 407), ('the', 226), (',', 214), ('a', 186), ('and', 174), ('of', 165), ('to', 120), ('is', 117), ('it', 114), ("'s", 105)]
+Loading widget...
+Average semantic similarity between activating sentences: 0.1996
+
+Feature 18258 activates in 442 sentences.
+Top common words in activating sentences: [('.', 417), ('the', 234), (',', 224), ('a', 194), ('and', 182), ('of', 172), ('to', 122), ('is', 120), ('it', 116), ("'s", 108)]
+Loading widget...
+Average semantic similarity between activating sentences: 0.2007
+
+Feature 21800 activates in 434 sentences.
+Top common words in activating sentences: [('.', 409), ('the', 228), (',', 215), ('a', 186), ('and', 175), ('of', 165), ('to', 120), ('is', 117), ('it', 114), ("'s", 105)]
+Loading widget...
+Average semantic similarity between activating sentences: 0.1993
+
+Feature 4018 activates in 426 sentences.
+Top common words in activating sentences: [('.', 401), ('the', 221), (',', 211), ('a', 185), ('and', 170), ('of', 162), ('to', 119), ('is', 115), ('it', 111), ("'s", 104)]
+Loading widget...
+Average semantic similarity between activating sentences: 0.1998
+
+Feature 19038 activates in 407 sentences.
+Top common words in activating sentences: [('.', 382), ('the', 211), (',', 196), ('a', 176), ('and', 159), ('of', 153), ('to', 113), ('is', 108), ('it', 105), ("'s", 98)]
+Loading widget...
+Average semantic similarity between activating sentences: 0.1963
+
+Feature 17981 activates in 402 sentences.
+Top common words in activating sentences: [('.', 378), ('the', 205), (',', 190), ('a', 174), ('and', 157), ('of', 153), ('is', 110), ('it', 107), ('to', 107), ("'s", 96)]
+Loading widget...
+Average semantic similarity between activating sentences: 0.1947
+
+Feature 17035 activates in 390 sentences.
+Top common words in activating sentences: [('.', 369), ('the', 208), (',', 186), ('a', 167), ('and', 146), ('of', 143), ('is', 111), ('to', 102), ('it', 101), ("'s", 100)]
+Loading widget...
+Average semantic similarity between activating sentences: 0.1971
+
+Feature 667 activates in 387 sentences.
+Top common words in activating sentences: [('.', 364), ('the', 200), (',', 187), ('a', 165), ('and', 150), ('of', 145), ('is', 105), ('to', 104), ('it', 101), ("'s", 96)]
+Loading widget...
+Average semantic similarity between activating sentences: 0.1967
+
+Feature 2190 activates in 362 sentences.
+Top common words in activating sentences: [('.', 340), ('the', 180), (',', 166), ('a', 151), ('and', 135), ('of', 133), ('to', 95), ('it', 94), ('is', 92), ("'s", 88)]
+Loading widget...
+Average semantic similarity between activating sentences: 0.1938
+
+Feature 12484 activates in 370 sentences.
+Top common words in activating sentences: [('.', 349), ('the', 187), (',', 172), ('a', 157), ('and', 141), ('of', 135), ('to', 97), ('it', 96), ('is', 95), ("'s", 91)]
+Loading widget...
+Average semantic similarity between activating sentences: 0.1958
