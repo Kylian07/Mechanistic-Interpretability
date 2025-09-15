@@ -1,0 +1,153 @@
+Counting feature activation frequencies for last layer...
+
+Top 10 most frequent features: [263, 464, 205, 379, 10, 456, 449, 244, 206, 47]
+
+Analyzing feature 263 activations...
+Feature 263 active in 500 sentences.
+Top common words in activating sentences:
+.: 474
+the: 278
+,: 277
+a: 223
+and: 222
+of: 207
+to: 153
+is: 142
+it: 138
+'s: 136
+Average semantic similarity: 0.2016
+
+Analyzing feature 464 activations...
+Feature 464 active in 500 sentences.
+Top common words in activating sentences:
+.: 474
+the: 278
+,: 277
+a: 223
+and: 222
+of: 207
+to: 153
+is: 142
+it: 138
+'s: 136
+Average semantic similarity: 0.2016
+
+Analyzing feature 205 activations...
+Feature 205 active in 500 sentences.
+Top common words in activating sentences:
+.: 474
+the: 278
+,: 277
+a: 223
+and: 222
+of: 207
+to: 153
+is: 142
+it: 138
+'s: 136
+Average semantic similarity: 0.2016
+
+Analyzing feature 379 activations...
+Feature 379 active in 500 sentences.
+Top common words in activating sentences:
+.: 474
+the: 278
+,: 277
+a: 223
+and: 222
+of: 207
+to: 153
+is: 142
+it: 138
+'s: 136
+Average semantic similarity: 0.2016
+
+Analyzing feature 10 activations...
+Feature 10 active in 500 sentences.
+Top common words in activating sentences:
+.: 474
+the: 278
+,: 277
+a: 223
+and: 222
+of: 207
+to: 153
+is: 142
+it: 138
+'s: 136
+Average semantic similarity: 0.2016
+
+Analyzing feature 456 activations...
+Feature 456 active in 500 sentences.
+Top common words in activating sentences:
+.: 474
+the: 278
+,: 277
+a: 223
+and: 222
+of: 207
+to: 153
+is: 142
+it: 138
+'s: 136
+Average semantic similarity: 0.2016
+
+Analyzing feature 449 activations...
+Feature 449 active in 500 sentences.
+Top common words in activating sentences:
+.: 474
+the: 278
+,: 277
+a: 223
+and: 222
+of: 207
+to: 153
+is: 142
+it: 138
+'s: 136
+Average semantic similarity: 0.2016
+
+Analyzing feature 244 activations...
+Feature 244 active in 500 sentences.
+Top common words in activating sentences:
+.: 474
+the: 278
+,: 277
+a: 223
+and: 222
+of: 207
+to: 153
+is: 142
+it: 138
+'s: 136
+Average semantic similarity: 0.2016
+
+Analyzing feature 206 activations...
+Feature 206 active in 500 sentences.
+Top common words in activating sentences:
+.: 474
+the: 278
+,: 277
+a: 223
+and: 222
+of: 207
+to: 153
+is: 142
+it: 138
+'s: 136
+Average semantic similarity: 0.2016
+
+Analyzing feature 47 activations...
+Feature 47 active in 500 sentences.
+Top common words in activating sentences:
+.: 474
+the: 278
+,: 277
+a: 223
+and: 222
+of: 207
+to: 153
+is: 142
+it: 138
+'s: 136
+Average semantic similarity: 0.2016

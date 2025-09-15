@@ -1,0 +1,13 @@
+Summary of top features per layer:
+blocks.0.hook_resid_pre: [442, 324, 263, 172, 46, 485, 381, 110, 113, 317]
+blocks.1.hook_resid_pre: [187, 310, 256, 236, 338, 57, 435, 483, 192, 487]
+blocks.2.hook_resid_pre: [192, 57, 487, 256, 380, 310, 125, 338, 108, 30]
+blocks.3.hook_resid_pre: [487, 108, 57, 310, 173, 338, 125, 380, 256, 435]
+blocks.4.hook_resid_pre: [108, 487, 173, 125, 338, 142, 310, 466, 120, 380]
+blocks.5.hook_resid_pre: [173, 57, 30, 487, 125, 192, 435, 380, 187, 236]
+blocks.6.hook_resid_pre: [30, 483, 173, 57, 435, 174, 421, 192, 487, 125]
+blocks.7.hook_resid_pre: [483, 30, 57, 173, 125, 435, 174, 421, 487, 470]
+blocks.8.hook_resid_pre: [483, 487, 30, 173, 326, 125, 57, 477, 39, 421]
+blocks.9.hook_resid_pre: [483, 116, 30, 487, 421, 173, 326, 83, 57, 125]
+blocks.10.hook_resid_pre: [421, 340, 120, 483, 30, 487, 384, 494, 135, 116]
+blocks.11.hook_resid_pre: [48, 39, 29, 30, 19, 6, 27, 28, 56, 57]
