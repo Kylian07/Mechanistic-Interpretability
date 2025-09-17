@@ -1,0 +1,23 @@
+Cross-Entropy Loss Without SAE: 5.1780
+Cross-Entropy Loss With SAE: 5.2321
+Cross-Entropy Loss With Ablation: 5.2743
+CE Loss Score: 0.4388
+
+KL Divergence With SAE: 3.581245
+KL Divergence With Ablation: 14.293801
+KL Divergence Score: 0.749455
+
+Reconstruction MSE: 1.060604
+Reconstruction Explained Variance: 0.160119
+Reconstruction Cosine Similarity: 0.936358
+
+L2 Norm Input: 126.768329
+L2 Norm Output: 119.788981
+L2 Norm Ratio: 0.944609
+Relative Reconstruction Bias: 0.868850
+
+Sparsity L0 (fraction non-zero): 1.000000
+Sparsity L1 (avg L1 norm): 113984.086726
+
+Total tokens for reconstruction evaluation: 20936
+Total tokens for sparsity and variance evaluation: 20936
