@@ -1,0 +1,32 @@
+============================================================
+SAE EVALUATION RESULTS FOR QWEN3-0.6B
+============================================================
+
+### Model Behavior Preservation ###
+Cross-Entropy Loss Without SAE: 5.1683
+Cross-Entropy Loss With SAE: 5.2310
+Cross-Entropy Loss With Ablation: 5.6496
+CE Loss Score: 0.8696
+
+KL Divergence With SAE: 0.118845
+KL Divergence With Ablation: 3.428494
+KL Divergence Score: 0.965336
+
+### Reconstruction Quality ###
+Reconstruction MSE: 0.479237
+Reconstruction Explained Variance: 0.936604
+Reconstruction Cosine Similarity: 0.994396
+
+### Shrinkage Analysis ###
+L2 Norm Input: 243.726257
+L2 Norm Output: 242.780720
+L2 Norm Ratio: 0.996130
+Relative Reconstruction Bias: 0.984837
+
+### Sparsity Metrics ###
+Sparsity L0 (fraction non-zero): 1.000000
+Sparsity L1 (avg L1 norm): 481098.758171
+
+### Token Statistics ###
+Total tokens evaluated: 20716
+Total samples processed: 872
