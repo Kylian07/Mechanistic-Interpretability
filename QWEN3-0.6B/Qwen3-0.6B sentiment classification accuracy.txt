@@ -1,23 +1,24 @@
 ============================================================
-QWEN3-0.6B CLASSIFICATION RESULTS ON SST-2
+QWEN3-0.6B CLASSIFICATION RESULTS ON SST-2 (PROMPT-BASED)
 ============================================================
 
-Overall Accuracy: 0.7443 (74.43%)
-Precision: 0.7885
-Recall: 0.6802
-F1-Score: 0.7304
+Overall Accuracy: 0.5436 (54.36%)
+Precision: 0.7500
+Recall: 0.1554
+F1-Score: 0.2575
 
 ### Per-Class Performance ###
-Negative Class (0) Accuracy: 0.8107 (81.07%)
-Positive Class (1) Accuracy: 0.6802 (68.02%)
+Negative Class (0) Accuracy: 0.9463 (94.63%)
+Positive Class (1) Accuracy: 0.1554 (15.54%)
 
 ### Confusion Matrix ###
                 Predicted
               Neg    Pos
-Actual Neg  [  347     81]
-       Pos  [  142    302]
+Actual Neg  [  405     23]
+       Pos  [  375     69]
 
 ### Dataset Statistics ###
 Total Samples: 872
 Positive Samples: 444 (50.92%)
 Negative Samples: 428 (49.08%)
+============================================================
