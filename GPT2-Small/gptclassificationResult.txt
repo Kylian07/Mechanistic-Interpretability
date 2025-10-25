@@ -1,1 +1,24 @@
-Validation Accuracy of pretrained GPT2-small on SST-2: 91.17%
+============================================================
+GPT-2 SMALL CLASSIFICATION RESULTS ON SST-2 (PROMPT-BASED)
+============================================================
+
+Overall Accuracy: 0.4885 (48.85%)
+Precision: 0.4872
+Recall: 0.0856
+F1-Score: 0.1456
+
+### Per-Class Performance ###
+Negative Class (0) Accuracy: 0.9065 (90.65%)
+Positive Class (1) Accuracy: 0.0856 (8.56%)
+
+### Confusion Matrix ###
+                Predicted
+              Neg    Pos
+Actual Neg  [  388     40]
+       Pos  [  406     38]
+
+### Dataset Statistics ###
+Total Samples: 872
+Positive Samples: 444 (50.92%)
+Negative Samples: 428 (49.08%)
+============================================================
