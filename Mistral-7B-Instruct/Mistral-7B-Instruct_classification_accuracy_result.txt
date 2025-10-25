@@ -1,0 +1,24 @@
+============================================================
+MISTRAL-7B-INSTRUCT CLASSIFICATION RESULTS ON SST-2 (PROMPT-BASED)
+============================================================
+
+Overall Accuracy: 0.8888 (88.88%)
+Precision: 0.9753
+Recall: 0.8018
+F1-Score: 0.8801
+
+### Per-Class Performance ###
+Negative Class (0) Accuracy: 0.9790 (97.90%)
+Positive Class (1) Accuracy: 0.8018 (80.18%)
+
+### Confusion Matrix ###
+                Predicted
+              Neg    Pos
+Actual Neg  [  419      9]
+       Pos  [   88    356]
+
+### Dataset Statistics ###
+Total Samples: 872
+Positive Samples: 444 (50.92%)
+Negative Samples: 428 (49.08%)
+============================================================
