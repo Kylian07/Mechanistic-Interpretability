@@ -1,0 +1,31 @@
+SAE EVALUATION RESULTS FOR TINYLLAMA-1.1B
+============================================================
+
+### Model Behavior Preservation ###
+Cross-Entropy Loss Without SAE: 4.0815
+Cross-Entropy Loss With SAE: 4.2794
+Cross-Entropy Loss With Ablation: 4.7067
+CE Loss Score: 0.6834
+
+KL Divergence With SAE: 0.640646
+KL Divergence With Ablation: 5.128732
+KL Divergence Score: 0.875087
+
+### Reconstruction Quality ###
+Reconstruction MSE: 0.088293
+Reconstruction Explained Variance: 0.461027
+Reconstruction Cosine Similarity: 0.908227
+
+### Shrinkage Analysis ###
+L2 Norm Input: 19.150468
+L2 Norm Output: 11.485063
+L2 Norm Ratio: 0.599675
+Relative Reconstruction Bias: 0.661755
+
+### Sparsity Metrics ###
+Sparsity L0 (fraction non-zero): 1.000000
+Sparsity L1 (avg L1 norm): 44121.349269
+
+### Token Statistics ###
+Total tokens evaluated: 24501
+Total samples processed: 872
