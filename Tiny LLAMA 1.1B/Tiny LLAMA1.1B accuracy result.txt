@@ -1,0 +1,23 @@
+============================================================
+TINYLLAMA-1.1B-CHAT RESULTS ON SST-2 (ZERO-SHOT)
+============================================================
+
+Overall Accuracy: 0.5378 (53.78%)
+Precision: 0.7662
+Recall: 0.1329
+F1-Score: 0.2265
+
+### Per-Class Performance ###
+Negative Class (0) Accuracy: 0.9579 (95.79%)
+Positive Class (1) Accuracy: 0.1329 (13.29%)
+
+### Confusion Matrix ###
+                Predicted
+              Neg    Pos
+Actual Neg  [  410     18]
+       Pos  [  385     59]
+
+### Dataset Statistics ###
+Total Samples: 872
+Positive Samples: 444 (50.92%)
+Negative Samples: 428 (49.08%)
