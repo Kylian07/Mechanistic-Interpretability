@@ -1,0 +1,192 @@
+INTERPRETABILITY ANALYSIS REPORT FOR UNCOMMON FEATURES - TINYLLAMA-1.1B
+Analysis performed on VALIDATION SPLIT
+======================================================================
+
+Feature: Feature 2565 (positive sentiment)
+
+Llama 3 Interpretation:
+Based on the provided sentences and activation patterns, the feature appears to be strongly associated with the identification of figurative language, particularly hyperbole and metaphor, as well as the detection of emotional or thematic resonance in the text.
+
+A closer examination of the sentences reveals that the feature tends to activate in the presence of:
+
+* Vivid and exaggerated descriptions (e.g., "blossom, bubbles and buttercup supernatural powers," "laser-beam eyes")
+* Expressions of emotional intensity or resonance (e.g., "we can share," "hero whose suffering and triumphs we can share," "emotional steam")
+* Metaphorical language (e.g., "rips people off without ever letting them consciously know you have done so")
+* Des
+
+Evaluation sentences used for prediction:
+1. the continued good chemistry between carmen and juni is what keeps this slightly disappointing sequel going , with enough amusing banter -- blessedly curse-free -- to keep both kids and parents entertained . 
+   Actual Activation: 0.3399
+   Predicted Activation: 4.0000
+2. the volatile dynamics of female friendship is the subject of this unhurried , low-key film that is so off-hollywood that it seems positively french in its rhythms and resonance . 
+   Actual Activation: 0.3692
+   Predicted Activation: 2.0000
+3. light years / several warp speeds / levels and levels of dilithium crystals better than the pitiful insurrection . 
+   Actual Activation: 0.5491
+   Predicted Activation: 9.0000
+4. impostor has a handful of thrilling moments and a couple of good performances , but the movie does n't quite fly . 
+   Actual Activation: 0.4875
+   Predicted Activation: 2.0000
+5. if the movie succeeds in instilling a wary sense of ` there but for the grace of god , ' it is far too self-conscious to draw you deeply into its world . 
+   Actual Activation: 0.3514
+   Predicted Activation: 6.0000
+
+Overall Interpretability Pearson Correlation Score: 0.4300
+
+======================================================================
+
+Feature: Feature 2056 (positive sentiment)
+
+Llama 3 Interpretation:
+Based on the provided activation patterns, this feature appears to activate strongly when the input sentence describes a movie or film, particularly when it criticizes or expresses disappointment with the movie's quality, effectiveness, or value. The feature seems to be sensitive to semantic patterns related to film criticism, such as comparisons to "after-school specials" or descriptions of a movie as a "clunker" or "shimmering picture postcard." It also responds to phrases that imply a lack of engagement or excitement, like "gazing at an egg timer for 93 minutes."
+
+Evaluation sentences used for prediction:
+1. a coda in every sense , the pinochet case splits time between a minute-by-minute account of the british court 's extradition chess game and the regime 's talking-head survivors . 
+   Actual Activation: 1.6280
+   Predicted Activation: 2.0000
+2. this is a train wreck of an action film -- a stupefying attempt by the filmmakers to force-feed james bond into the mindless xxx mold and throw 40 years of cinematic history down the toilet in favor of bright flashes and loud bangs . 
+   Actual Activation: 1.2698
+   Predicted Activation: 9.0000
+3. it 's as if you 're watching a movie that was made in 1978 but not released then because it was so weak , and it has been unearthed and released now , when it has become even weaker . 
+   Actual Activation: 1.6005
+   Predicted Activation: 8.0000
+4. at times , the suspense is palpable , but by the end there 's a sense that the crux of the mystery hinges on a technicality that strains credulity and leaves the viewer haunted by the waste of potential . 
+   Actual Activation: 1.4922
+   Predicted Activation: 8.0000
+5. charles ' entertaining film chronicles seinfeld 's return to stand-up comedy after the wrap of his legendary sitcom , alongside wannabe comic adams ' attempts to get his shot at the big time . 
+   Actual Activation: 1.6512
+   Predicted Activation: 2.0000
+
+Overall Interpretability Pearson Correlation Score: -0.7273
+
+======================================================================
+
+Feature: Feature 2057 (positive sentiment)
+
+Llama 3 Interpretation:
+Based on the given sentences and their corresponding activation strengths, it appears that the feature is highly activated when the input text involves a discussion or critique of a movie, particularly in the context of its plot, characters, or overall quality. The feature seems to be sensitive to certain semantic patterns, such as:
+
+1. Evaluative language: The feature is highly activated when the text uses evaluative language, such as words with strong positive or negative connotations (e.g., "outrageous," "desperate," "fitfully entertaining").
+2. Movie-related terminology: The feature is activated when the text mentions specific movie-related terms, such as "film," "promoter," "boxing," or "satire."
+3. Critique or analysis
+
+Evaluation sentences used for prediction:
+1. it 's inoffensive , cheerful , built to inspire the young people , set to an unending soundtrack of beach party pop numbers and aside from its remarkable camerawork and awesome scenery , it 's about as exciting as a sunburn . 
+   Actual Activation: 1.5442
+   Predicted Activation: 8.0000
+2. the so-inept - it 's - surreal dubbing ( featuring the voices of glenn close , regis philbin and breckin meyer ) brings back memories of cheesy old godzilla flicks . 
+   Actual Activation: 1.6537
+   Predicted Activation: 8.0000
+3. stephen rea , aidan quinn , and alan bates play desmond 's legal eagles , and when joined by brosnan , the sight of this grandiloquent quartet lolling in pretty irish settings is a pleasant enough thing , ` tis . 
+   Actual Activation: 1.3816
+   Predicted Activation: 6.0000
+4. as the latest bid in the tv-to-movie franchise game , i spy makes its big-screen entry with little of the nervy originality of its groundbreaking small-screen progenitor . 
+   Actual Activation: 1.8102
+   Predicted Activation: 8.0000
+5. it 's like every bad idea that 's ever gone into an after-school special compiled in one place , minus those daytime programs ' slickness and sophistication ( and who knew they even had any ? ) . 
+   Actual Activation: 1.6263
+   Predicted Activation: 8.0000
+
+Overall Interpretability Pearson Correlation Score: 0.7893
+
+======================================================================
+
+Feature: Feature 3084 (negative sentiment)
+
+Llama 3 Interpretation:
+After analyzing the given sentences and their corresponding per-token activation strengths, I observe that the feature activates strongly (activation values above 0.2) whenever the sentence expresses a critical or evaluative opinion about a movie or a film-related aspect, such as its pace, camerawork, acting, or storyline.
+
+Evaluation sentences used for prediction:
+1. an exhilarating futuristic thriller-noir , minority report twists the best of technology around a gripping story , delivering a riveting , pulse intensifying escapist adventure of the first order 
+   Actual Activation: 1.0007
+   Predicted Activation: 9.0000
+2. the movie has an infectious exuberance that will engage anyone with a passing interest in the skate/surf culture , the l.a. beach scene and the imaginative ( and sometimes illegal ) ways kids can make a playground out of the refuse of adults . 
+   Actual Activation: 0.8078
+   Predicted Activation: 7.0000
+3. what really makes it special is that it pulls us into its world , gives us a hero whose suffering and triumphs we can share , surrounds him with interesting characters and sends us out of the theater feeling we 've shared a great adventure . 
+   Actual Activation: 0.8864
+   Predicted Activation: 8.0000
+4. despite all evidence to the contrary , this clunker has somehow managed to pose as an actual feature movie , the kind that charges full admission and gets hyped on tv and purports to amuse small children and ostensible adults . 
+   Actual Activation: 0.9094
+   Predicted Activation: 0.2000
+5. a hamfisted romantic comedy that makes our girl the hapless facilitator of an extended cheap shot across the mason-dixon line . 
+   Actual Activation: 1.3413
+   Predicted Activation: 8.0000
+
+Overall Interpretability Pearson Correlation Score: 0.2744
+
+======================================================================
+
+Feature: Feature 3086 (negative sentiment)
+
+Llama 3 Interpretation:
+After analyzing the given sentences and their corresponding activation strengths, I observe a strong correlation between the feature's activation and the presence of certain semantic patterns, particularly those related to the concepts of 'forced experience' or 'enduring unpleasantness'. 
+
+This feature appears to be strongly activated when the text describes situations where someone is involuntarily subjected to a distressing, uncomfortable, or unpleasant experience, often involving other people. This could be due to various reasons such as watching an uninteresting video, being part of a dysfunctional family, or being forced to endure a lengthy and depressing scenario. 
+
+The strong activation in sentences 1 and 5, where the speaker is forced to watch someone else's video or endure a family's dysfunctional behavior, supports this interpretation
+
+Evaluation sentences used for prediction:
+1. one of the best films of the year with its exploration of the obstacles to happiness faced by five contemporary individuals ... a psychological masterpiece . 
+   Actual Activation: 0.5669
+   Predicted Activation: 2.0000
+2. it deserves to be seen by anyone with even a passing interest in the events shaping the world beyond their own horizons . 
+   Actual Activation: 0.6358
+   Predicted Activation: 2.0000
+3. though moonlight mile is replete with acclaimed actors and actresses and tackles a subject that 's potentially moving , the movie is too predictable and too self-conscious to reach a level of high drama . 
+   Actual Activation: 0.3809
+   Predicted Activation: 2.0000
+4. the special effects and many scenes of weightlessness look as good or better than in the original , while the oscar-winning sound and james horner 's rousing score make good use of the hefty audio system . 
+   Actual Activation: 0.3522
+   Predicted Activation: 0.0000
+5. an effectively creepy , fear-inducing ( not fear-reducing ) film from japanese director hideo nakata , who takes the superstitious curse on chain letters and actually applies it . 
+   Actual Activation: 0.3440
+   Predicted Activation: 6.0000
+
+Overall Interpretability Pearson Correlation Score: -0.2021
+
+======================================================================
+
+Feature: Feature 18 (negative sentiment)
+
+Llama 3 Interpretation:
+This feature activates strongly on sentences that describe comparisons or analogies between two entities, often involving a contrast or an unexpected connection. It is sensitive to words and phrases that indicate a metaphorical or figurative relationship between concepts, such as "as if," "like," "it's," and "compared to." In the provided sentences, this feature is strongly activated when describing a movie as being "like" an after-school special or a "mesh" of old-world and new, indicating a comparison or analogy between two distinct concepts.
+
+Evaluation sentences used for prediction:
+1. may be far from the best of the series , but it 's assured , wonderfully respectful of its past and thrilling enough to make it abundantly clear that this movie phenomenon has once again reinvented itself for a new generation . 
+   Actual Activation: 2.4750
+   Predicted Activation: 4.0000
+2. while it 's genuinely cool to hear characters talk about early rap records ( sugar hill gang , etc. ) , the constant referencing of hip-hop arcana can alienate even the savviest audiences . 
+   Actual Activation: 2.5528
+   Predicted Activation: 8.0000
+3. ... a story we have n't seen on the big screen before , and it 's a story that we as americans , and human beings , should know . 
+   Actual Activation: 3.4208
+   Predicted Activation: 6.0000
+4. it 's a demented kitsch mess ( although the smeary digital video does match the muddled narrative ) , but it 's savvy about celebrity and has more guts and energy than much of what will open this year . 
+   Actual Activation: 2.2306
+   Predicted Activation: 4.0000
+5. what really makes it special is that it pulls us into its world , gives us a hero whose suffering and triumphs we can share , surrounds him with interesting characters and sends us out of the theater feeling we 've shared a great adventure . 
+   Actual Activation: 2.2537
+   Predicted Activation: 2.0000
+
+Overall Interpretability Pearson Correlation Score: 0.4955
+
+======================================================================
+
+
+
+======================================================================
+SUMMARY OF INTERPRETABILITY SCORES
+======================================================================
+
+POSITIVE-ONLY FEATURES:
+----------------------------------------------------------------------
+Feature 2565: Score = 0.4300
+Feature 2056: Score = -0.7273
+Feature 2057: Score = 0.7893
+
+NEGATIVE-ONLY FEATURES:
+----------------------------------------------------------------------
+Feature 3084: Score = 0.2744
+Feature 3086: Score = -0.2021
+Feature 18: Score = 0.4955
