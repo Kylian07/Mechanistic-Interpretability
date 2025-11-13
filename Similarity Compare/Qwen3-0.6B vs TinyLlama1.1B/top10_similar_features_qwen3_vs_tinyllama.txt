@@ -1,0 +1,351 @@
+================================================================================
+TOP 10 MOST SIMILAR FEATURES
+Qwen3-0.6B SAE vs TinyLlama-1.1B SAE
+================================================================================
+
+Total Qwen3 features analyzed: 114
+Total TinyLlama features available: 39
+Average similarity score (all): 0.7709
+Top 10 average similarity: 0.8547
+
+================================================================================
+SUMMARY TABLE - TOP 10 PAIRS
+================================================================================
+
+Rank   Qwen3 F    TinyLlama F   Similarity   Qwen3 Corr    TinyLlama Corr 
+--------------------------------------------------------------------------------
+1      807        929           0.8758      -0.9611       -0.7391
+2      233        866           0.8703      -0.1487       -0.5436
+3      1826       3540          0.8669      -0.0463       0.9688
+4      645        234           0.8648      0.7696       0.4095
+5      130        362           0.8595      -0.7931       -0.8338
+6      1798       1128          0.8459      -0.4675       -0.8555
+7      61         4083          0.8425      -0.7440       -0.6030
+8      1571       2608          0.8417      0.1351       -0.3260
+9      1150       866           0.8404      -0.7296       -0.5436
+10     1816       1082          0.8394      -0.7811       0.0568
+
+
+================================================================================
+DETAILED ANALYSIS - TOP 10 PAIRS
+================================================================================
+
+================================================================================
+RANK 1
+================================================================================
+
+QWEN3 FEATURE 807
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: -0.9611
+
+INTERPRETATION:
+Based on the given sentences and their per-token activation strengths, this feature appears to strongly activate when the model encounters words or phrases related to criticism, disapproval, or skepticism, particularly when describing a movie or film. It is most likely a feature associated with detecting negative sentiment or critical tone in text.
+
+TINYLLAMA FEATURE 929
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: -0.7391
+
+INTERPRETATION:
+Based on the given sentences and per-token activation strengths, it appears that this feature strongly activates on sentences that describe or contain a critique or negative opinion about a film, often in relation to its humor, plot, or likable characters. The feature seems to be sensitive to phrases that imply a lack of originality, unlikable protagonists, or an overall negative reception.
+
+SIMILARITY ANALYSIS
+--------------------------------------------------------------------------------
+Semantic Similarity Score: 0.8758
+Sentiment Match: YES
+Qwen3 Interpretability: -0.9611
+TinyLlama Interpretability: -0.7391
+
+
+================================================================================
+RANK 2
+================================================================================
+
+QWEN3 FEATURE 233
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: -0.1487
+
+INTERPRETATION:
+After analyzing the given sentences and their corresponding token activation strengths, it appears that the feature activates strongly when the input sentence describes a comparison or an evaluation of a creative work, such as a movie or a book, typically involving a nuanced assessment of its artistic merits. This is reflected in the strong activations for words related to artistic criticism, such as "complex characters", "delicate performances", "wheezing to an end", "special effects", and "magic".
+
+TINYLLAMA FEATURE 866
+--------------------------------------------------------------------------------
+Sentiment: NEGATIVE
+Interpretability Score: -0.5436
+
+INTERPRETATION:
+After analyzing the given sentences and their per-token activation strengths, I've identified a pattern that appears to contribute to the strong activation of the feature.
+
+The feature tends to activate strongly when the input sentence contains a critical or evaluative discussion of a creative work, such as a movie, book, or play. This can be seen in the high activation values for sentences that describe a film or performance as "exhilarating," "riveting," or "compelling," or that express a negative assessment of a work as "dismal" or "whiny."
+
+In particular, the feature seems to be sensitive to words and phrases that convey a sense of artistic or intellectual critique, such as "aesthetics," "critical distance," "plat
+
+SIMILARITY ANALYSIS
+--------------------------------------------------------------------------------
+Semantic Similarity Score: 0.8703
+Sentiment Match: NO
+Qwen3 Interpretability: -0.1487
+TinyLlama Interpretability: -0.5436
+
+
+================================================================================
+RANK 3
+================================================================================
+
+QWEN3 FEATURE 1826
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: -0.0463
+
+INTERPRETATION:
+After analyzing the per-token activation strengths of the given feature for the provided sentences, I observed that the most significant activations occur when the sentences contain certain linguistic patterns related to film criticism or evaluation. Specifically, this feature is strongly activated when the sentences express a negative opinion about the quality of a film, particularly when they mention aspects such as poor writing, acting, or narrative coherence.
+
+In more detail, the feature is activated when words or phrases related to criticism, evaluation, or disapproval are present, such as "hilarious" (sentence 1), "script of even the most elemental literacy" (sentence 2), "too long and too convoluted" (sentence 3), "murderous rage" (sentence 4),
+
+TINYLLAMA FEATURE 3540
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: 0.9688
+
+INTERPRETATION:
+After analyzing the per-token activation strengths for the given sentences, I observe a common pattern that suggests the feature is strongly activated when the input sentence discusses criticisms or negative evaluations of a film, particularly focusing on its artistic or technical shortcomings.
+
+More specifically, the feature seems to be triggered when the sentence mentions terms related to artistic or technical flaws, such as "fussy script," "juvenile pedagogy," "near-xenophobic," "tragic loss," "power of the movie," "stationary camera," "pretentious," or "dull." These words often appear in the context of a negative critique or evaluation of a film's artistic or technical merits.
+
+This pattern is consistent across all five sentences, where the feature activation is highest when
+
+SIMILARITY ANALYSIS
+--------------------------------------------------------------------------------
+Semantic Similarity Score: 0.8669
+Sentiment Match: YES
+Qwen3 Interpretability: -0.0463
+TinyLlama Interpretability: 0.9688
+
+
+================================================================================
+RANK 4
+================================================================================
+
+QWEN3 FEATURE 645
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: 0.7696
+
+INTERPRETATION:
+Based on the given activation strengths, this feature appears to strongly activate on sentences that contain critical or negative reviews of movies, especially those that express disappointment or frustration with poor filmmaking, juvenile content, or an attempt to force a certain style (e.g., "XXX mold"). The feature is also triggered by words and phrases related to cinematic history, film techniques, and criticism (e.g., "juvenile and near-xenophobic pedagogy," "technical virtuosity," "sound," "score," "cinematic history"). This suggests that the feature is associated with the analysis of movie reviews, specifically those that discuss the artistic or technical merits of a film. The strong activation on sentence 5, which describes a movie as a "train
+
+TINYLLAMA FEATURE 234
+--------------------------------------------------------------------------------
+Sentiment: NEGATIVE
+Interpretability Score: 0.4095
+
+INTERPRETATION:
+Based on the provided activation strengths and sentences, I've identified the following key factors contributing to strong activation of the feature:
+
+- **Semantic patterns related to film criticism**: The feature strongly activates in sentences that contain phrases or words indicating a critical evaluation of a film's quality, such as "thriller," "twist-and-turn," "riveting," "pulse intensifying," "gripping story," "film's narrative," "fun," "exhilarating," "futuristic," "thriller-noir," "public oration," and "chemistry between the women." These phrases often appear in the context of movie reviews or criticisms.
+
+- **Presence of specific film-related vocabulary**: Words like "thriller," "film," "
+
+SIMILARITY ANALYSIS
+--------------------------------------------------------------------------------
+Semantic Similarity Score: 0.8648
+Sentiment Match: NO
+Qwen3 Interpretability: 0.7696
+TinyLlama Interpretability: 0.4095
+
+
+================================================================================
+RANK 5
+================================================================================
+
+QWEN3 FEATURE 130
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: -0.7931
+
+INTERPRETATION:
+After analyzing the given sentences and their per-token activation strengths, I have identified a pattern that triggers strong activation of this feature.
+
+This feature appears to strongly activate when a sentence contains phrases or sentences that are critical or mocking of a film, movie, or other forms of artistic media. The activation pattern is characterized by strong activation of words related to film, actors, and movie genres (e.g., "cheesy old godzilla flicks," "the talents of robert forster," "grandiloquent quartet," and "disjointed, haphazard script"). The activation also correlates with words indicating a negative or critical opinion of the film (e.g., "so-inept," "waste," "lazy," "short on thr
+
+TINYLLAMA FEATURE 362
+--------------------------------------------------------------------------------
+Sentiment: NEGATIVE
+Interpretability Score: -0.8338
+
+INTERPRETATION:
+Based on the per-token activation strengths provided, I can identify a common semantic pattern that causes the feature to activate strongly in sentences that describe movies or films. The feature appears to be related to the concept of satire or parody, and it activates when the input sentence mentions satire, parody, or spoofing, often in the context of film criticism. 
+
+In particular, strong activations are observed when sentences contain words or phrases related to film genre, tone, or style, such as "satire," "parody," "spoof," "dark comedy," or "outrageous." These words often co-occur with words related to film criticism, such as "film," "movie," "review," or "critique." 
+
+The
+
+SIMILARITY ANALYSIS
+--------------------------------------------------------------------------------
+Semantic Similarity Score: 0.8595
+Sentiment Match: NO
+Qwen3 Interpretability: -0.7931
+TinyLlama Interpretability: -0.8338
+
+
+================================================================================
+RANK 6
+================================================================================
+
+QWEN3 FEATURE 1798
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: -0.4675
+
+INTERPRETATION:
+Based on the activation patterns, this feature appears to be strongly activated by sentences that express a negative opinion or criticism of a movie, particularly when the criticism is focused on the movie's lack of originality, poor quality, or failure to engage the audience. The feature seems to be sensitive to the presence of words and phrases that convey a sense of disappointment, boredom, or frustration, such as "dumb", "rote plot points", "gussied up", and "boring". However, it also appears to be activated by sentences that express a positive opinion or admiration for a movie, particularly when the praise is focused on the movie's unique storytelling, emotional resonance, or ability to engage the audience. The feature seems to be sensitive to the
+
+TINYLLAMA FEATURE 1128
+--------------------------------------------------------------------------------
+Sentiment: NEGATIVE
+Interpretability Score: -0.8555
+
+INTERPRETATION:
+Based on the activation patterns of the feature, it appears to be sensitive to the presence and strength of evaluative language, particularly in the context of movies or film reviews. The feature strongly activates when there is a mention of a film's quality, such as "no good jokes," "embarrassment," or a comparison to a "saccharine" or "rejected TV show." This suggests that the feature is likely related to sentiment analysis or opinion mining, and is designed to capture the reviewer's evaluation of the film's artistic or entertainment value.
+
+The feature also shows some sensitivity to the tone or style of the writing, particularly when it comes to sarcasm or irony, as seen in the use of phrases like "shooting the latest system
+
+SIMILARITY ANALYSIS
+--------------------------------------------------------------------------------
+Semantic Similarity Score: 0.8459
+Sentiment Match: NO
+Qwen3 Interpretability: -0.4675
+TinyLlama Interpretability: -0.8555
+
+
+================================================================================
+RANK 7
+================================================================================
+
+QWEN3 FEATURE 61
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: -0.7440
+
+INTERPRETATION:
+Based on the given sentences and activation strengths, this feature appears to activate strongly when the input text expresses a negative evaluation of a movie or film, particularly in the context of its entertainment value, plot, or overall quality. This feature is likely triggered by the presence of words or phrases that convey criticism, disappointment, or boredom, such as "unexciting," "disjointed," "rote plot points," "fitfully entertaining," or "after-school special." The feature may also respond to more nuanced expressions of disappointment, like "about as exciting as gazing at an egg timer" or "as boring as a sunburn."
+
+TINYLLAMA FEATURE 4083
+--------------------------------------------------------------------------------
+Sentiment: NEGATIVE
+Interpretability Score: -0.6030
+
+INTERPRETATION:
+Based on the provided activation patterns, it appears that this feature is strongly activated when the input sentence contains a mix of positive and negative evaluations, often with a focus on the film's entertainment value, humor, and overall quality. 
+
+More specifically, the feature seems to be triggered by sentences that express a critical or mocking tone towards a film, but also acknowledge some redeeming qualities or aspects that might be enjoyable for certain audiences, such as children or fans of specific genres. 
+
+This interpretation is supported by the fact that the feature is strongly activated in sentences that contain words or phrases with negative connotations, such as "inoffensive," "about as exciting as a sunburn," "slapstick buffoonery," "dog like this," and
+
+SIMILARITY ANALYSIS
+--------------------------------------------------------------------------------
+Semantic Similarity Score: 0.8425
+Sentiment Match: NO
+Qwen3 Interpretability: -0.7440
+TinyLlama Interpretability: -0.6030
+
+
+================================================================================
+RANK 8
+================================================================================
+
+QWEN3 FEATURE 1571
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: 0.1351
+
+INTERPRETATION:
+Based on the given sentences and their corresponding activation strengths, it appears that this feature is strongly activated when the input sentence contains criticism or negative commentary about a movie or film, particularly focusing on its plot, characters, or production.
+
+TINYLLAMA FEATURE 2608
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: -0.3260
+
+INTERPRETATION:
+The feature activates strongly when the input sentence contains a critical evaluation or negative commentary of a film, particularly focusing on its narrative, plot development, or the coherence of its characters' actions.
+
+SIMILARITY ANALYSIS
+--------------------------------------------------------------------------------
+Semantic Similarity Score: 0.8417
+Sentiment Match: YES
+Qwen3 Interpretability: 0.1351
+TinyLlama Interpretability: -0.3260
+
+
+================================================================================
+RANK 9
+================================================================================
+
+QWEN3 FEATURE 1150
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: -0.7296
+
+INTERPRETATION:
+After analyzing the given activation strengths for each sentence, I've identified the feature to be strongly activated when it encounters sentences that describe movies, films, or cinematic experiences with a critical or evaluative tone. This feature likely corresponds to a high-level representation of cinematic criticism or film analysis.
+
+More specifically, the strong activations (e.g., above 0.2) seem to be associated with the presence of certain key phrases or words, such as:
+
+- Critique-related vocabulary (e.g., "wince-inducing," "haphazard," "inspiring efforts," "fitfully entertaining," "grandeur," "kitsch mess," "guts and energy").
+- Evaluative language (e.g., "pleasant enough thing," "dement
+
+TINYLLAMA FEATURE 866
+--------------------------------------------------------------------------------
+Sentiment: NEGATIVE
+Interpretability Score: -0.5436
+
+INTERPRETATION:
+After analyzing the given sentences and their per-token activation strengths, I've identified a pattern that appears to contribute to the strong activation of the feature.
+
+The feature tends to activate strongly when the input sentence contains a critical or evaluative discussion of a creative work, such as a movie, book, or play. This can be seen in the high activation values for sentences that describe a film or performance as "exhilarating," "riveting," or "compelling," or that express a negative assessment of a work as "dismal" or "whiny."
+
+In particular, the feature seems to be sensitive to words and phrases that convey a sense of artistic or intellectual critique, such as "aesthetics," "critical distance," "plat
+
+SIMILARITY ANALYSIS
+--------------------------------------------------------------------------------
+Semantic Similarity Score: 0.8404
+Sentiment Match: NO
+Qwen3 Interpretability: -0.7296
+TinyLlama Interpretability: -0.5436
+
+
+================================================================================
+RANK 10
+================================================================================
+
+QWEN3 FEATURE 1816
+--------------------------------------------------------------------------------
+Sentiment: POSITIVE
+Interpretability Score: -0.7811
+
+INTERPRETATION:
+Based on the provided sentences and their corresponding activation strengths, it appears that the feature in question strongly activates when the input text discusses film-related concepts such as actors, directors, scripts, and cinematic techniques. This is particularly evident in sentences 3 and 4, which explicitly mention film-related elements, and in sentences 1 and 2, which contain implicit references to film and storytelling. The feature also activates moderately in sentence 5, which describes a baseball picture, possibly due to the use of cinematic language or the presence of a narrative structure.
+
+TINYLLAMA FEATURE 1082
+--------------------------------------------------------------------------------
+Sentiment: NEGATIVE
+Interpretability Score: 0.0568
+
+INTERPRETATION:
+Based on the given activation patterns, it appears that the feature activates strongly when encountering sentences that describe or reference a narrative or storytelling element, particularly those involving films, movies, or other forms of storytelling. 
+
+This activation pattern is evident in sentences 1, 3, and 5, which all discuss or mention films, movies, or storytelling in some capacity. Sentence 1 describes a baseball picture, sentence 3 refers to a beguiling Belgian fable, and sentence 5 talks about a movie based on a best-selling novel. 
+
+In contrast, sentences 2 and 4, which do not explicitly reference storytelling or films, exhibit lower activation values for this feature.
+
+SIMILARITY ANALYSIS
+--------------------------------------------------------------------------------
+Semantic Similarity Score: 0.8394
+Sentiment Match: NO
+Qwen3 Interpretability: -0.7811
+TinyLlama Interpretability: 0.0568
+
+
