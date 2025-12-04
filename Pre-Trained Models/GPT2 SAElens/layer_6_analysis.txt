@@ -1,0 +1,49 @@
+======================================================================
+LAYER 6 - SAE FEATURE ANALYSIS
+======================================================================
+
+A. OVERALL STATISTICS
+----------------------------------------------------------------------
+Total samples - POSITIVE: 444, NEGATIVE: 428
+Unique features - POSITIVE: 9102, NEGATIVE: 9341
+Common features (used by both): 7405
+POSITIVE-only features: 1697
+NEGATIVE-only features: 1936
+Jaccard similarity: 0.6709
+â†’ MODERATELY SIMILAR - Significant overlap
+
+B. UNCOMMON FEATURES
+----------------------------------------------------------------------
+Uncommon POSITIVE (<5%): 8132 (89.3%)
+Uncommon NEGATIVE (<5%): 8391 (89.8%)
+Very rare POSITIVE (<1%): 5343
+Very rare NEGATIVE (<1%): 5600
+
+C. ACTIVATION PATTERNS
+----------------------------------------------------------------------
+Average active features - POSITIVE: 209.92, NEGATIVE: 208.12
+Difference: 1.80 features
+
+D. TOP 5 POSITIVE FEATURES (by frequency)
+----------------------------------------------------------------------
+1. Feature  7182:  444 activations (100.00%) | In NEG: 428 | COMMON
+2. Feature  7683:  444 activations (100.00%) | In NEG: 428 | COMMON
+3. Feature  8399:  444 activations (100.00%) | In NEG: 428 | COMMON
+4. Feature 21712:  417 activations (93.92%) | In NEG: 400 | COMMON
+5. Feature 17720:  378 activations (85.14%) | In NEG: 320 | COMMON
+
+E. TOP 5 NEGATIVE FEATURES (by frequency)
+----------------------------------------------------------------------
+1. Feature  7182:  428 activations (100.00%) | In POS: 444 | COMMON
+2. Feature  7683:  428 activations (100.00%) | In POS: 444 | COMMON
+3. Feature  8399:  428 activations (100.00%) | In POS: 444 | COMMON
+4. Feature 21712:  400 activations (93.46%) | In POS: 417 | COMMON
+5. Feature  1139:  347 activations (81.07%) | In POS: 357 | COMMON
+
+F. TOP 5 COMMON FEATURES (most discriminative)
+----------------------------------------------------------------------
+1. Feature 15515: POSITIVE-biased | POS:47.97%, NEG:16.82% (diff:31.15%)
+2. Feature  8463: NEGATIVE-biased | POS:12.61%, NEG:39.72% (diff:27.11%)
+3. Feature 11028: POSITIVE-biased | POS:48.65%, NEG:22.66% (diff:25.99%)
+4. Feature 15956: NEGATIVE-biased | POS:37.61%, NEG:62.62% (diff:25.00%)
+5. Feature  6340: POSITIVE-biased | POS:61.26%, NEG:38.79% (diff:22.48%)
