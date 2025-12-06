@@ -46,4 +46,28 @@ F. TOP 5 COMMON FEATURES (most discriminative)
 2. Feature 18833: POSITIVE-biased | POS:47.30%, NEG:31.07% (diff:16.22%)
 3. Feature   555: POSITIVE-biased | POS:38.96%, NEG:23.83% (diff:15.13%)
 4. Feature  6348: POSITIVE-biased | POS:64.64%, NEG:52.57% (diff:12.07%)
+
 5. Feature 18238: NEGATIVE-biased | POS:81.76%, NEG:92.52% (diff:10.77%)
+
+
+
+======================================================================
+LAYER 0 - PERFORMANCE (RAW REPRESENTATIONS)
+======================================================================
+
+Method: Logistic Regression on raw layer activations
+Representation dimension: 768
+
+Accuracy: 0.7901 (79.01%)
+Precision: 0.8145
+Recall: 0.7613
+F1-Score: 0.7870
+
+Baseline Accuracy: 0.5344
+Improvement: +25.57%
+
+Confusion Matrix:
+              Predicted
+              Neg    Pos
+Actual Neg  [  351     77]
+       Pos  [  106    338]
