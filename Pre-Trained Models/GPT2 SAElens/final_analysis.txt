@@ -1,46 +1,39 @@
+final_summary.txt(1.59 kB)
 ======================================================================
-FINAL SUMMARY - ALL LAYERS
+FINAL SUMMARY - LAYER-WISE PERFORMANCE
 ======================================================================
 
-BASELINE PERFORMANCE (Zero-Shot Prompting)
+1. BASELINE (Zero-Shot Prompting)
 ----------------------------------------------------------------------
 Accuracy: 53.44%
 F1-Score: 0.6828
-Method: Pretrained GPT-2 only, no training
 
-FEATURE ANALYSIS SUMMARY ACROSS ALL LAYERS
+2. LAYER-WISE PERFORMANCE (Raw Representations)
 ----------------------------------------------------------------------
-Layer    Jaccard      Common     POS-only     NEG-only     Interpretation
-------------------------------------------------------------------------------------------
-Layer 0   0.4208      2419       1695         1635         DIFFERENT
-Layer 1   0.5712      3306       1236         1246         SIMILAR
-Layer 2   0.5661      5859       2263         2228         SIMILAR
-Layer 3   0.6336      9593       2829         2718         SIMILAR
-Layer 4   0.6800      11503      2664         2749         SIMILAR
-Layer 5   0.5409      6985       3141         2788         SIMILAR
-Layer 6   0.6709      7405       1697         1936         SIMILAR
-Layer 7   0.6063      6272       2007         2066         SIMILAR
-Layer 8   0.6433      5703       1539         1623         SIMILAR
-Layer 9   0.6728      3776       944          892          SIMILAR
-Layer 10  0.6206      3333       1126         912          SIMILAR
-Layer 11  0.6021      1147       363          395          SIMILAR
+Layer    Accuracy     F1-Score     Improvement     Jaccard     
+----------------------------------------------------------------------
+Layer 0   79.01%      0.7870      +25.57%        0.4208
+Layer 1   77.98%      0.7808      +24.54%        0.5712
+Layer 2   80.50%      0.8055      +27.06%        0.5661
+Layer 3   81.88%      0.8184      +28.44%        0.6336
+Layer 4   82.00%      0.8210      +28.56%        0.6800
+Layer 5   83.60%      0.8388      +30.16%        0.5409
+Layer 6   83.49%      0.8396      +30.05%        0.6709
+Layer 7   84.86%      0.8546      +31.42%        0.6063
+Layer 8   84.40%      0.8489      +30.96%        0.6433
+Layer 9   81.19%      0.8178      +27.75%        0.6728
+Layer 10  81.65%      0.8206      +28.21%        0.6206
+Layer 11  81.65%      0.8206      +28.21%        0.6021
 
-======================================================================
-KEY FINDINGS
-======================================================================
+3. KEY FINDINGS
+----------------------------------------------------------------------
+Best Layer: 7
+  Accuracy: 84.86%
+  → This layer encodes the most sentiment information
 
--> Layer with MOST DIFFERENT features: Layer 0
-  Jaccard similarity: 0.4208
-  Interpretation: Strongest separation between positive and negative sentiments
+Worst Layer: 1
+  Accuracy: 77.98%
 
--> Layer with MOST SIMILAR features: Layer 4
-  Jaccard similarity: 0.6800
-  Interpretation: Least separation between positive and negative sentiments
-
-======================================================================
-NOTES
-======================================================================
-- Baseline uses zero-shot prompting with pretrained GPT-2
-- SAE features extracted from pretrained model (no training)
-- Lower Jaccard = more distinct features for pos vs neg
-- Higher Jaccard = more overlapping features
+INTERPRETATION:
+- Higher accuracy = more sentiment information in layer
+- Lower Jaccard = more distinct positive/negative features
