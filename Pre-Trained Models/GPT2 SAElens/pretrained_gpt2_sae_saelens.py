@@ -14,6 +14,7 @@ from datasets import load_dataset
 from transformer_lens import HookedTransformer
 from sae_lens import SAE
 from tqdm import tqdm
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
 import numpy as np
 from collections import Counter
@@ -37,15 +38,17 @@ model.eval()
 
 print(f"Model has {model.cfg.n_layers} layers (0-{model.cfg.n_layers-1})")
 
-# Load SST-2 dataset - ONLY VALIDATION SET
-print("Loading SST-2 validation dataset...")
+# Load SST-2 dataset
+print("Loading SST-2 dataset...")
 dataset = load_dataset("glue", "sst2")
+train_dataset = dataset["train"]
 val_dataset = dataset["validation"]
 
+print(f"Train samples: {len(train_dataset)}")
 print(f"Validation samples: {len(val_dataset)}")
 
 # ============================================================================
-# STEP 1: Record Baseline Performance - Zero-Shot Prompting
+# STEP 1: Baseline - Zero-Shot Prompting
 # ============================================================================
 print("\n" + "="*70)
 print("STEP 1: BASELINE - ZERO-SHOT PROMPTING")
@@ -58,19 +61,19 @@ with torch.no_grad():
     for idx in tqdm(range(len(val_dataset)), desc="Zero-Shot Evaluation"):
         sentence = val_dataset[idx]["sentence"]
         true_label = val_dataset[idx]["label"]
-
+        
         prompt = f"""Classify the sentiment as positive or negative.
 
 Sentence: {sentence}
 Sentiment:"""
-
+        
         tokens = model.to_tokens(prompt)
         logits = model(tokens)
-
+        
         next_token_logits = logits[0, -1, :]
         next_token_id = torch.argmax(next_token_logits).item()
         generated_text = model.tokenizer.decode([next_token_id]).strip().lower()
-
+        
         if "positive" in generated_text or generated_text.startswith("pos"):
             prediction = 1
         elif "negative" in generated_text or generated_text.startswith("neg"):
@@ -78,12 +81,12 @@ Sentiment:"""
         else:
             pos_token_id = model.tokenizer.encode(" positive")[0]
             neg_token_id = model.tokenizer.encode(" negative")[0]
-
+            
             if next_token_logits[pos_token_id] > next_token_logits[neg_token_id]:
                 prediction = 1
             else:
                 prediction = 0
-
+        
         baseline_predictions.append(prediction)
         baseline_labels.append(true_label)
 
@@ -96,287 +99,389 @@ baseline_p, baseline_r, baseline_f1, _ = precision_recall_fscore_support(
 )
 baseline_cm = confusion_matrix(baseline_labels, baseline_predictions)
 
-print("\n### BASELINE RESULTS ###")
-print(f"Accuracy: {baseline_acc:.4f} ({baseline_acc*100:.2f}%)")
-print(f"Precision: {baseline_p:.4f}")
-print(f"Recall: {baseline_r:.4f}")
+print(f"\nBaseline Accuracy: {baseline_acc:.4f} ({baseline_acc*100:.2f}%)")
 print(f"F1-Score: {baseline_f1:.4f}")
-print(f"\nConfusion Matrix:")
-print(f"              Neg    Pos")
-print(f"Actual Neg  [{baseline_cm[0,0]:5d}  {baseline_cm[0,1]:5d}]")
-print(f"       Pos  [{baseline_cm[1,0]:5d}  {baseline_cm[1,1]:5d}]")
 
-# Save baseline results to TXT
+# Save baseline
 with open('/kaggle/working/results/baseline_results.txt', 'w') as f:
     f.write("="*70 + "\n")
-    f.write("BASELINE RESULTS - ZERO-SHOT PROMPTING\n")
+    f.write("BASELINE - ZERO-SHOT PROMPTING\n")
     f.write("="*70 + "\n\n")
-    f.write("Method: Pretrained GPT-2 only (no training)\n\n")
     f.write(f"Accuracy: {baseline_acc:.4f} ({baseline_acc*100:.2f}%)\n")
     f.write(f"Precision: {baseline_p:.4f}\n")
     f.write(f"Recall: {baseline_r:.4f}\n")
-    f.write(f"F1-Score: {baseline_f1:.4f}\n\n")
-    f.write("Confusion Matrix:\n")
-    f.write("              Predicted\n")
-    f.write("              Neg    Pos\n")
-    f.write(f"Actual Neg  [{baseline_cm[0,0]:5d}  {baseline_cm[0,1]:5d}]\n")
-    f.write(f"       Pos  [{baseline_cm[1,0]:5d}  {baseline_cm[1,1]:5d}]\n")
+    f.write(f"F1-Score: {baseline_f1:.4f}\n")
 
-print("✓ Baseline saved to baseline_results.txt")
+print("✓ Baseline saved")
 
 # ============================================================================
-# STEP 2: Extract SAE Features and Analyze (All Layers)
+# STEP 2: Layer-wise Performance Using RAW Representations
 # ============================================================================
 print("\n" + "="*70)
-print("STEP 2: SAE FEATURE ANALYSIS - ALL LAYERS")
+print("STEP 2: LAYER-WISE PERFORMANCE (RAW REPRESENTATIONS)")
 print("="*70)
 
-all_layers_analysis = {}
+layer_performance = {}
 
 for layer_num in range(model.cfg.n_layers):
     print(f"\n{'='*70}")
-    print(f"ANALYZING LAYER {layer_num}")
+    print(f"LAYER {layer_num} - RAW REPRESENTATION CLASSIFIER")
     print(f"{'='*70}")
+    
+    hook_name = f"blocks.{layer_num}.attn.hook_z"
+    
+    # Extract RAW representations from training set
+    print("Extracting training representations...")
+    train_reps = []
+    train_labels = []
+    
+    with torch.no_grad():
+        for idx in tqdm(range(len(train_dataset)), desc=f"Train L{layer_num}"):
+            sentence = train_dataset[idx]["sentence"]
+            label = train_dataset[idx]["label"]
+            
+            tokens = model.to_tokens(sentence)
+            _, cache = model.run_with_cache(tokens)
+            
+            # Get RAW layer representation
+            layer_acts = cache[hook_name]
+            
+            # Debug: print shape for first iteration
+            if idx == 0:
+                print(f"DEBUG: Raw layer_acts shape: {layer_acts.shape}")
+            
+            # Pool across sequence dimension (mean pooling)
+            # layer_acts shape should be [batch, seq_len, d_model]
+            pooled = layer_acts.mean(dim=1)  # Shape: [batch, d_model]
+            
+            if idx == 0:
+                print(f"DEBUG: After mean(dim=1) shape: {pooled.shape}")
+            
+            # Convert to 1D numpy array
+            pooled_np = pooled.cpu().numpy()
+            
+            # Flatten to ensure 1D
+            pooled_flat = pooled_np.flatten()
+            
+            if idx == 0:
+                print(f"DEBUG: Final flattened shape: {pooled_flat.shape}")
+            
+            train_reps.append(pooled_flat)
+            train_labels.append(label)
+    
+    X_train = np.array(train_reps)
+    y_train = np.array(train_labels)
+    
+    print(f"Training representations shape: {X_train.shape}")
+    print(f"Training labels shape: {y_train.shape}")
+    
+    # Extract RAW representations from validation set
+    print("Extracting validation representations...")
+    val_reps = []
+    val_labels = []
+    
+    with torch.no_grad():
+        for idx in tqdm(range(len(val_dataset)), desc=f"Val L{layer_num}"):
+            sentence = val_dataset[idx]["sentence"]
+            label = val_dataset[idx]["label"]
+            
+            tokens = model.to_tokens(sentence)
+            _, cache = model.run_with_cache(tokens)
+            
+            layer_acts = cache[hook_name]
+            pooled = layer_acts.mean(dim=1)
+            pooled_np = pooled.cpu().numpy()
+            pooled_flat = pooled_np.flatten()
+            
+            val_reps.append(pooled_flat)
+            val_labels.append(label)
+    
+    X_val = np.array(val_reps)
+    y_val = np.array(val_labels)
+    
+    print(f"Validation representations shape: {X_val.shape}")
+    print(f"Validation labels shape: {y_val.shape}")
+    
+    # Verify shapes
+    print(f"X_train dimensions: {X_train.ndim}")
+    print(f"X_val dimensions: {X_val.ndim}")
+    
+    if X_train.ndim != 2:
+        print(f"ERROR: X_train has {X_train.ndim} dimensions, reshaping...")
+        X_train = X_train.reshape(X_train.shape[0], -1)
+        print(f"New X_train shape: {X_train.shape}")
+    
+    if X_val.ndim != 2:
+        print(f"ERROR: X_val has {X_val.ndim} dimensions, reshaping...")
+        X_val = X_val.reshape(X_val.shape[0], -1)
+        print(f"New X_val shape: {X_val.shape}")
+    
+    # Train classifier on RAW representations
+    print("Training classifier...")
+    clf = LogisticRegression(max_iter=1000, random_state=42, class_weight='balanced')
+    clf.fit(X_train, y_train)
+    
+    # Evaluate
+    predictions = clf.predict(X_val)
+    
+    acc = accuracy_score(y_val, predictions)
+    p, r, f1, _ = precision_recall_fscore_support(y_val, predictions, average='binary')
+    cm = confusion_matrix(y_val, predictions)
+    
+    print(f"\nLayer {layer_num} Performance:")
+    print(f"Accuracy: {acc:.4f} ({acc*100:.2f}%)")
+    print(f"F1-Score: {f1:.4f}")
+    print(f"Improvement over baseline: {(acc - baseline_acc)*100:+.2f}%")
+    
+    layer_performance[layer_num] = {
+        'accuracy': acc,
+        'precision': p,
+        'recall': r,
+        'f1_score': f1,
+        'improvement': acc - baseline_acc,
+        'confusion_matrix': cm
+    }
+    
+    # Save layer performance
+    with open(f'/kaggle/working/results/layer_{layer_num}_performance.txt', 'w') as f:
+        f.write("="*70 + "\n")
+        f.write(f"LAYER {layer_num} - PERFORMANCE (RAW REPRESENTATIONS)\n")
+        f.write("="*70 + "\n\n")
+        f.write(f"Method: Logistic Regression on raw layer activations\n")
+        f.write(f"Representation dimension: {X_train.shape[1]}\n\n")
+        f.write(f"Accuracy: {acc:.4f} ({acc*100:.2f}%)\n")
+        f.write(f"Precision: {p:.4f}\n")
+        f.write(f"Recall: {r:.4f}\n")
+        f.write(f"F1-Score: {f1:.4f}\n\n")
+        f.write(f"Baseline Accuracy: {baseline_acc:.4f}\n")
+        f.write(f"Improvement: {(acc - baseline_acc)*100:+.2f}%\n\n")
+        f.write("Confusion Matrix:\n")
+        f.write("              Predicted\n")
+        f.write("              Neg    Pos\n")
+        f.write(f"Actual Neg  [{cm[0,0]:5d}  {cm[0,1]:5d}]\n")
+        f.write(f"       Pos  [{cm[1,0]:5d}  {cm[1,1]:5d}]\n")
+    
+    print(f"✓ Layer {layer_num} performance saved")
 
-    # Load pretrained SAE for this layer
+# ============================================================================
+# STEP 3: SAE Feature Analysis (Interpretability Only)
+# ============================================================================
+print("\n" + "="*70)
+print("STEP 3: SAE FEATURE ANALYSIS (INTERPRETABILITY)")
+print("="*70)
+
+sae_analysis = {}
+
+for layer_num in range(model.cfg.n_layers):
+    print(f"\n{'='*70}")
+    print(f"ANALYZING SAE FEATURES - LAYER {layer_num}")
+    print(f"{'='*70}")
+    
+    # Load pretrained SAE
     try:
         release = "gpt2-small-hook-z-kk"
         sae_id = f"blocks.{layer_num}.hook_z"
-
+        
         try:
             sae = SAE.from_pretrained(release, sae_id)
         except:
             sae = SAE.from_pretrained(release, sae_id)[0]
-
+        
         sae.to(device)
         sae.eval()
-
+        
         hook_name = f"blocks.{layer_num}.attn.hook_z"
-        print(f"Using SAE: {sae_id}, Hook: {hook_name}")
-        print(f"SAE feature dimension: {sae.cfg.d_sae}")
-
+        print(f"Using SAE: {sae_id}")
+        
     except Exception as e:
         print(f"Could not load SAE for layer {layer_num}: {e}")
         continue
-
-    # Extract SAE features
-    print("Extracting SAE feature activations...")
+    
+    # Extract SAE features from validation set
+    print("Extracting SAE features for analysis...")
     val_feature_details = []
-
+    
     with torch.no_grad():
-        for idx in tqdm(range(len(val_dataset)), desc=f"Layer {layer_num}"):
+        for idx in tqdm(range(len(val_dataset)), desc=f"SAE L{layer_num}"):
             sentence = val_dataset[idx]["sentence"]
             label = val_dataset[idx]["label"]
-
+            
             tokens = model.to_tokens(sentence)
             _, cache = model.run_with_cache(tokens)
-
+            
             hook_acts = cache[hook_name]
             sae_feature_acts = sae.encode(hook_acts)
-
-            # Pool features across sequence
-            pooled_features = sae_feature_acts.mean(dim=1).squeeze()
-
-            # Get active features
-            active_features = torch.where(pooled_features > 0)[0]
-            active_values = pooled_features[active_features]
-
+            
+            # Pool across sequence
+            pooled_features = sae_feature_acts.mean(dim=1)
+            pooled_features = pooled_features.cpu().numpy().flatten()
+            
+            active_indices = np.where(pooled_features > 0)[0]
+            active_values = pooled_features[active_indices]
+            
             val_feature_details.append({
                 'true_label': label,
-                'sentence': sentence,
-                'active_features': active_features.cpu().numpy(),
-                'active_values': active_values.cpu().numpy(),
-                'num_active': len(active_features)
+                'active_features': active_indices,
+                'active_values': active_values,
+                'num_active': len(active_indices)
             })
-
-    # Analyze feature patterns
-    print(f"\nAnalyzing feature patterns for Layer {layer_num}...")
-
-    # Separate features by TRUE sentiment label
+    
+    # Analyze features
     pos_features = []
     neg_features = []
-
+    
     for detail in val_feature_details:
         if detail['true_label'] == 1:
             pos_features.extend(detail['active_features'])
         else:
             neg_features.extend(detail['active_features'])
-
-    pos_feature_counts = Counter(pos_features)
-    neg_feature_counts = Counter(neg_features)
-
+    
+    pos_counts = Counter(pos_features)
+    neg_counts = Counter(neg_features)
+    
     pos_unique = set(pos_features)
     neg_unique = set(neg_features)
-    common_features = pos_unique & neg_unique
+    common = pos_unique & neg_unique
     pos_only = pos_unique - neg_unique
     neg_only = neg_unique - pos_unique
-
-    jaccard = len(common_features) / len(pos_unique | neg_unique) if (pos_unique | neg_unique) else 0
-
+    
+    jaccard = len(common) / len(pos_unique | neg_unique) if (pos_unique | neg_unique) else 0
+    
     total_pos = sum(d['true_label'] == 1 for d in val_feature_details)
     total_neg = sum(d['true_label'] == 0 for d in val_feature_details)
-
+    
     # Uncommon features
-    pos_uncommon = {f: c for f, c in pos_feature_counts.items() if c / total_pos < 0.05}
-    neg_uncommon = {f: c for f, c in neg_feature_counts.items() if c / total_neg < 0.05}
-
-    # Very rare features
-    pos_very_rare = {f: c for f, c in pos_feature_counts.items() if c / total_pos < 0.01}
-    neg_very_rare = {f: c for f, c in neg_feature_counts.items() if c / total_neg < 0.01}
-
-    # Average active features
-    pos_avg_active = np.mean([d['num_active'] for d in val_feature_details if d['true_label'] == 1])
-    neg_avg_active = np.mean([d['num_active'] for d in val_feature_details if d['true_label'] == 0])
-
-    # Determine similarity interpretation
+    pos_uncommon = {f: c for f, c in pos_counts.items() if c / total_pos < 0.05}
+    neg_uncommon = {f: c for f, c in neg_counts.items() if c / total_neg < 0.05}
+    
+    # Average active
+    pos_avg = np.mean([d['num_active'] for d in val_feature_details if d['true_label'] == 1])
+    neg_avg = np.mean([d['num_active'] for d in val_feature_details if d['true_label'] == 0])
+    
+    # Determine similarity
     if jaccard < 0.3:
-        similarity = "VERY DIFFERENT - Strong feature separation"
+        similarity = "VERY DIFFERENT - Strong separation"
     elif jaccard < 0.5:
-        similarity = "MODERATELY DIFFERENT - Some distinct patterns"
+        similarity = "MODERATELY DIFFERENT"
     elif jaccard < 0.7:
-        similarity = "MODERATELY SIMILAR - Significant overlap"
+        similarity = "MODERATELY SIMILAR"
     else:
-        similarity = "VERY SIMILAR - Mostly shared features"
-
-    # Top 5 common discriminative features
+        similarity = "VERY SIMILAR"
+    
+    # Common discriminative
     common_discriminative = []
-    for feat_idx in common_features:
-        pos_freq = pos_feature_counts[feat_idx] / total_pos
-        neg_freq = neg_feature_counts[feat_idx] / total_neg
+    for feat_idx in common:
+        pos_freq = pos_counts[feat_idx] / total_pos
+        neg_freq = neg_counts[feat_idx] / total_neg
         diff = abs(pos_freq - neg_freq)
         common_discriminative.append((feat_idx, diff, pos_freq, neg_freq))
-
+    
     common_discriminative.sort(key=lambda x: x[1], reverse=True)
-
-    # Save layer analysis to TXT
-    with open(f'/kaggle/working/results/layer_{layer_num}_analysis.txt', 'w') as f:
+    
+    # Save SAE analysis
+    with open(f'/kaggle/working/results/layer_{layer_num}_sae_features.txt', 'w') as f:
         f.write("="*70 + "\n")
         f.write(f"LAYER {layer_num} - SAE FEATURE ANALYSIS\n")
         f.write("="*70 + "\n\n")
-
-        f.write("A. OVERALL STATISTICS\n")
+        
+        f.write("A. FEATURE STATISTICS\n")
         f.write("-"*70 + "\n")
         f.write(f"Total samples - POSITIVE: {total_pos}, NEGATIVE: {total_neg}\n")
-        f.write(f"Unique features - POSITIVE: {len(pos_unique)}, NEGATIVE: {len(neg_unique)}\n")
-        f.write(f"Common features (used by both): {len(common_features)}\n")
-        f.write(f"POSITIVE-only features: {len(pos_only)}\n")
-        f.write(f"NEGATIVE-only features: {len(neg_only)}\n")
+        f.write(f"Unique POSITIVE features: {len(pos_unique)}\n")
+        f.write(f"Unique NEGATIVE features: {len(neg_unique)}\n")
+        f.write(f"Common features: {len(common)}\n")
+        f.write(f"POSITIVE-only: {len(pos_only)}\n")
+        f.write(f"NEGATIVE-only: {len(neg_only)}\n")
         f.write(f"Jaccard similarity: {jaccard:.4f}\n")
         f.write(f"→ {similarity}\n\n")
-
+        
         f.write("B. UNCOMMON FEATURES\n")
         f.write("-"*70 + "\n")
-        f.write(f"Uncommon POSITIVE (<5%): {len(pos_uncommon)} ({len(pos_uncommon)/len(pos_unique)*100:.1f}%)\n")
-        f.write(f"Uncommon NEGATIVE (<5%): {len(neg_uncommon)} ({len(neg_uncommon)/len(neg_unique)*100:.1f}%)\n")
-        f.write(f"Very rare POSITIVE (<1%): {len(pos_very_rare)}\n")
-        f.write(f"Very rare NEGATIVE (<1%): {len(neg_very_rare)}\n\n")
-
+        f.write(f"Uncommon POSITIVE (<5%): {len(pos_uncommon)}\n")
+        f.write(f"Uncommon NEGATIVE (<5%): {len(neg_uncommon)}\n\n")
+        
         f.write("C. ACTIVATION PATTERNS\n")
         f.write("-"*70 + "\n")
-        f.write(f"Average active features - POSITIVE: {pos_avg_active:.2f}, NEGATIVE: {neg_avg_active:.2f}\n")
-        f.write(f"Difference: {abs(pos_avg_active - neg_avg_active):.2f} features\n\n")
-
-        f.write("D. TOP 5 POSITIVE FEATURES (by frequency)\n")
+        f.write(f"Average active - POSITIVE: {pos_avg:.2f}, NEGATIVE: {neg_avg:.2f}\n\n")
+        
+        f.write("D. TOP 5 POSITIVE FEATURES\n")
         f.write("-"*70 + "\n")
-        for rank, (feat_idx, count) in enumerate(pos_feature_counts.most_common(5), 1):
-            freq_pct = (count / total_pos) * 100
-            neg_count = neg_feature_counts.get(feat_idx, 0)
-            in_common = "COMMON" if feat_idx in common_features else "EXCLUSIVE"
-            f.write(f"{rank}. Feature {feat_idx:5d}: {count:4d} activations ({freq_pct:.2f}%) | "
-                   f"In NEG: {neg_count} | {in_common}\n")
-
-        f.write("\nE. TOP 5 NEGATIVE FEATURES (by frequency)\n")
+        for rank, (feat, count) in enumerate(pos_counts.most_common(5), 1):
+            freq = count / total_pos * 100
+            status = "COMMON" if feat in common else "EXCLUSIVE"
+            f.write(f"{rank}. Feature {feat}: {count} times ({freq:.2f}%) | {status}\n")
+        
+        f.write("\nE. TOP 5 NEGATIVE FEATURES\n")
         f.write("-"*70 + "\n")
-        for rank, (feat_idx, count) in enumerate(neg_feature_counts.most_common(5), 1):
-            freq_pct = (count / total_neg) * 100
-            pos_count = pos_feature_counts.get(feat_idx, 0)
-            in_common = "COMMON" if feat_idx in common_features else "EXCLUSIVE"
-            f.write(f"{rank}. Feature {feat_idx:5d}: {count:4d} activations ({freq_pct:.2f}%) | "
-                   f"In POS: {pos_count} | {in_common}\n")
-
-        f.write("\nF. TOP 5 COMMON FEATURES (most discriminative)\n")
+        for rank, (feat, count) in enumerate(neg_counts.most_common(5), 1):
+            freq = count / total_neg * 100
+            status = "COMMON" if feat in common else "EXCLUSIVE"
+            f.write(f"{rank}. Feature {feat}: {count} times ({freq:.2f}%) | {status}\n")
+        
+        f.write("\nF. TOP 5 DISCRIMINATIVE COMMON FEATURES\n")
         f.write("-"*70 + "\n")
-        for rank, (feat_idx, diff, pos_freq, neg_freq) in enumerate(common_discriminative[:5], 1):
-            bias = "POSITIVE-biased" if pos_freq > neg_freq else "NEGATIVE-biased"
-            f.write(f"{rank}. Feature {feat_idx:5d}: {bias} | "
-                   f"POS:{pos_freq*100:.2f}%, NEG:{neg_freq*100:.2f}% (diff:{diff*100:.2f}%)\n")
-
-    # Store for summary
-    all_layers_analysis[layer_num] = {
+        for rank, (feat, diff, pos_freq, neg_freq) in enumerate(common_discriminative[:5], 1):
+            bias = "POSITIVE" if pos_freq > neg_freq else "NEGATIVE"
+            f.write(f"{rank}. Feature {feat}: {bias}-biased | "
+                   f"POS:{pos_freq*100:.2f}%, NEG:{neg_freq*100:.2f}%\n")
+    
+    sae_analysis[layer_num] = {
         'jaccard': jaccard,
-        'common': len(common_features),
-        'pos_only': len(pos_only),
-        'neg_only': len(neg_only),
+        'common': len(common),
+        'pos_unique': len(pos_unique),
+        'neg_unique': len(neg_unique),
         'similarity': similarity
     }
-
-    print(f"✓ Layer {layer_num} analysis saved to layer_{layer_num}_analysis.txt")
+    
+    print(f"✓ Layer {layer_num} SAE analysis saved")
 
 # ============================================================================
 # FINAL SUMMARY
 # ============================================================================
 print("\n" + "="*70)
-print("FINAL SUMMARY - ALL LAYERS")
+print("FINAL SUMMARY")
 print("="*70)
 
-# Find layer with most different features
-most_different_layer = min(all_layers_analysis.items(), key=lambda x: x[1]['jaccard'])
-most_similar_layer = max(all_layers_analysis.items(), key=lambda x: x[1]['jaccard'])
+best_layer = max(layer_performance.items(), key=lambda x: x[1]['accuracy'])
+worst_layer = min(layer_performance.items(), key=lambda x: x[1]['accuracy'])
 
-# Save final summary to TXT
 with open('/kaggle/working/results/final_summary.txt', 'w') as f:
     f.write("="*70 + "\n")
-    f.write("FINAL SUMMARY - ALL LAYERS\n")
+    f.write("FINAL SUMMARY - LAYER-WISE PERFORMANCE\n")
     f.write("="*70 + "\n\n")
-
-    f.write("BASELINE PERFORMANCE (Zero-Shot Prompting)\n")
+    
+    f.write("1. BASELINE (Zero-Shot Prompting)\n")
     f.write("-"*70 + "\n")
     f.write(f"Accuracy: {baseline_acc*100:.2f}%\n")
-    f.write(f"F1-Score: {baseline_f1:.4f}\n")
-    f.write(f"Method: Pretrained GPT-2 only, no training\n\n")
-
-    f.write("FEATURE ANALYSIS SUMMARY ACROSS ALL LAYERS\n")
+    f.write(f"F1-Score: {baseline_f1:.4f}\n\n")
+    
+    f.write("2. LAYER-WISE PERFORMANCE (Raw Representations)\n")
     f.write("-"*70 + "\n")
-    f.write(f"{'Layer':<8} {'Jaccard':<12} {'Common':<10} {'POS-only':<12} {'NEG-only':<12} {'Interpretation'}\n")
-    f.write("-"*90 + "\n")
+    f.write(f"{'Layer':<8} {'Accuracy':<12} {'F1-Score':<12} {'Improvement':<15} {'Jaccard':<12}\n")
+    f.write("-"*70 + "\n")
+    
+    for layer_num in sorted(layer_performance.keys()):
+        perf = layer_performance[layer_num]
+        sae_info = sae_analysis.get(layer_num, {})
+        jaccard_val = sae_info.get('jaccard', 0)
+        f.write(f"Layer {layer_num:<2}  {perf['accuracy']*100:5.2f}%      "
+               f"{perf['f1_score']:.4f}      {perf['improvement']*100:+6.2f}%        "
+               f"{jaccard_val:.4f}\n")
+    
+    f.write("\n3. KEY FINDINGS\n")
+    f.write("-"*70 + "\n")
+    f.write(f"Best Layer: {best_layer[0]}\n")
+    f.write(f"  Accuracy: {best_layer[1]['accuracy']*100:.2f}%\n")
+    f.write(f"  → This layer encodes the most sentiment information\n\n")
+    
+    f.write(f"Worst Layer: {worst_layer[0]}\n")
+    f.write(f"  Accuracy: {worst_layer[1]['accuracy']*100:.2f}%\n\n")
+    
+    f.write("INTERPRETATION:\n")
+    f.write("- Higher accuracy = more sentiment information in layer\n")
+    f.write("- Lower Jaccard = more distinct positive/negative features\n")
 
-    for layer_num in sorted(all_layers_analysis.keys()):
-        res = all_layers_analysis[layer_num]
-        interp = "DIFFERENT" if res['jaccard'] < 0.5 else "SIMILAR"
-        f.write(f"Layer {layer_num:<2}  {res['jaccard']:.4f}      "
-               f"{res['common']:<10} {res['pos_only']:<12} "
-               f"{res['neg_only']:<12} {interp}\n")
-
-    f.write("\n" + "="*70 + "\n")
-    f.write("KEY FINDINGS\n")
-    f.write("="*70 + "\n\n")
-
-    f.write(f"→ Layer with MOST DIFFERENT features: Layer {most_different_layer[0]}\n")
-    f.write(f"  Jaccard similarity: {most_different_layer[1]['jaccard']:.4f}\n")
-    f.write(f"  Interpretation: Strongest separation between positive and negative sentiments\n\n")
-
-    f.write(f"→ Layer with MOST SIMILAR features: Layer {most_similar_layer[0]}\n")
-    f.write(f"  Jaccard similarity: {most_similar_layer[1]['jaccard']:.4f}\n")
-    f.write(f"  Interpretation: Least separation between positive and negative sentiments\n\n")
-
-    f.write("="*70 + "\n")
-    f.write("NOTES\n")
-    f.write("="*70 + "\n")
-    f.write("- Baseline uses zero-shot prompting with pretrained GPT-2\n")
-    f.write("- SAE features extracted from pretrained model (no training)\n")
-    f.write("- Lower Jaccard = more distinct features for pos vs neg\n")
-    f.write("- Higher Jaccard = more overlapping features\n")
-
-print("\n✓ Final summary saved to final_summary.txt")
-
-print("\n" + "="*70)
+print(f"\n✓ Best layer: Layer {best_layer[0]} ({best_layer[1]['accuracy']*100:.2f}% accuracy)")
 print("✓ Complete!")
-print("✓ All results saved as TXT files in /kaggle/working/results/")
 print("="*70)
-
-print("\nGenerated files:")
-print("  - baseline_results.txt")
-for layer_num in sorted(all_layers_analysis.keys()):
-    print(f"  - layer_{layer_num}_analysis.txt")
-print("  - final_summary.txt")
 
