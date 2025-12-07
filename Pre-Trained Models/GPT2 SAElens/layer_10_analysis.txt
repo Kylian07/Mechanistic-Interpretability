@@ -4,18 +4,18 @@ LAYER 10 - COMPLETE ANALYSIS
 
 A. LAYER PERFORMANCE (Raw Representations)
 ----------------------------------------------------------------------
-Accuracy: 0.8165 (81.65%)
-Precision: 0.8170
-Recall: 0.8243
-F1-Score: 0.8206
+Accuracy: 0.8062 (80.62%)
+Precision: 0.7944
+Recall: 0.8356
+F1-Score: 0.8145
 Baseline Accuracy: 0.5344
-Improvement over baseline: +28.21%
+Improvement over baseline: +27.18%
 
 Confusion Matrix:
               Predicted
               Neg    Pos
-Actual Neg  [  346     82]
-       Pos  [   78    366]
+Actual Neg  [  332     96]
+       Pos  [   73    371]
 
 B. SAE FEATURE COUNTS
 ----------------------------------------------------------------------
@@ -30,7 +30,6 @@ UNIQUE to NEGATIVE only: 912
 
 C. TOP 5 MOST ACTIVATING FEATURES (POSITIVE)
 ----------------------------------------------------------------------
-Ranked by average activation value:
 1. Feature 3470: avg_activation=0.7789, frequency=1/444 (0.2%) | UNIQUE
 2. Feature 5386: avg_activation=0.5412, frequency=1/444 (0.2%) | COMMON
 3. Feature 18109: avg_activation=0.5391, frequency=1/444 (0.2%) | UNIQUE
@@ -39,7 +38,6 @@ Ranked by average activation value:
 
 D. TOP 5 MOST ACTIVATING FEATURES (NEGATIVE)
 ----------------------------------------------------------------------
-Ranked by average activation value:
 1. Feature 22893: avg_activation=0.8839, frequency=1/428 (0.2%) | COMMON
 2. Feature 10373: avg_activation=0.5782, frequency=1/428 (0.2%) | COMMON
 3. Feature 21871: avg_activation=0.5121, frequency=2/428 (0.5%) | COMMON
@@ -61,3 +59,34 @@ F. TOP 5 MOST FREQUENT FEATURES (NEGATIVE)
 3. Feature 7566: count=404 (94.4%), avg_activation=0.0594 | COMMON
 4. Feature 10672: count=378 (88.3%), avg_activation=0.0511 | COMMON
 5. Feature 12905: count=357 (83.4%), avg_activation=0.0229 | COMMON
+
+G. TOP 10 MOST FREQUENT FEATURES (POSITIVE)
+----------------------------------------------------------------------
+1. Feature 4437: count=444 (100.0%)
+2. Feature 23044: count=436 (98.2%)
+3. Feature 7566: count=418 (94.1%)
+4. Feature 12905: count=390 (87.8%)
+5. Feature 10672: count=370 (83.3%)
+6. Feature 12695: count=335 (75.5%)
+7. Feature 24064: count=320 (72.1%)
+8. Feature 15725: count=317 (71.4%)
+9. Feature 16540: count=309 (69.6%)
+10. Feature 1856: count=301 (67.8%)
+
+H. TOP 10 MOST FREQUENT FEATURES (NEGATIVE)
+----------------------------------------------------------------------
+1. Feature 4437: count=428 (100.0%)
+2. Feature 23044: count=422 (98.6%)
+3. Feature 7566: count=404 (94.4%)
+4. Feature 10672: count=378 (88.3%)
+5. Feature 12905: count=357 (83.4%)
+6. Feature 16540: count=328 (76.6%)
+7. Feature 1075: count=323 (75.5%)
+8. Feature 24415: count=306 (71.5%)
+9. Feature 24064: count=298 (69.6%)
+10. Feature 15725: count=291 (68.0%)
+
+I. COMMON FEATURES AMONG TOP-10 POS & NEG
+----------------------------------------------------------------------
+Count: 8
+Example IDs: 4437, 7566, 10672, 12905, 15725, 16540, 23044, 24064
