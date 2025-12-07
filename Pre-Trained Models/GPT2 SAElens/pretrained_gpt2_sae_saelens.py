@@ -97,12 +97,11 @@ baseline_acc = accuracy_score(baseline_labels, baseline_predictions)
 baseline_p, baseline_r, baseline_f1, _ = precision_recall_fscore_support(
     baseline_labels, baseline_predictions, average='binary'
 )
-baseline_cm = confusion_matrix(baseline_labels, baseline_predictions)
 
 print(f"\nBaseline Accuracy: {baseline_acc:.4f} ({baseline_acc*100:.2f}%)")
 print(f"F1-Score: {baseline_f1:.4f}")
 
-# Save baseline
+# Save baseline results
 with open('/kaggle/working/results/baseline_results.txt', 'w') as f:
     f.write("="*70 + "\n")
     f.write("BASELINE - ZERO-SHOT PROMPTING\n")
@@ -115,20 +114,26 @@ with open('/kaggle/working/results/baseline_results.txt', 'w') as f:
 print("✓ Baseline saved")
 
 # ============================================================================
-# STEP 2: Layer-wise Performance Using RAW Representations
+# STEP 2: Layer-wise Performance + SAE Feature Analysis
 # ============================================================================
 print("\n" + "="*70)
-print("STEP 2: LAYER-WISE PERFORMANCE (RAW REPRESENTATIONS)")
+print("STEP 2: LAYER-WISE ANALYSIS")
 print("="*70)
 
 layer_performance = {}
+sae_feature_stats = {}
 
 for layer_num in range(model.cfg.n_layers):
     print(f"\n{'='*70}")
-    print(f"LAYER {layer_num} - RAW REPRESENTATION CLASSIFIER")
+    print(f"LAYER {layer_num} ANALYSIS")
     print(f"{'='*70}")
     
     hook_name = f"blocks.{layer_num}.attn.hook_z"
+    
+    # ========================================================================
+    # PART A: Raw Representation Classifier (Layer Performance)
+    # ========================================================================
+    print(f"\n--- Part A: Raw Representation Classifier ---")
     
     # Extract RAW representations from training set
     print("Extracting training representations...")
@@ -143,28 +148,9 @@ for layer_num in range(model.cfg.n_layers):
             tokens = model.to_tokens(sentence)
             _, cache = model.run_with_cache(tokens)
             
-            # Get RAW layer representation
             layer_acts = cache[hook_name]
-            
-            # Debug: print shape for first iteration
-            if idx == 0:
-                print(f"DEBUG: Raw layer_acts shape: {layer_acts.shape}")
-            
-            # Pool across sequence dimension (mean pooling)
-            # layer_acts shape should be [batch, seq_len, d_model]
-            pooled = layer_acts.mean(dim=1)  # Shape: [batch, d_model]
-            
-            if idx == 0:
-                print(f"DEBUG: After mean(dim=1) shape: {pooled.shape}")
-            
-            # Convert to 1D numpy array
-            pooled_np = pooled.cpu().numpy()
-            
-            # Flatten to ensure 1D
-            pooled_flat = pooled_np.flatten()
-            
-            if idx == 0:
-                print(f"DEBUG: Final flattened shape: {pooled_flat.shape}")
+            pooled = layer_acts.mean(dim=1)
+            pooled_flat = pooled.cpu().numpy().flatten()
             
             train_reps.append(pooled_flat)
             train_labels.append(label)
@@ -173,12 +159,11 @@ for layer_num in range(model.cfg.n_layers):
     y_train = np.array(train_labels)
     
     print(f"Training representations shape: {X_train.shape}")
-    print(f"Training labels shape: {y_train.shape}")
     
     # Extract RAW representations from validation set
     print("Extracting validation representations...")
     val_reps = []
-    val_labels = []
+    val_labels_raw = []
     
     with torch.no_grad():
         for idx in tqdm(range(len(val_dataset)), desc=f"Val L{layer_num}"):
@@ -190,48 +175,26 @@ for layer_num in range(model.cfg.n_layers):
             
             layer_acts = cache[hook_name]
             pooled = layer_acts.mean(dim=1)
-            pooled_np = pooled.cpu().numpy()
-            pooled_flat = pooled_np.flatten()
+            pooled_flat = pooled.cpu().numpy().flatten()
             
             val_reps.append(pooled_flat)
-            val_labels.append(label)
+            val_labels_raw.append(label)
     
     X_val = np.array(val_reps)
-    y_val = np.array(val_labels)
+    y_val = np.array(val_labels_raw)
     
     print(f"Validation representations shape: {X_val.shape}")
-    print(f"Validation labels shape: {y_val.shape}")
     
-    # Verify shapes
-    print(f"X_train dimensions: {X_train.ndim}")
-    print(f"X_val dimensions: {X_val.ndim}")
-    
-    if X_train.ndim != 2:
-        print(f"ERROR: X_train has {X_train.ndim} dimensions, reshaping...")
-        X_train = X_train.reshape(X_train.shape[0], -1)
-        print(f"New X_train shape: {X_train.shape}")
-    
-    if X_val.ndim != 2:
-        print(f"ERROR: X_val has {X_val.ndim} dimensions, reshaping...")
-        X_val = X_val.reshape(X_val.shape[0], -1)
-        print(f"New X_val shape: {X_val.shape}")
-    
-    # Train classifier on RAW representations
+    # Train classifier
     print("Training classifier...")
     clf = LogisticRegression(max_iter=1000, random_state=42, class_weight='balanced')
     clf.fit(X_train, y_train)
     
-    # Evaluate
     predictions = clf.predict(X_val)
     
     acc = accuracy_score(y_val, predictions)
     p, r, f1, _ = precision_recall_fscore_support(y_val, predictions, average='binary')
     cm = confusion_matrix(y_val, predictions)
-    
-    print(f"\nLayer {layer_num} Performance:")
-    print(f"Accuracy: {acc:.4f} ({acc*100:.2f}%)")
-    print(f"F1-Score: {f1:.4f}")
-    print(f"Improvement over baseline: {(acc - baseline_acc)*100:+.2f}%")
     
     layer_performance[layer_num] = {
         'accuracy': acc,
@@ -242,42 +205,14 @@ for layer_num in range(model.cfg.n_layers):
         'confusion_matrix': cm
     }
     
-    # Save layer performance
-    with open(f'/kaggle/working/results/layer_{layer_num}_performance.txt', 'w') as f:
-        f.write("="*70 + "\n")
-        f.write(f"LAYER {layer_num} - PERFORMANCE (RAW REPRESENTATIONS)\n")
-        f.write("="*70 + "\n\n")
-        f.write(f"Method: Logistic Regression on raw layer activations\n")
-        f.write(f"Representation dimension: {X_train.shape[1]}\n\n")
-        f.write(f"Accuracy: {acc:.4f} ({acc*100:.2f}%)\n")
-        f.write(f"Precision: {p:.4f}\n")
-        f.write(f"Recall: {r:.4f}\n")
-        f.write(f"F1-Score: {f1:.4f}\n\n")
-        f.write(f"Baseline Accuracy: {baseline_acc:.4f}\n")
-        f.write(f"Improvement: {(acc - baseline_acc)*100:+.2f}%\n\n")
-        f.write("Confusion Matrix:\n")
-        f.write("              Predicted\n")
-        f.write("              Neg    Pos\n")
-        f.write(f"Actual Neg  [{cm[0,0]:5d}  {cm[0,1]:5d}]\n")
-        f.write(f"       Pos  [{cm[1,0]:5d}  {cm[1,1]:5d}]\n")
+    print(f"Layer {layer_num} Accuracy: {acc:.4f} ({acc*100:.2f}%)")
+    print(f"Improvement over baseline: {(acc - baseline_acc)*100:+.2f}%")
     
-    print(f"✓ Layer {layer_num} performance saved")
-
-# ============================================================================
-# STEP 3: SAE Feature Analysis (Interpretability Only)
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 3: SAE FEATURE ANALYSIS (INTERPRETABILITY)")
-print("="*70)
-
-sae_analysis = {}
-
-for layer_num in range(model.cfg.n_layers):
-    print(f"\n{'='*70}")
-    print(f"ANALYZING SAE FEATURES - LAYER {layer_num}")
-    print(f"{'='*70}")
+    # ========================================================================
+    # PART B: SAE Feature Analysis
+    # ========================================================================
+    print(f"\n--- Part B: SAE Feature Analysis ---")
     
-    # Load pretrained SAE
     try:
         release = "gpt2-small-hook-z-kk"
         sae_id = f"blocks.{layer_num}.hook_z"
@@ -290,16 +225,27 @@ for layer_num in range(model.cfg.n_layers):
         sae.to(device)
         sae.eval()
         
-        hook_name = f"blocks.{layer_num}.attn.hook_z"
-        print(f"Using SAE: {sae_id}")
+        print(f"Loaded SAE: {sae_id}")
         
     except Exception as e:
         print(f"Could not load SAE for layer {layer_num}: {e}")
         continue
     
     # Extract SAE features from validation set
-    print("Extracting SAE features for analysis...")
-    val_feature_details = []
+    print("Extracting SAE features...")
+    
+    # Store all active features and their activation values
+    pos_active_features = set()  # All unique features for positive
+    neg_active_features = set()  # All unique features for negative
+    
+    pos_feature_activations = {}  # feature_idx -> list of activation values
+    neg_feature_activations = {}
+    
+    pos_feature_counts = Counter()  # How many samples each feature appears in
+    neg_feature_counts = Counter()
+    
+    total_pos = 0
+    total_neg = 0
     
     with torch.no_grad():
         for idx in tqdm(range(len(val_dataset)), desc=f"SAE L{layer_num}"):
@@ -312,128 +258,164 @@ for layer_num in range(model.cfg.n_layers):
             hook_acts = cache[hook_name]
             sae_feature_acts = sae.encode(hook_acts)
             
-            # Pool across sequence
+            # Pool across sequence dimension
             pooled_features = sae_feature_acts.mean(dim=1)
             pooled_features = pooled_features.cpu().numpy().flatten()
             
+            # Get active features (activation > 0)
             active_indices = np.where(pooled_features > 0)[0]
             active_values = pooled_features[active_indices]
             
-            val_feature_details.append({
-                'true_label': label,
-                'active_features': active_indices,
-                'active_values': active_values,
-                'num_active': len(active_indices)
-            })
+            if label == 1:  # Positive
+                total_pos += 1
+                for feat_idx, act_val in zip(active_indices, active_values):
+                    pos_active_features.add(feat_idx)
+                    pos_feature_counts[feat_idx] += 1
+                    if feat_idx not in pos_feature_activations:
+                        pos_feature_activations[feat_idx] = []
+                    pos_feature_activations[feat_idx].append(act_val)
+            else:  # Negative
+                total_neg += 1
+                for feat_idx, act_val in zip(active_indices, active_values):
+                    neg_active_features.add(feat_idx)
+                    neg_feature_counts[feat_idx] += 1
+                    if feat_idx not in neg_feature_activations:
+                        neg_feature_activations[feat_idx] = []
+                    neg_feature_activations[feat_idx].append(act_val)
     
-    # Analyze features
-    pos_features = []
-    neg_features = []
+    # Calculate statistics
+    common_features = pos_active_features & neg_active_features
+    pos_only_features = pos_active_features - neg_active_features
+    neg_only_features = neg_active_features - pos_active_features
     
-    for detail in val_feature_details:
-        if detail['true_label'] == 1:
-            pos_features.extend(detail['active_features'])
-        else:
-            neg_features.extend(detail['active_features'])
+    # Calculate average activation for each feature
+    pos_avg_activations = {f: np.mean(acts) for f, acts in pos_feature_activations.items()}
+    neg_avg_activations = {f: np.mean(acts) for f, acts in neg_feature_activations.items()}
     
-    pos_counts = Counter(pos_features)
-    neg_counts = Counter(neg_features)
+    # Get top 5 most activating features by average activation value
+    top5_pos_by_activation = sorted(pos_avg_activations.items(), key=lambda x: x[1], reverse=True)[:5]
+    top5_neg_by_activation = sorted(neg_avg_activations.items(), key=lambda x: x[1], reverse=True)[:5]
     
-    pos_unique = set(pos_features)
-    neg_unique = set(neg_features)
-    common = pos_unique & neg_unique
-    pos_only = pos_unique - neg_unique
-    neg_only = neg_unique - pos_unique
+    # Get top 5 most frequent features
+    top5_pos_by_frequency = pos_feature_counts.most_common(5)
+    top5_neg_by_frequency = neg_feature_counts.most_common(5)
     
-    jaccard = len(common) / len(pos_unique | neg_unique) if (pos_unique | neg_unique) else 0
-    
-    total_pos = sum(d['true_label'] == 1 for d in val_feature_details)
-    total_neg = sum(d['true_label'] == 0 for d in val_feature_details)
-    
-    # Uncommon features
-    pos_uncommon = {f: c for f, c in pos_counts.items() if c / total_pos < 0.05}
-    neg_uncommon = {f: c for f, c in neg_counts.items() if c / total_neg < 0.05}
-    
-    # Average active
-    pos_avg = np.mean([d['num_active'] for d in val_feature_details if d['true_label'] == 1])
-    neg_avg = np.mean([d['num_active'] for d in val_feature_details if d['true_label'] == 0])
-    
-    # Determine similarity
-    if jaccard < 0.3:
-        similarity = "VERY DIFFERENT - Strong separation"
-    elif jaccard < 0.5:
-        similarity = "MODERATELY DIFFERENT"
-    elif jaccard < 0.7:
-        similarity = "MODERATELY SIMILAR"
-    else:
-        similarity = "VERY SIMILAR"
-    
-    # Common discriminative
-    common_discriminative = []
-    for feat_idx in common:
-        pos_freq = pos_counts[feat_idx] / total_pos
-        neg_freq = neg_counts[feat_idx] / total_neg
-        diff = abs(pos_freq - neg_freq)
-        common_discriminative.append((feat_idx, diff, pos_freq, neg_freq))
-    
-    common_discriminative.sort(key=lambda x: x[1], reverse=True)
-    
-    # Save SAE analysis
-    with open(f'/kaggle/working/results/layer_{layer_num}_sae_features.txt', 'w') as f:
-        f.write("="*70 + "\n")
-        f.write(f"LAYER {layer_num} - SAE FEATURE ANALYSIS\n")
-        f.write("="*70 + "\n\n")
-        
-        f.write("A. FEATURE STATISTICS\n")
-        f.write("-"*70 + "\n")
-        f.write(f"Total samples - POSITIVE: {total_pos}, NEGATIVE: {total_neg}\n")
-        f.write(f"Unique POSITIVE features: {len(pos_unique)}\n")
-        f.write(f"Unique NEGATIVE features: {len(neg_unique)}\n")
-        f.write(f"Common features: {len(common)}\n")
-        f.write(f"POSITIVE-only: {len(pos_only)}\n")
-        f.write(f"NEGATIVE-only: {len(neg_only)}\n")
-        f.write(f"Jaccard similarity: {jaccard:.4f}\n")
-        f.write(f"→ {similarity}\n\n")
-        
-        f.write("B. UNCOMMON FEATURES\n")
-        f.write("-"*70 + "\n")
-        f.write(f"Uncommon POSITIVE (<5%): {len(pos_uncommon)}\n")
-        f.write(f"Uncommon NEGATIVE (<5%): {len(neg_uncommon)}\n\n")
-        
-        f.write("C. ACTIVATION PATTERNS\n")
-        f.write("-"*70 + "\n")
-        f.write(f"Average active - POSITIVE: {pos_avg:.2f}, NEGATIVE: {neg_avg:.2f}\n\n")
-        
-        f.write("D. TOP 5 POSITIVE FEATURES\n")
-        f.write("-"*70 + "\n")
-        for rank, (feat, count) in enumerate(pos_counts.most_common(5), 1):
-            freq = count / total_pos * 100
-            status = "COMMON" if feat in common else "EXCLUSIVE"
-            f.write(f"{rank}. Feature {feat}: {count} times ({freq:.2f}%) | {status}\n")
-        
-        f.write("\nE. TOP 5 NEGATIVE FEATURES\n")
-        f.write("-"*70 + "\n")
-        for rank, (feat, count) in enumerate(neg_counts.most_common(5), 1):
-            freq = count / total_neg * 100
-            status = "COMMON" if feat in common else "EXCLUSIVE"
-            f.write(f"{rank}. Feature {feat}: {count} times ({freq:.2f}%) | {status}\n")
-        
-        f.write("\nF. TOP 5 DISCRIMINATIVE COMMON FEATURES\n")
-        f.write("-"*70 + "\n")
-        for rank, (feat, diff, pos_freq, neg_freq) in enumerate(common_discriminative[:5], 1):
-            bias = "POSITIVE" if pos_freq > neg_freq else "NEGATIVE"
-            f.write(f"{rank}. Feature {feat}: {bias}-biased | "
-                   f"POS:{pos_freq*100:.2f}%, NEG:{neg_freq*100:.2f}%\n")
-    
-    sae_analysis[layer_num] = {
-        'jaccard': jaccard,
-        'common': len(common),
-        'pos_unique': len(pos_unique),
-        'neg_unique': len(neg_unique),
-        'similarity': similarity
+    # Store statistics
+    sae_feature_stats[layer_num] = {
+        'total_pos_features': len(pos_active_features),
+        'total_neg_features': len(neg_active_features),
+        'common_features': len(common_features),
+        'pos_only_features': len(pos_only_features),
+        'neg_only_features': len(neg_only_features),
+        'top5_pos_by_activation': top5_pos_by_activation,
+        'top5_neg_by_activation': top5_neg_by_activation,
+        'top5_pos_by_frequency': top5_pos_by_frequency,
+        'top5_neg_by_frequency': top5_neg_by_frequency,
+        'total_pos_samples': total_pos,
+        'total_neg_samples': total_neg,
+        'pos_avg_activations': pos_avg_activations,
+        'neg_avg_activations': neg_avg_activations,
+        'pos_feature_counts': pos_feature_counts,
+        'neg_feature_counts': neg_feature_counts,
+        'common_features_set': common_features
     }
     
-    print(f"✓ Layer {layer_num} SAE analysis saved")
+    # Print results
+    print(f"\n=== SAE Feature Statistics for Layer {layer_num} ===")
+    print(f"Total POSITIVE samples: {total_pos}")
+    print(f"Total NEGATIVE samples: {total_neg}")
+    print(f"")
+    print(f"Total features activated for POSITIVE: {len(pos_active_features)}")
+    print(f"Total features activated for NEGATIVE: {len(neg_active_features)}")
+    print(f"COMMON features (both): {len(common_features)}")
+    print(f"UNIQUE to POSITIVE only: {len(pos_only_features)}")
+    print(f"UNIQUE to NEGATIVE only: {len(neg_only_features)}")
+    print(f"")
+    print(f"Top 5 Most Activating Features (POSITIVE) - by avg activation:")
+    for rank, (feat_idx, avg_act) in enumerate(top5_pos_by_activation, 1):
+        freq = pos_feature_counts[feat_idx]
+        pct = freq / total_pos * 100
+        status = "COMMON" if feat_idx in common_features else "UNIQUE"
+        print(f"  {rank}. Feature {feat_idx}: avg_act={avg_act:.4f}, freq={freq} ({pct:.1f}%) | {status}")
+    
+    print(f"")
+    print(f"Top 5 Most Activating Features (NEGATIVE) - by avg activation:")
+    for rank, (feat_idx, avg_act) in enumerate(top5_neg_by_activation, 1):
+        freq = neg_feature_counts[feat_idx]
+        pct = freq / total_neg * 100
+        status = "COMMON" if feat_idx in common_features else "UNIQUE"
+        print(f"  {rank}. Feature {feat_idx}: avg_act={avg_act:.4f}, freq={freq} ({pct:.1f}%) | {status}")
+    
+    # Save detailed results for this layer
+    with open(f'/kaggle/working/results/layer_{layer_num}_complete_analysis.txt', 'w') as f:
+        f.write("="*70 + "\n")
+        f.write(f"LAYER {layer_num} - COMPLETE ANALYSIS\n")
+        f.write("="*70 + "\n\n")
+        
+        f.write("A. LAYER PERFORMANCE (Raw Representations)\n")
+        f.write("-"*70 + "\n")
+        f.write(f"Accuracy: {acc:.4f} ({acc*100:.2f}%)\n")
+        f.write(f"Precision: {p:.4f}\n")
+        f.write(f"Recall: {r:.4f}\n")
+        f.write(f"F1-Score: {f1:.4f}\n")
+        f.write(f"Baseline Accuracy: {baseline_acc:.4f}\n")
+        f.write(f"Improvement over baseline: {(acc - baseline_acc)*100:+.2f}%\n\n")
+        
+        f.write("Confusion Matrix:\n")
+        f.write("              Predicted\n")
+        f.write("              Neg    Pos\n")
+        f.write(f"Actual Neg  [{cm[0,0]:5d}  {cm[0,1]:5d}]\n")
+        f.write(f"       Pos  [{cm[1,0]:5d}  {cm[1,1]:5d}]\n\n")
+        
+        f.write("B. SAE FEATURE COUNTS\n")
+        f.write("-"*70 + "\n")
+        f.write(f"Total POSITIVE samples: {total_pos}\n")
+        f.write(f"Total NEGATIVE samples: {total_neg}\n\n")
+        f.write(f"Total features activated for POSITIVE: {len(pos_active_features)}\n")
+        f.write(f"Total features activated for NEGATIVE: {len(neg_active_features)}\n")
+        f.write(f"COMMON features (activated for both): {len(common_features)}\n")
+        f.write(f"UNIQUE to POSITIVE only: {len(pos_only_features)}\n")
+        f.write(f"UNIQUE to NEGATIVE only: {len(neg_only_features)}\n\n")
+        
+        f.write("C. TOP 5 MOST ACTIVATING FEATURES (POSITIVE)\n")
+        f.write("-"*70 + "\n")
+        f.write("Ranked by average activation value:\n")
+        for rank, (feat_idx, avg_act) in enumerate(top5_pos_by_activation, 1):
+            freq = pos_feature_counts[feat_idx]
+            pct = freq / total_pos * 100
+            status = "COMMON" if feat_idx in common_features else "UNIQUE"
+            f.write(f"{rank}. Feature {feat_idx}: avg_activation={avg_act:.4f}, "
+                   f"frequency={freq}/{total_pos} ({pct:.1f}%) | {status}\n")
+        
+        f.write("\nD. TOP 5 MOST ACTIVATING FEATURES (NEGATIVE)\n")
+        f.write("-"*70 + "\n")
+        f.write("Ranked by average activation value:\n")
+        for rank, (feat_idx, avg_act) in enumerate(top5_neg_by_activation, 1):
+            freq = neg_feature_counts[feat_idx]
+            pct = freq / total_neg * 100
+            status = "COMMON" if feat_idx in common_features else "UNIQUE"
+            f.write(f"{rank}. Feature {feat_idx}: avg_activation={avg_act:.4f}, "
+                   f"frequency={freq}/{total_neg} ({pct:.1f}%) | {status}\n")
+        
+        f.write("\nE. TOP 5 MOST FREQUENT FEATURES (POSITIVE)\n")
+        f.write("-"*70 + "\n")
+        for rank, (feat_idx, count) in enumerate(top5_pos_by_frequency, 1):
+            pct = count / total_pos * 100
+            avg_act = pos_avg_activations[feat_idx]
+            status = "COMMON" if feat_idx in common_features else "UNIQUE"
+            f.write(f"{rank}. Feature {feat_idx}: count={count} ({pct:.1f}%), "
+                   f"avg_activation={avg_act:.4f} | {status}\n")
+        
+        f.write("\nF. TOP 5 MOST FREQUENT FEATURES (NEGATIVE)\n")
+        f.write("-"*70 + "\n")
+        for rank, (feat_idx, count) in enumerate(top5_neg_by_frequency, 1):
+            pct = count / total_neg * 100
+            avg_act = neg_avg_activations[feat_idx]
+            status = "COMMON" if feat_idx in common_features else "UNIQUE"
+            f.write(f"{rank}. Feature {feat_idx}: count={count} ({pct:.1f}%), "
+                   f"avg_activation={avg_act:.4f} | {status}\n")
+    
+    print(f"✓ Layer {layer_num} complete analysis saved")
 
 # ============================================================================
 # FINAL SUMMARY
@@ -445,9 +427,30 @@ print("="*70)
 best_layer = max(layer_performance.items(), key=lambda x: x[1]['accuracy'])
 worst_layer = min(layer_performance.items(), key=lambda x: x[1]['accuracy'])
 
+# Print summary table
+print(f"\n{'Layer':<6} {'Acc%':<8} {'Improv':<10} {'Pos Feat':<10} {'Neg Feat':<10} "
+      f"{'Common':<10} {'Pos Only':<10} {'Neg Only':<10}")
+print("-"*84)
+
+for layer_num in sorted(layer_performance.keys()):
+    perf = layer_performance[layer_num]
+    stats = sae_feature_stats.get(layer_num, {})
+    
+    print(f"L{layer_num:<5} {perf['accuracy']*100:5.2f}%   "
+          f"{perf['improvement']*100:+6.2f}%    "
+          f"{stats.get('total_pos_features', 'N/A'):<10} "
+          f"{stats.get('total_neg_features', 'N/A'):<10} "
+          f"{stats.get('common_features', 'N/A'):<10} "
+          f"{stats.get('pos_only_features', 'N/A'):<10} "
+          f"{stats.get('neg_only_features', 'N/A'):<10}")
+
+print(f"\n✓ Best layer: Layer {best_layer[0]} ({best_layer[1]['accuracy']*100:.2f}% accuracy)")
+print(f"✓ Worst layer: Layer {worst_layer[0]} ({worst_layer[1]['accuracy']*100:.2f}% accuracy)")
+
+# Save final summary
 with open('/kaggle/working/results/final_summary.txt', 'w') as f:
     f.write("="*70 + "\n")
-    f.write("FINAL SUMMARY - LAYER-WISE PERFORMANCE\n")
+    f.write("FINAL SUMMARY - LAYER-WISE ANALYSIS\n")
     f.write("="*70 + "\n\n")
     
     f.write("1. BASELINE (Zero-Shot Prompting)\n")
@@ -455,33 +458,53 @@ with open('/kaggle/working/results/final_summary.txt', 'w') as f:
     f.write(f"Accuracy: {baseline_acc*100:.2f}%\n")
     f.write(f"F1-Score: {baseline_f1:.4f}\n\n")
     
-    f.write("2. LAYER-WISE PERFORMANCE (Raw Representations)\n")
+    f.write("2. LAYER-WISE PERFORMANCE & SAE FEATURE STATISTICS\n")
     f.write("-"*70 + "\n")
-    f.write(f"{'Layer':<8} {'Accuracy':<12} {'F1-Score':<12} {'Improvement':<15} {'Jaccard':<12}\n")
-    f.write("-"*70 + "\n")
+    f.write(f"{'Layer':<6} {'Acc%':<8} {'Improv':<10} {'Pos Feat':<10} {'Neg Feat':<10} "
+           f"{'Common':<10} {'Pos Only':<10} {'Neg Only':<10}\n")
+    f.write("-"*84 + "\n")
     
     for layer_num in sorted(layer_performance.keys()):
         perf = layer_performance[layer_num]
-        sae_info = sae_analysis.get(layer_num, {})
-        jaccard_val = sae_info.get('jaccard', 0)
-        f.write(f"Layer {layer_num:<2}  {perf['accuracy']*100:5.2f}%      "
-               f"{perf['f1_score']:.4f}      {perf['improvement']*100:+6.2f}%        "
-               f"{jaccard_val:.4f}\n")
+        stats = sae_feature_stats.get(layer_num, {})
+        
+        f.write(f"L{layer_num:<5} {perf['accuracy']*100:5.2f}%   "
+               f"{perf['improvement']*100:+6.2f}%    "
+               f"{stats.get('total_pos_features', 'N/A'):<10} "
+               f"{stats.get('total_neg_features', 'N/A'):<10} "
+               f"{stats.get('common_features', 'N/A'):<10} "
+               f"{stats.get('pos_only_features', 'N/A'):<10} "
+               f"{stats.get('neg_only_features', 'N/A'):<10}\n")
     
-    f.write("\n3. KEY FINDINGS\n")
+    f.write("\n3. TOP 5 MOST ACTIVATING FEATURES PER LAYER\n")
     f.write("-"*70 + "\n")
-    f.write(f"Best Layer: {best_layer[0]}\n")
+    
+    for layer_num in sorted(sae_feature_stats.keys()):
+        stats = sae_feature_stats[layer_num]
+        f.write(f"\nLayer {layer_num}:\n")
+        f.write(f"  POSITIVE (by activation): ")
+        for feat_idx, avg_act in stats['top5_pos_by_activation']:
+            f.write(f"F{feat_idx}({avg_act:.3f}) ")
+        f.write(f"\n  NEGATIVE (by activation): ")
+        for feat_idx, avg_act in stats['top5_neg_by_activation']:
+            f.write(f"F{feat_idx}({avg_act:.3f}) ")
+        f.write("\n")
+    
+    f.write("\n4. KEY FINDINGS\n")
+    f.write("-"*70 + "\n")
+    f.write(f"Best Performing Layer: Layer {best_layer[0]}\n")
     f.write(f"  Accuracy: {best_layer[1]['accuracy']*100:.2f}%\n")
+    f.write(f"  Improvement over baseline: {best_layer[1]['improvement']*100:+.2f}%\n")
     f.write(f"  → This layer encodes the most sentiment information\n\n")
     
-    f.write(f"Worst Layer: {worst_layer[0]}\n")
+    f.write(f"Worst Performing Layer: Layer {worst_layer[0]}\n")
     f.write(f"  Accuracy: {worst_layer[1]['accuracy']*100:.2f}%\n\n")
     
     f.write("INTERPRETATION:\n")
-    f.write("- Higher accuracy = more sentiment information in layer\n")
-    f.write("- Lower Jaccard = more distinct positive/negative features\n")
+    f.write("- Higher accuracy = more sentiment information linearly accessible in layer\n")
+    f.write("- More unique features = better class separation in SAE space\n")
+    f.write("- Fewer common features = more distinct representations per sentiment\n")
 
-print(f"\n✓ Best layer: Layer {best_layer[0]} ({best_layer[1]['accuracy']*100:.2f}% accuracy)")
-print("✓ Complete!")
+print("\n✓ All results saved to /kaggle/working/results/")
 print("="*70)
 
