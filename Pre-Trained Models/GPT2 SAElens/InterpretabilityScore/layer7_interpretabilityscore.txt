@@ -1,0 +1,204 @@
+INTERPRETABILITY REPORT â€“ Layer 7, top-10 global frequent features
+======================================================================
+
+Layer 7, Feature 43763
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to a pattern of negative sentiment or emotional expression, particularly in phrases that convey strong dissatisfaction or frustration, such as "bad", "dull", and "very bad".
+
+Evaluation sentences:
+1. it treats women like idiots . 
+   Actual=3.389, Pred=9.000
+2. this is so bad . 
+   Actual=3.384, Pred=9.000
+3. it 's just filler . 
+   Actual=3.299, Pred=4.000
+4. should have been someone else - 
+   Actual=3.292, Pred=7.000
+5. too much of the humor falls flat . 
+   Actual=3.276, Pred=8.000
+
+Pearson correlation: 0.5995
+======================================================================
+
+Layer 7, Feature 6788
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to a pattern of increasingly negative sentiment or evaluation, particularly focusing on the degree of negativity, with higher activations indicating stronger negative emotions or stronger disapproval as the input text becomes more critical.
+
+Evaluation sentences:
+1. part low rent godfather . 
+   Actual=5.628, Pred=2.000
+2. fancy a real downer ? 
+   Actual=5.594, Pred=8.000
+3. a tender , heartfelt family drama . 
+   Actual=5.540, Pred=1.000
+4. or emptying rat traps . 
+   Actual=5.512, Pred=2.000
+5. this movie is maddening . 
+   Actual=5.503, Pred=9.000
+
+Pearson correlation: -0.1450
+======================================================================
+
+Layer 7, Feature 21138
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to negative sentiments, particularly those associated with the concepts of worthlessness, futility, and unpleasantness, as seen in phrases such as "bad", "very bad", "big fat waste of time", and "emptying rat traps".
+
+Evaluation sentences:
+1. a tender , heartfelt family drama . 
+   Actual=4.567, Pred=1.000
+2. fancy a real downer ? 
+   Actual=4.558, Pred=9.000
+3. part low rent godfather . 
+   Actual=4.510, Pred=1.000
+4. that 's a cheat . 
+   Actual=4.473, Pred=6.000
+5. something like scrubbing the toilet . 
+   Actual=4.467, Pred=5.000
+
+Pearson correlation: -0.0908
+======================================================================
+
+Layer 7, Feature 23627
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to a concept related to intense or strong emotional experiences, particularly those that are poignant, artfully crafted, or associated with mortality, but it also shows a secondary response to negative or dismissive emotional experiences.
+
+Evaluation sentences:
+1. fancy a real downer ? 
+   Actual=12.193, Pred=2.000
+2. almost gags on its own gore . 
+   Actual=12.171, Pred=9.000
+3. how do you spell clichÃ© ? 
+   Actual=12.123, Pred=1.000
+4. smart , provocative and blisteringly funny . 
+   Actual=12.100, Pred=7.000
+5. makes for a pretty unpleasant viewing experience . 
+   Actual=12.043, Pred=2.000
+
+Pearson correlation: 0.2224
+======================================================================
+
+Layer 7, Feature 32257
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the concept of "badness" or negative sentiment, particularly in the context of words or phrases that convey a strong sense of unpleasantness, disappointment, or dissatisfaction.
+
+Evaluation sentences:
+1. a giggle a minute . 
+   Actual=5.382, Pred=1.000
+2. cool ? 
+   Actual=5.330, Pred=2.000
+3. it 's a beautiful madness . 
+   Actual=5.286, Pred=6.000
+4. it 's a buggy drag . 
+   Actual=5.234, Pred=8.000
+5. this movie is maddening . 
+   Actual=5.219, Pred=9.000
+
+Pearson correlation: -0.9807
+======================================================================
+
+Layer 7, Feature 36362
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to words and phrases related to unpleasant or unnecessary experiences, activities, or concepts, particularly those involving a sense of waste, boredom, or unfulfillment.
+
+Evaluation sentences:
+1. ... the movie is just a plain old monster . 
+   Actual=2.507, Pred=8.000
+2. slick piece of cross-promotion . 
+   Actual=2.506, Pred=4.000
+3. that 's a cheat . 
+   Actual=2.481, Pred=9.000
+4. this movie is maddening . 
+   Actual=2.480, Pred=9.000
+5. good film , but very glum . 
+   Actual=2.464, Pred=4.000
+
+Pearson correlation: 0.0320
+======================================================================
+
+Layer 7, Feature 38664
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to negative sentiment, particularly phrases indicating sadness, disappointment, or despair, as evidenced by stronger activations in sentences expressing these emotions.
+
+Evaluation sentences:
+1. old-form moviemaking at its best . 
+   Actual=5.191, Pred=0.000
+2. very bad . 
+   Actual=5.174, Pred=8.000
+3. that 's a cheat . 
+   Actual=5.128, Pred=4.000
+4. a wildly inconsistent emotional experience . 
+   Actual=5.085, Pred=2.000
+5. a tender , heartfelt family drama . 
+   Actual=5.045, Pred=2.000
+
+Pearson correlation: 0.2338
+======================================================================
+
+Layer 7, Feature 44578
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to a pattern of words that convey negative sentiment, particularly those with strong intensifiers such as "bad", "very", and "so".
+
+Evaluation sentences:
+1. fancy a real downer ? 
+   Actual=9.094, Pred=8.000
+2. but it could have been worse . 
+   Actual=9.062, Pred=6.000
+3. something like scrubbing the toilet . 
+   Actual=9.009, Pred=2.000
+4. part low rent godfather . 
+   Actual=8.981, Pred=2.000
+5. not exactly the bees knees 
+   Actual=8.969, Pred=4.000
+
+Pearson correlation: 0.8490
+======================================================================
+
+Layer 7, Feature 18474
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the concept of negative sentiment or undesirable qualities, particularly with words like "bad", "empty", and "dull", which are indicative of a negative emotional tone or a lack of appeal.
+
+Evaluation sentences:
+1. just not campy enough 
+   Actual=1.612, Pred=6.000
+2. why make a documentary about these marginal historical figures ? 
+   Actual=1.599, Pred=6.000
+3. a poignant , artfully crafted meditation on mortality . 
+   Actual=1.591, Pred=2.000
+4. cool ? 
+   Actual=1.586, Pred=0.000
+5. big fat waste of time . 
+   Actual=1.554, Pred=9.000
+
+Pearson correlation: -0.3266
+======================================================================
+
+Layer 7, Feature 324
+----------------------------------------------------------------------
+Interpretation:
+Based on the sparse autoencoder feature from GPT-2, it appears that this feature responds to words or concepts associated with **positive sentiment, particularly "good" or "enjoyable" experiences**.
+
+This conclusion is drawn from the activation patterns across all five input sentences. In sentences 1 and 5, which express positive sentiments, the feature shows significant activation across multiple tokens. In contrast, sentences 2, 3, and 4, which have more neutral or negative tones, exhibit lower activation strengths. The feature seems to be more responsive to adjectives like "good," "original," "enjoyable," and "regal," which are often associated with positive emotions.
+
+Evaluation sentences:
+1. that 's a cheat . 
+   Actual=0.386, Pred=2.000
+2. the film 's performances are thrilling . 
+   Actual=0.380, Pred=8.000
+3. his healthy sense of satire is light and fun ... 
+   Actual=0.379, Pred=8.000
+4. detox is ultimately a pointless endeavor . 
+   Actual=0.374, Pred=1.000
+5. macdowell , whose wifty southern charm has anchored lighter affairs ... brings an absolutely riveting conviction to her role . 
+   Actual=0.373, Pred=8.000
+
+Pearson correlation: -0.2313
+======================================================================
