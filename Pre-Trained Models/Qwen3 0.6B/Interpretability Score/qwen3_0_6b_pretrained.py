@@ -7,53 +7,54 @@ Original file is located at
     https://colab.research.google.com/#fileId=https%3A//storage.googleapis.com/kaggle-colab-exported-notebooks/kylian007/qwen3-0-6b-pretrained.5cbbea20-c0fb-46f4-8207-3bdb619db95c.ipynb%3FX-Goog-Algorithm%3DGOOG4-RSA-SHA256%26X-Goog-Credential%3Dgcp-kaggle-com%2540kaggle-161607.iam.gserviceaccount.com/20251222/auto/storage/goog4_request%26X-Goog-Date%3D20251222T151647Z%26X-Goog-Expires%3D259200%26X-Goog-SignedHeaders%3Dhost%26X-Goog-Signature%3D30f930cf5ba811e1a5017ddba9816d5d03a5428f025fe3df628c658a263a70be07c7e8a79e9cad55ccbe49281425312d9666ce736b84dcdbe287654867602cc96f68c0f881544f608323db90775027a052718481fb94b81a42f905ddfa8b822b5d1abb780668318fd84ad08ff46df32aea4925bc8c4ab3559cfeb0ac96059fc43580e769c5410078f6a59ab8c9cf3277dbb9915740462d6f5ed304d3482d16f4a3d12cb6fcce8aa06145677bb9486a910f34ab80fac2049a006a9f9f9d9a8e4615503c484792c95dd9c5c1d9fe7b501876f7e8bfc1dbcc34d0d11fe3db4e94e087b7e1ad2972efd8a55462fc0665dc76ec8c41031cdb53192a3f08bd43a880b7
 """
 
-!pip install sae-lens
-!pip install groq
+# ================================================================
+# 0. INSTALLS (only once per notebook)
+# ================================================================
+!pip install -q sae-lens transformers datasets torch groq
 
 # ================================================================
-# 0. Auth & imports
+# 1. IMPORTS & BASIC SETUP
 # ================================================================
-from kaggle_secrets import UserSecretsClient
-
-import os
-import gc
-import torch
-from datasets import load_dataset
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from sae_lens import SAE
-from tqdm import tqdm
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
-import numpy as np
+import os, re, numpy as np, torch, gc
 from collections import Counter
-from huggingface_hub import login
-
-# ------------------------------------------------
-# Authenticate to Hugging Face using Kaggle secret
-# ------------------------------------------------
-user_secrets = UserSecretsClient()
-hf_token = user_secrets.get_secret("HF_TOKEN")
-if hf_token is None:
-    raise ValueError("HF_TOKEN secret not found in Kaggle. Please add it in Add-ons > Secrets.")
-
-os.environ["HF_TOKEN"] = hf_token
-login(token=hf_token)
-
-# ================================================================
-# 1. Setup
-# ================================================================
-os.makedirs('/kaggle/working/hf_cache', exist_ok=True)
-os.makedirs('/kaggle/working/results', exist_ok=True)
-
-os.environ['HF_HOME'] = '/kaggle/working/hf_cache'
-os.environ['TRANSFORMERS_CACHE'] = '/kaggle/working/hf_cache'
-os.environ['HF_DATASETS_CACHE'] = '/kaggle/working/hf_cache'
+from datasets import load_dataset
+from torch.utils.data import DataLoader
+from sae_lens import SAE
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from groq import Groq
+from scipy.stats import pearsonr
+from tqdm import tqdm
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-print(f"Using device: {device}")
+print("Device:", device)
 
 # ================================================================
-# 2. Load Qwen3-0.6B-Base and SST-2
+# 2. GROQ / LLAMA-3 CLIENT
+# ================================================================
+from kaggle_secrets import UserSecretsClient
+user_secrets = UserSecretsClient()
+os.environ["GROQ_API_KEY"] = user_secrets.get_secret("GROQ_API_KEY")
+
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+if GROQ_API_KEY is None:
+    raise ValueError("Set GROQ_API_KEY in Kaggle secrets as GROQ_API_KEY.")
+
+client = Groq(api_key=GROQ_API_KEY)
+
+def chat_with_llama(prompt, model="llama-3.1-8b-instant", max_tokens=150):
+    resp = client.chat.completions.create(
+        messages=[
+            {"role": "system", "content": "You are a helpful interpretability assistant."},
+            {"role": "user", "content": prompt},
+        ],
+        model=model,
+        max_tokens=max_tokens,
+        temperature=0.7,
+    )
+    return resp.choices[0].message.content.strip()
+
+# ================================================================
+# 3. LOAD QWEN3-0.6B-BASE & SST-2 VAL
 # ================================================================
 base_model_id = "Qwen/Qwen3-0.6B-Base"
 print(f"Loading model: {base_model_id} ...")
@@ -72,29 +73,34 @@ model.eval()
 n_layers = model.config.num_hidden_layers
 print(f"Model has {n_layers} layers (0-{n_layers-1})")
 
-print("Loading SST-2 dataset...")
-dataset = load_dataset("glue", "sst2")
-train_dataset = dataset["train"]
-val_dataset = dataset["validation"]
-
-print(f"Original sizes - Train: {len(train_dataset)}, Val: {len(val_dataset)}")
-
-train_dataset = train_dataset.select(range(min(2000, len(train_dataset))))
-val_dataset = val_dataset.select(range(min(872, len(val_dataset))))  # SST-2 val = 872
-
-print(f"Train samples (subsampled): {len(train_dataset)}")
-print(f"Validation samples (subsampled): {len(val_dataset)}")
+print("Loading SST-2 validation split...")
+val_ds = load_dataset("glue", "sst2", split="validation")
+val_sentences = val_ds["sentence"]
+print("Val size:", len(val_sentences))
 
 # ================================================================
-# Helper: get layer representation
+# 4. DATASET: TEXT DATASET
 # ================================================================
-def get_layer_rep(text, layer_idx):
+class TextDataset(torch.utils.data.Dataset):
+    def __init__(self, sentences):
+        self.sentences = sentences
+    def __len__(self):
+        return len(self.sentences)
+    def __getitem__(self, idx):
+        return self.sentences[idx]
+
+val_text_ds = TextDataset(val_sentences)
+
+# ================================================================
+# 5. GET LAYER REPRESENTATIONS (HIDDEN STATES)
+# ================================================================
+def get_layer_reps_batch(text_batch, layer_idx, max_length=128):
     enc = tokenizer(
-        text,
+        list(text_batch),
         return_tensors="pt",
-        padding=False,
+        padding=True,
         truncation=True,
-        max_length=128,
+        max_length=max_length,
     ).to(device)
 
     with torch.no_grad():
@@ -104,457 +110,224 @@ def get_layer_rep(text, layer_idx):
             use_cache=False,
         )
 
-    hidden_states = out.hidden_states  # len = n_layers+1
-    layer_h = hidden_states[layer_idx + 1]  # (1, seq, d_model)
-    return layer_h
+    hidden_states = out.hidden_states  # tuple len n_layers+1
+    layer_h = hidden_states[layer_idx + 1]  # (B, seq, d_model)
+    return layer_h, enc["attention_mask"]  # mask: (B, seq)
 
 # ================================================================
-# 3. STEP 1: Baseline - Zero-Shot Prompting
+# 6. SAE WRAPPER
 # ================================================================
-print("\n" + "="*70)
-print("STEP 1: BASELINE - ZERO-SHOT PROMPTING (Qwen3-0.6B)")
-print("="*70)
+class SAEWithActs(torch.nn.Module):
+    def __init__(self, sae_model):
+        super().__init__()
+        self.sae = sae_model
+        self.activations = None
+        hook_module = getattr(self.sae, "hook_sae_acts_post", None)
+        if hook_module is None:
+            raise ValueError("hook_sae_acts_post not found on SAE model.")
+        hook_module.register_forward_hook(self._hook)
 
-baseline_predictions = []
-baseline_labels = []
+    def _hook(self, module, inp, out):
+        self.activations = out.detach()
 
-with torch.no_grad():
-    for idx in tqdm(range(len(val_dataset)), desc="Zero-Shot Evaluation"):
-        sentence = val_dataset[idx]["sentence"]
-        true_label = val_dataset[idx]["label"]
+    def forward(self, sae_input):
+        _ = self.sae(sae_input)
+        return self.activations
 
-        prompt = f"""Classify the sentiment as positive or negative.
-
-Sentence: {sentence}
-Sentiment:"""
-
-        enc = tokenizer(
-            prompt,
-            return_tensors="pt",
-            padding=False,
-            truncation=True,
-            max_length=256,
-        ).to(device)
-
-        out = model(**enc)
-        logits = out.logits  # (1, seq, vocab)
-        next_token_logits = logits[0, -1, :]
-        next_token_id = torch.argmax(next_token_logits).item()
-        generated_text = tokenizer.decode([next_token_id]).strip().lower()
-
-        if "positive" in generated_text or generated_text.startswith("pos"):
-            prediction = 1
-        elif "negative" in generated_text or generated_text.startswith("neg"):
-            prediction = 0
-        else:
-            pos_id = tokenizer.encode(" positive")[-1]
-            neg_id = tokenizer.encode(" negative")[-1]
-            if next_token_logits[pos_id] > next_token_logits[neg_id]:
-                prediction = 1
-            else:
-                prediction = 0
-
-        baseline_predictions.append(prediction)
-        baseline_labels.append(true_label)
-
-baseline_predictions = np.array(baseline_predictions)
-baseline_labels = np.array(baseline_labels)
-
-baseline_acc = accuracy_score(baseline_labels, baseline_predictions)
-baseline_p, baseline_r, baseline_f1, _ = precision_recall_fscore_support(
-    baseline_labels, baseline_predictions, average='binary'
-)
-
-print(f"\nBaseline Accuracy: {baseline_acc:.4f} ({baseline_acc*100:.2f}%)")
-print(f"F1-Score: {baseline_f1:.4f}")
-
-with open('/kaggle/working/results/baseline_results_qwen3.txt', 'w') as f:
-    f.write("="*70 + "\n")
-    f.write("BASELINE - ZERO-SHOT PROMPTING (Qwen3-0.6B)\n")
-    f.write("="*70 + "\n\n")
-    f.write(f"Accuracy: {baseline_acc:.4f} ({baseline_acc*100:.2f}%)\n")
-    f.write(f"Precision: {baseline_p:.4f}\n")
-    f.write(f"Recall: {baseline_r:.4f}\n")
-    f.write(f"F1-Score: {baseline_f1:.4f}\n")
-
-print("✓ Baseline saved")
+    def get_acts(self, sae_input):
+        self.eval()
+        with torch.no_grad():
+            _ = self.forward(sae_input)
+            return self.activations
 
 # ================================================================
-# 4. STEP 2: Layer-wise Analysis (Probes + Transcoder SAEs)
+# 7. TOP-K GLOBAL FEATURES FOR QWEN3 LAYER
 # ================================================================
-print("\n" + "="*70)
-print("STEP 2: LAYER-WISE ANALYSIS (Qwen3-0.6B + Transcoders)")
-print("="*70)
+def top_k_global_features_for_layer_qwen(layer_num, sae_model, k=10, max_batches=None):
+    sae_wrap = SAEWithActs(sae_model).to(device)
+    counter = Counter()
+    dataloader = DataLoader(val_text_ds, batch_size=32, shuffle=False)
 
-layer_performance = {}
-sae_feature_stats = {}
+    for i, batch_texts in enumerate(tqdm(dataloader, desc=f"Counting features L{layer_num}")):
+        if max_batches is not None and i >= max_batches:
+            break
 
-TOP_K = 10
-release_qwen = "mwhanna-qwen3-0.6b-transcoders-lowl0"
+        layer_h, attn_mask = get_layer_reps_batch(batch_texts, layer_num)
+        latents = sae_wrap.get_acts(layer_h)
 
-for layer_num in range(n_layers):
-    print(f"\n{'='*70}")
-    print(f"LAYER {layer_num} ANALYSIS")
-    print(f"{'='*70}")
+        if attn_mask is not None:
+            mask = attn_mask.unsqueeze(-1)
+            latents = latents * mask
 
-    # ----------------------------------------------------------
-    # Part A: Raw representation classifier
-    # ----------------------------------------------------------
-    print("\n--- Part A: Raw Representation Classifier (Hidden state) ---")
+        active = (latents > 0).any(dim=1)  # (B, d_sae)
+        for row in active:
+            idxs = row.nonzero(as_tuple=True)[0].tolist()
+            counter.update(idxs)
 
-    print("Extracting training representations...")
-    train_reps = []
-    train_labels = []
+    topk = counter.most_common(k)
+    print(f"Layer {layer_num} top-{k} global features (idx, count): {topk}")
+    return [idx for idx, _ in topk]
 
-    with torch.no_grad():
-        for idx in tqdm(range(len(train_dataset)), desc=f"Train L{layer_num}"):
-            sentence = train_dataset[idx]["sentence"]
-            label = train_dataset[idx]["label"]
+# ================================================================
+# 8. INTERPRETABILITY HELPERS
+# ================================================================
+def extract_feature_acts_qwen(layer_num, sae_wrap, feature_idx, max_batches=None):
+    acts_all, texts_all = [], []
+    dataloader = DataLoader(val_text_ds, batch_size=32, shuffle=False)
 
-            layer_h = get_layer_rep(sentence, layer_num)   # (1, seq, d_model)
-            pooled = layer_h.mean(dim=1)                  # (1, d_model)
-            pooled_flat = pooled[0].to(torch.float32).cpu().numpy().flatten()
+    for i, batch_texts in enumerate(tqdm(dataloader, desc=f"Extracting L{layer_num} F{feature_idx}")):
+        if max_batches is not None and i >= max_batches:
+            break
 
-            train_reps.append(pooled_flat)
-            train_labels.append(label)
+        layer_h, attn_mask = get_layer_reps_batch(batch_texts, layer_num)
+        latents = sae_wrap.get_acts(layer_h)
 
-    X_train = np.array(train_reps)
-    y_train = np.array(train_labels)
+        if attn_mask is not None:
+            mask = attn_mask.unsqueeze(-1)
+            latents = latents * mask
 
-    print("Extracting validation representations...")
-    val_reps = []
-    val_labels_raw = []
+        feat_acts = latents[:, :, feature_idx].detach().cpu().numpy()
+        for a_sent, txt in zip(feat_acts, batch_texts):
+            acts_all.append(a_sent)
+            texts_all.append(txt)
 
-    with torch.no_grad():
-        for idx in tqdm(range(len(val_dataset)), desc=f"Val L{layer_num}"):
-            sentence = val_dataset[idx]["sentence"]
-            label = val_dataset[idx]["label"]
+    return acts_all, texts_all
 
-            layer_h = get_layer_rep(sentence, layer_num)
-            pooled = layer_h.mean(dim=1)
-            pooled_flat = pooled[0].to(torch.float32).cpu().numpy().flatten()
+def select_top(acts, texts, n=20):
+    scores = [np.sum(a) for a in acts]
+    idxs = np.argsort(scores)[::-1][:n]
+    return [acts[i] for i in idxs], [texts[i] for i in idxs]
 
-            val_reps.append(pooled_flat)
-            val_labels_raw.append(label)
+def llama_interpretation(top_texts, top_acts):
+    prompt = (
+        "You are analyzing a sparse autoencoder feature from Qwen3-0.6B.\n"
+        "Each sentence below is accompanied by per-token activation strengths for this feature; "
+        "larger numbers indicate stronger activation.\n\n"
+        "From this data, give one concise sentence describing what pattern or concept "
+        "this feature responds to.\n\n"
+    )
+    for i, (txt, acts) in enumerate(zip(top_texts, top_acts), 1):
+        prompt += f"{i}. \"{txt}\"\nActivations: {acts.tolist()}\n\n"
+    prompt += "Your explanation:"
+    return chat_with_llama(prompt)
 
-    X_val = np.array(val_reps)
-    y_val = np.array(val_labels_raw)
+def llama_activation_score(sentence, interpretation):
+    prompt = (
+        f'Feature interpretation:\n"{interpretation}"\n\n'
+        "On a scale from 0 (not active) to 10 (very active), estimate how strongly "
+        "this feature activates on the following sentence. Respond with only a single number.\n\n"
+        f'Sentence: \"{sentence}\"\nActivation:'
+    )
+    resp = chat_with_llama(prompt, max_tokens=16)
+    m = re.search(r"\d+(\.\d+)?", resp)
+    return float(m.group()) if m else 0.0
 
-    print("Training classifier...")
-    clf = LogisticRegression(max_iter=1000, random_state=42, class_weight='balanced')
-    clf.fit(X_train, y_train)
+def pearson_score(actual_acts, pred_scores):
+    actual = np.array([np.mean(a) for a in actual_acts]) * 10.0
+    pred = np.array(pred_scores)
+    corr, _ = pearsonr(actual, pred)
+    return corr
 
-    predictions = clf.predict(X_val)
-
-    acc = accuracy_score(y_val, predictions)
-    p, r, f1, _ = precision_recall_fscore_support(y_val, predictions, average='binary')
-    cm = confusion_matrix(y_val, predictions)
-
-    layer_performance[layer_num] = {
-        "accuracy": acc,
-        "precision": p,
-        "recall": r,
-        "f1_score": f1,
-        "improvement": acc - baseline_acc,
-        "confusion_matrix": cm,
-    }
-
-    print(f"Layer {layer_num} Accuracy: {acc:.4f} ({acc*100:.2f}%)")
-    print(f"Improvement over baseline: {(acc - baseline_acc)*100:+.2f}%")
-
-    # ----------------------------------------------------------
-    # Part B: SAE feature analysis
-    # ----------------------------------------------------------
-    print("\n--- Part B: SAE Feature Analysis (Transcoders) ---")
-
-    sae_id_qwen = f"layer_{layer_num}"
-    try:
-        try:
-            sae_qwen = SAE.from_pretrained(release_qwen, sae_id_qwen)
-        except:
-            sae_qwen = SAE.from_pretrained(release_qwen, sae_id_qwen)[0]
-
-        sae_qwen.to(device)
-        sae_qwen.eval()
-        print(f"Loaded Qwen3 SAE: {sae_id_qwen}")
-    except Exception as e:
-        print(f"Could not load SAE for layer {layer_num}: {e}")
-        sae_feature_stats[layer_num] = {}
-        gc.collect()
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-        continue
-
-    print("Extracting SAE features...")
-
-    pos_active_features = set()
-    neg_active_features = set()
-
-    pos_feature_activations = {}
-    neg_feature_activations = {}
-
-    pos_feature_counts = Counter()
-    neg_feature_counts = Counter()
-
-    total_pos = 0
-    total_neg = 0
-
-    with torch.no_grad():
-        for idx in tqdm(range(len(val_dataset)), desc=f"SAE L{layer_num}"):
-            sentence = val_dataset[idx]["sentence"]
-            label = val_dataset[idx]["label"]
-
-            layer_h = get_layer_rep(sentence, layer_num)        # (1, seq, d_model)
-            sae_feats = sae_qwen.encode(layer_h)                # (1, seq, d_sae)
-
-            pooled_features = sae_feats.mean(dim=1)[0].to(torch.float32).cpu().numpy().flatten()
-
-            active_indices = np.where(pooled_features > 0)[0]
-            active_values = pooled_features[active_indices]
-
-            if label == 1:
-                total_pos += 1
-                for feat_idx, act_val in zip(active_indices, active_values):
-                    pos_active_features.add(feat_idx)
-                    pos_feature_counts[feat_idx] += 1
-                    pos_feature_activations.setdefault(feat_idx, []).append(act_val)
-            else:
-                total_neg += 1
-                for feat_idx, act_val in zip(active_indices, active_values):
-                    neg_active_features.add(feat_idx)
-                    neg_feature_counts[feat_idx] += 1
-                    neg_feature_activations.setdefault(feat_idx, []).append(act_val)
-
-    common_features = pos_active_features & neg_active_features
-    pos_only_features = pos_active_features - neg_active_features
-    neg_only_features = neg_active_features - pos_active_features
-
-    pos_avg_activations = {f: np.mean(acts) for f, acts in pos_feature_activations.items()}
-    neg_avg_activations = {f: np.mean(acts) for f, acts in neg_feature_activations.items()}
-
-    top5_pos_by_activation = sorted(
-        pos_avg_activations.items(), key=lambda x: x[1], reverse=True
-    )[:5]
-    top5_neg_by_activation = sorted(
-        neg_avg_activations.items(), key=lambda x: x[1], reverse=True
-    )[:5]
-
-    topk_pos_by_frequency = pos_feature_counts.most_common(TOP_K)
-    topk_neg_by_frequency = neg_feature_counts.most_common(TOP_K)
-
-    top5_pos_by_frequency = pos_feature_counts.most_common(5)
-    top5_neg_by_frequency = neg_feature_counts.most_common(5)
-
-    topk_pos_ids = {feat for feat, _ in topk_pos_by_frequency}
-    topk_neg_ids = {feat for feat, _ in topk_neg_by_frequency}
-    topk_common_ids = topk_pos_ids & topk_neg_ids
-
-    sae_feature_stats[layer_num] = {
-        "total_pos_features": len(pos_active_features),
-        "total_neg_features": len(neg_active_features),
-        "common_features": len(common_features),
-        "pos_only_features": len(pos_only_features),
-        "neg_only_features": len(neg_only_features),
-        "top5_pos_by_activation": top5_pos_by_activation,
-        "top5_neg_by_activation": top5_neg_by_activation,
-        "top5_pos_by_frequency": top5_pos_by_frequency,
-        "top5_neg_by_frequency": top5_neg_by_frequency,
-        "topk_pos_by_frequency": topk_pos_by_frequency,
-        "topk_neg_by_frequency": topk_neg_by_frequency,
-        "topk_common_ids": topk_common_ids,
-        "total_pos_samples": total_pos,
-        "total_neg_samples": total_neg,
-    }
-
-    # ----------------------------------------------------------
-    # Save per-layer detailed analysis (GPT-2 style)
-    # ----------------------------------------------------------
-    with open(f"/kaggle/working/results/layer_{layer_num}_complete_analysis_qwen3.txt", "w") as f:
-        f.write("="*70 + "\n")
-        f.write(f"LAYER {layer_num} - COMPLETE ANALYSIS (Qwen3-0.6B)\n")
+def save_report(path, layer_num, feature_idx, interpretation,
+                eval_texts, eval_acts, pred_scores, corr):
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(f"Layer {layer_num}, Feature {feature_idx}\n")
+        f.write("-"*70 + "\n")
+        f.write("Interpretation:\n" + interpretation.strip() + "\n\n")
+        f.write("Evaluation sentences:\n")
+        for i, (txt, acts, pred) in enumerate(zip(eval_texts, eval_acts, pred_scores), 1):
+            actual = np.mean(acts) * 10.0
+            f.write(f"{i}. {txt}\n   Actual={actual:.3f}, Pred={pred:.3f}\n")
+        f.write(f"\nPearson correlation: {corr:.4f}\n")
         f.write("="*70 + "\n\n")
 
-        f.write("A. LAYER PERFORMANCE (Raw Representations)\n")
-        f.write("-"*70 + "\n")
-        f.write(f"Accuracy: {acc:.4f} ({acc*100:.2f}%)\n")
-        f.write(f"Precision: {p:.4f}\n")
-        f.write(f"Recall: {r:.4f}\n")
-        f.write(f"F1-Score: {f1:.4f}\n")
-        f.write(f"Baseline Accuracy: {baseline_acc:.4f}\n")
-        f.write(f"Improvement over baseline: {(acc - baseline_acc)*100:+.2f}%\n\n")
+# ================================================================
+# 9. PIPELINE FOR ONE FEATURE (QWEN3)
+# ================================================================
+def interpretability_for_feature_qwen(layer_num, sae_model, feature_idx, report_path, max_batches=None):
+    sae_wrap = SAEWithActs(sae_model).to(device)
 
-        f.write("Confusion Matrix:\n")
-        f.write("              Predicted\n")
-        f.write("              Neg    Pos\n")
-        f.write(f"Actual Neg  [{cm[0,0]:5d}  {cm[0,1]:5d}]\n")
-        f.write(f"       Pos  [{cm[1,0]:5d}  {cm[1,1]:5d}]\n\n")
+    acts_all, texts_all = extract_feature_acts_qwen(layer_num, sae_wrap, feature_idx, max_batches=max_batches)
 
-        f.write("B. SAE FEATURE COUNTS\n")
-        f.write("-"*70 + "\n")
-        f.write(f"Total POSITIVE samples: {total_pos}\n")
-        f.write(f"Total NEGATIVE samples: {total_neg}\n\n")
-        f.write(f"Total features activated for POSITIVE: {len(pos_active_features)}\n")
-        f.write(f"Total features activated for NEGATIVE: {len(neg_active_features)}\n")
-        f.write(f"COMMON features (activated for both): {len(common_features)}\n")
-        f.write(f"UNIQUE to POSITIVE only: {len(pos_only_features)}\n")
-        f.write(f"UNIQUE to NEGATIVE only: {len(neg_only_features)}\n\n")
+    top_acts, top_texts = select_top(acts_all, texts_all, n=20)
+    interp_acts, interp_texts = top_acts[:5], top_texts[:5]
 
-        f.write("C. TOP 5 MOST ACTIVATING FEATURES (POSITIVE)\n")
-        f.write("-"*70 + "\n")
-        for rank, (feat_idx, avg_act) in enumerate(top5_pos_by_activation, 1):
-            freq = pos_feature_counts[feat_idx]
-            pct = freq / total_pos * 100 if total_pos > 0 else 0.0
-            status = "COMMON" if feat_idx in common_features else "UNIQUE"
-            f.write(
-                f"{rank}. Feature {feat_idx}: avg_activation={avg_act:.4f}, "
-                f"frequency={freq}/{total_pos} ({pct:.1f}%) | {status}\n"
-            )
+    print(f"\nTop 5 sentences for L{layer_num} feature {feature_idx}:")
+    for i, s in enumerate(interp_texts, 1):
+        print(f"{i}. {s}")
 
-        f.write("\nD. TOP 5 MOST ACTIVATING FEATURES (NEGATIVE)\n")
-        f.write("-"*70 + "\n")
-        for rank, (feat_idx, avg_act) in enumerate(top5_neg_by_activation, 1):
-            freq = neg_feature_counts[feat_idx]
-            pct = freq / total_neg * 100 if total_neg > 0 else 0.0
-            status = "COMMON" if feat_idx in common_features else "UNIQUE"
-            f.write(
-                f"{rank}. Feature {feat_idx}: avg_activation={avg_act:.4f}, "
-                f"frequency={freq}/{total_neg} ({pct:.1f}%) | {status}\n"
-            )
+    interpretation = llama_interpretation(interp_texts, interp_acts)
+    print("\nInterpretation:", interpretation)
 
-        f.write("\nE. TOP 5 MOST FREQUENT FEATURES (POSITIVE)\n")
-        f.write("-"*70 + "\n")
-        for rank, (feat_idx, count) in enumerate(top5_pos_by_frequency, 1):
-            pct = count / total_pos * 100 if total_pos > 0 else 0.0
-            avg_act = pos_avg_activations.get(feat_idx, 0.0)
-            status = "COMMON" if feat_idx in common_features else "UNIQUE"
-            f.write(
-                f"{rank}. Feature {feat_idx}: count={count} ({pct:.1f}%), "
-                f"avg_activation={avg_act:.4f} | {status}\n"
-            )
+    used = set(interp_texts)
+    rest = [(a, t) for a, t in zip(acts_all, texts_all) if t not in used]
+    if not rest:
+        print("No remaining sentences for evaluation; skipping feature.")
+        return None
 
-        f.write("\nF. TOP 5 MOST FREQUENT FEATURES (NEGATIVE)\n")
-        f.write("-"*70 + "\n")
-        for rank, (feat_idx, count) in enumerate(top5_neg_by_frequency, 1):
-            pct = count / total_neg * 100 if total_neg > 0 else 0.0
-            avg_act = neg_avg_activations.get(feat_idx, 0.0)
-            status = "COMMON" if feat_idx in common_features else "UNIQUE"
-            f.write(
-                f"{rank}. Feature {feat_idx}: count={count} ({pct:.1f}%), "
-                f"avg_activation={avg_act:.4f} | {status}\n"
-            )
+    rest_acts, rest_texts = zip(*rest)
+    rest_acts, rest_texts = list(rest_acts), list(rest_texts)
+    scores = [np.sum(a) for a in rest_acts]
+    idxs = np.argsort(scores)[::-1][:5]
+    eval_acts = [rest_acts[i] for i in idxs]
+    eval_texts = [rest_texts[i] for i in idxs]
 
-        f.write(f"\nG. TOP {TOP_K} MOST FREQUENT FEATURES (POSITIVE)\n")
-        f.write("-"*70 + "\n")
-        for rank, (feat_idx, count) in enumerate(topk_pos_by_frequency, 1):
-            pct = count / total_pos * 100 if total_pos > 0 else 0.0
-            f.write(
-                f"{rank}. Feature {feat_idx}: count={count} ({pct:.1f}%)\n"
-            )
+    print("\nEvaluation sentences:")
+    for i, s in enumerate(eval_texts, 1):
+        print(f"{i}. {s}")
 
-        f.write(f"\nH. TOP {TOP_K} MOST FREQUENT FEATURES (NEGATIVE)\n")
-        f.write("-"*70 + "\n")
-        for rank, (feat_idx, count) in enumerate(topk_neg_by_frequency, 1):
-            pct = count / total_neg * 100 if total_neg > 0 else 0.0
-            f.write(
-                f"{rank}. Feature {feat_idx}: count={count} ({pct:.1f}%)\n"
-            )
+    pred_scores = [llama_activation_score(s, interpretation) for s in eval_texts]
+    corr = pearson_score(eval_acts, pred_scores)
+    print(f"Pearson correlation for L{layer_num} feature {feature_idx}: {corr:.4f}")
 
-        f.write(
-            f"\nI. COMMON FEATURES AMONG TOP-{TOP_K} POS & NEG\n"
+    save_report(report_path, layer_num, feature_idx, interpretation,
+                eval_texts, eval_acts, pred_scores, corr)
+
+    return corr
+
+# ================================================================
+# 10. MAIN: QWEN3 LAYERS 12 & 14, TOP-10 GLOBAL FEATURES
+# ================================================================
+release = "mwhanna-qwen3-0.6b-transcoders-lowl0"
+layers_to_analyze = [12, 14]
+TOP_K = 10
+
+for layer in layers_to_analyze:
+    print("\n" + "="*70)
+    print(f"LAYER {layer}: loading pretrained SAE and finding top-{TOP_K} global features")
+    print("="*70)
+
+    sae_id = f"layer_{layer}"
+    try:
+        sae_model = SAE.from_pretrained(release, sae_id)
+    except:
+        sae_model = SAE.from_pretrained(release, sae_id)[0]
+    sae_model.to(device).eval()
+
+    topk_feats = top_k_global_features_for_layer_qwen(
+        layer_num=layer,
+        sae_model=sae_model,
+        k=TOP_K,
+        max_batches=None,
+    )
+
+    report_file = f"qwen3_layer{layer}_top{TOP_K}_global_features_interpretability.txt"
+    with open(report_file, "w", encoding="utf-8") as f:
+        f.write(f"INTERPRETABILITY REPORT – Qwen3-0.6B, Layer {layer}, top-{TOP_K} global frequent features\n")
+        f.write("="*70 + "\n\n")
+
+    for feat in topk_feats:
+        print(f"\n--- Layer {layer}, global feature {feat} ---")
+        interpretability_for_feature_qwen(
+            layer_num=layer,
+            sae_model=sae_model,
+            feature_idx=feat,
+            report_path=report_file,
+            max_batches=None,
         )
-        f.write("-"*70 + "\n")
-        f.write(f"Count: {len(topk_common_ids)}\n")
-        if len(topk_common_ids) > 0:
-            f.write(
-                "Example IDs: "
-                + ", ".join(str(x) for x in sorted(list(topk_common_ids))[:20])
-                + "\n"
-            )
 
-    print(f"✓ Layer {layer_num} complete analysis saved")
-
+    print(f"\nLayer {layer}: finished. Report saved to {report_file}")
     gc.collect()
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
-
-# ================================================================
-# 5. FINAL SUMMARY
-# ================================================================
-print("\n" + "="*70)
-print("FINAL SUMMARY")
-print("="*70)
-
-best_layer = max(layer_performance.items(), key=lambda x: x[1]["accuracy"])
-worst_layer = min(layer_performance.items(), key=lambda x: x[1]["accuracy"])
-
-print(
-    f"\n{'Layer':<6} {'Acc%':<8} {'Improv':<10} "
-    f"{'Pos Feat':<10} {'Neg Feat':<10} {'Common':<10}"
-)
-print("-"*90)
-for layer_num in sorted(layer_performance.keys()):
-    perf = layer_performance[layer_num]
-    stats = sae_feature_stats.get(layer_num, {})
-    print(
-        f"L{layer_num:<5} {perf['accuracy']*100:5.2f}%   "
-        f"{perf['improvement']*100:+6.2f}%    "
-        f"{stats.get('total_pos_features', 'N/A'):<10} "
-        f"{stats.get('total_neg_features', 'N/A'):<10} "
-        f"{stats.get('common_features', 'N/A'):<10}"
-    )
-
-print(
-    f"\n✓ Best layer: Layer {best_layer[0]} "
-    f"({best_layer[1]['accuracy']*100:.2f}% accuracy)"
-)
-print(
-    f"✓ Worst layer: Layer {worst_layer[0]} "
-    f"({worst_layer[1]['accuracy']*100:.2f}% accuracy)"
-)
-
-with open("/kaggle/working/results/final_summary_qwen3.txt", "w") as f:
-    f.write("="*70 + "\n")
-    f.write("FINAL SUMMARY - LAYER-WISE ANALYSIS (Qwen3 + Transcoders)\n")
-    f.write("="*70 + "\n\n")
-
-    f.write("1. BASELINE (Zero-Shot Prompting)\n")
-    f.write("-"*70 + "\n")
-    f.write(f"Accuracy: {baseline_acc*100:.2f}%\n")
-    f.write(f"F1-Score: {baseline_f1:.4f}\n\n")
-
-    f.write("2. LAYER-WISE PERFORMANCE & SAE FEATURE STATISTICS\n")
-    f.write("-"*70 + "\n")
-    f.write(
-        f"{'Layer':<6} {'Acc%':<8} {'Improv':<10} "
-        f"{'Pos Feat':<10} {'Neg Feat':<10} {'Common':<10}\n"
-    )
-    f.write("-"*90 + "\n")
-    for layer_num in sorted(layer_performance.keys()):
-        perf = layer_performance[layer_num]
-        stats = sae_feature_stats.get(layer_num, {})
-        f.write(
-            f"L{layer_num:<5} {perf['accuracy']*100:5.2f}%   "
-            f"{perf['improvement']*100:+6.2f}%    "
-            f"{stats.get('total_pos_features', 'N/A'):<10} "
-            f"{stats.get('total_neg_features', 'N/A'):<10} "
-            f"{stats.get('common_features', 'N/A'):<10}\n"
-        )
-
-    f.write("\n3. KEY FINDINGS\n")
-    f.write("-"*70 + "\n")
-    f.write(f"Best Performing Layer: Layer {best_layer[0]}\n")
-    f.write(f"  Accuracy: {best_layer[1]['accuracy']*100:.2f}%\n")
-    f.write(
-        f"  Improvement over baseline: "
-        f"{best_layer[1]['improvement']*100:+.2f}%\n\n"
-    )
-    f.write(f"Worst Performing Layer: Layer {worst_layer[0]}\n")
-    f.write(f"  Accuracy: {worst_layer[1]['accuracy']*100:.2f}%\n\n")
-    f.write("INTERPRETATION:\n")
-    f.write("- Higher accuracy = more sentiment information in that layer\n")
-    f.write("- Many pos-only / neg-only SAE features = stronger class separation\n")
-    f.write("- Overlap among top-k frequent features quantifies common concepts\n")
-
-print("\n✓ All results saved to /kaggle/working/results/")
-print("="*70)
 
