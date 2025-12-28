@@ -1,0 +1,43 @@
+======================================================================
+FINAL SUMMARY - LAYER-WISE ANALYSIS (GPT-2 Small on MRPC)
+======================================================================
+
+1. BASELINE (Zero-Shot Prompting)
+----------------------------------------------------------------------
+Accuracy: 64.46%
+F1-Score: 0.7665
+
+2. LAYER-WISE PERFORMANCE & SAE FEATURE STATISTICS
+----------------------------------------------------------------------
+Layer  Acc%     F1       Improv     Para       Non-Para   Common    
+------------------------------------------------------------------------------------------
+L0     68.38%   0.7552   +3.92%    5603       3477       2326      
+L1     66.91%   0.7448   +2.45%    6462       4829       4191      
+L2     71.32%   0.7780   +6.86%    10192      7121       5862      
+L3     66.91%   0.7419   +2.45%    14361      10819      9293      
+L4     68.87%   0.7524   +4.41%    16482      12764      11376     
+L5     69.85%   0.7602   +5.39%    12839      9143       7820      
+L6     66.91%   0.7399   +2.45%    11327      8794       7923      
+L7     65.93%   0.7301   +1.47%    11153      8215       7080      
+L8     64.46%   0.7184   +0.00%    9646       7382       6596      
+L9     66.18%   0.7315   +1.72%    7185       5486       4921      
+L10    68.87%   0.7495   +4.41%    7871       5652       4906      
+L11    61.76%   0.6905   -2.70%    2190       1721       1511      
+
+3. KEY FINDINGS
+----------------------------------------------------------------------
+Best Performing Layer: Layer 2
+  Accuracy: 71.32%
+  F1-Score: 0.7780
+  Improvement: +6.86%
+
+Worst Performing Layer: Layer 11
+  Accuracy: 61.76%
+
+Top 2 Layers: [2, 5]
+
+INTERPRETATION:
+- MRPC is paraphrase detection (sentence pairs)
+- SAE features capture semantic similarity patterns
+- Para-only features = semantic equivalence detectors
+- Non-para features = contradiction/divergence signals

@@ -1,0 +1,92 @@
+======================================================================
+LAYER 11 - COMPLETE ANALYSIS (GPT-2 Small on MRPC)
+======================================================================
+
+A. LAYER PERFORMANCE (Raw Representations)
+----------------------------------------------------------------------
+Accuracy: 0.6176 (61.76%)
+Precision: 0.7733
+Recall: 0.6237
+F1-Score: 0.6905
+Baseline Accuracy: 0.6446
+Improvement over baseline: -2.70%
+
+Confusion Matrix:
+              Predicted
+         Not-Para  Para
+Actual 0  [   78     51]
+       1  [  105    174]
+
+B. SAE FEATURE COUNTS
+----------------------------------------------------------------------
+Total PARAPHRASE samples: 279
+Total NON-PARAPHRASE samples: 129
+
+Total features activated for PARAPHRASE: 2190
+Total features activated for NON-PARAPHRASE: 1721
+COMMON features: 1511
+UNIQUE to PARAPHRASE: 679
+UNIQUE to NON-PARAPHRASE: 210
+
+C. TOP 5 MOST ACTIVATING FEATURES (PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 1958: avg_activation=1.1198, frequency=279/279 (100.0%) | COMMON
+2. Feature 24041: avg_activation=0.8633, frequency=1/279 (0.4%) | UNIQUE
+3. Feature 515: avg_activation=0.7591, frequency=5/279 (1.8%) | COMMON
+4. Feature 12041: avg_activation=0.6512, frequency=29/279 (10.4%) | COMMON
+5. Feature 13799: avg_activation=0.6272, frequency=2/279 (0.7%) | UNIQUE
+
+D. TOP 5 MOST ACTIVATING FEATURES (NON-PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 12041: avg_activation=2.0209, frequency=23/129 (17.8%) | COMMON
+2. Feature 12830: avg_activation=1.2001, frequency=1/129 (0.8%) | COMMON
+3. Feature 1958: avg_activation=1.1771, frequency=129/129 (100.0%) | COMMON
+4. Feature 21304: avg_activation=1.1730, frequency=1/129 (0.8%) | COMMON
+5. Feature 2220: avg_activation=0.9050, frequency=1/129 (0.8%) | COMMON
+
+E. TOP 5 MOST FREQUENT FEATURES (PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 1958: count=279 (100.0%), avg_activation=1.1198 | COMMON
+2. Feature 9163: count=279 (100.0%), avg_activation=0.2624 | COMMON
+3. Feature 9252: count=279 (100.0%), avg_activation=0.0281 | COMMON
+4. Feature 13955: count=279 (100.0%), avg_activation=0.1492 | COMMON
+5. Feature 4955: count=277 (99.3%), avg_activation=0.4622 | COMMON
+
+F. TOP 5 MOST FREQUENT FEATURES (NON-PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 1958: count=129 (100.0%), avg_activation=1.1771 | COMMON
+2. Feature 4955: count=129 (100.0%), avg_activation=0.3319 | COMMON
+3. Feature 9252: count=129 (100.0%), avg_activation=0.0297 | COMMON
+4. Feature 13955: count=129 (100.0%), avg_activation=0.1613 | COMMON
+5. Feature 16805: count=129 (100.0%), avg_activation=0.3319 | COMMON
+
+G. TOP 10 MOST FREQUENT FEATURES (PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 1958: count=279 (100.0%)
+2. Feature 9163: count=279 (100.0%)
+3. Feature 9252: count=279 (100.0%)
+4. Feature 13955: count=279 (100.0%)
+5. Feature 4955: count=277 (99.3%)
+6. Feature 16805: count=277 (99.3%)
+7. Feature 9392: count=267 (95.7%)
+8. Feature 11899: count=258 (92.5%)
+9. Feature 13229: count=254 (91.0%)
+10. Feature 11375: count=253 (90.7%)
+
+H. TOP 10 MOST FREQUENT FEATURES (NON-PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 1958: count=129 (100.0%)
+2. Feature 4955: count=129 (100.0%)
+3. Feature 9252: count=129 (100.0%)
+4. Feature 13955: count=129 (100.0%)
+5. Feature 16805: count=129 (100.0%)
+6. Feature 9163: count=128 (99.2%)
+7. Feature 9392: count=127 (98.4%)
+8. Feature 11899: count=124 (96.1%)
+9. Feature 11375: count=119 (92.2%)
+10. Feature 17981: count=104 (80.6%)
+
+I. COMMON FEATURES AMONG TOP-10
+----------------------------------------------------------------------
+Count: 9
+IDs: 1958, 4955, 9163, 9252, 9392, 11375, 11899, 13955, 16805
