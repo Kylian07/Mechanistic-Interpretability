@@ -1,0 +1,210 @@
+INTERPRETABILITY REPORT – MRPC Layer 2, top-10 global features
+======================================================================
+
+Layer 2, Feature 5578
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to identical or nearly identical phrases appearing at the beginning or end of sentence pairs.
+
+Evaluation sentence pairs:
+1. GE stock closed at $ 30.65 a share , down about 42 cents , on the New York Stock Exchange . <|endoftext|> GE 's shares closed at $ 30.65 on Friday on the New York Stock Exchange .
+   Actual=0.484, Pred=8.000
+2. Estonia 's place in the European mainstream and safeguard its independence regained in 1991 . <|endoftext|> Estonia was forcibly incorporated in the Soviet Union in 1940 and regained its independence only in 1991 .
+   Actual=0.509, Pred=9.000
+3. Ridge said no actual explosives or other harmful substances will be used . <|endoftext|> Ridge said no real explosives or harmful devices will be used in the exercise .
+   Actual=0.429, Pred=8.000
+4. However , a recent slide in prices and OPEC 's expectations of a surge in oil inventories have compounded its fears about a further softening of the market . <|endoftext|> A 14 percent slide in crude prices this month and expectations of a build up in oil inventories compounded OPEC 's fears of a further softening of the market .
+   Actual=0.420, Pred=3.000
+5. However , Lapidus expects foreign brands ' sales to be up 4 percent , driven by strong truck sales at Honda Motor Co . <|endoftext|> Lapidus expects Ford to be down 5 percent , Chrysler down 10 percent and foreign brands up 4 percent driven by strong truck sales at Honda .
+   Actual=0.420, Pred=8.000
+
+Pearson correlation: 0.5539
+======================================================================
+
+Layer 2, Feature 8465
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the pattern or concept of **similarities between nearly identical sentences**, particularly in the context of paraphrasing or near-duplicate information.
+
+Evaluation sentence pairs:
+1. I was surprised it turned out me talking and the president just listening . <|endoftext|> " I was surprised it turned out me talking and the president just listening . . . It was mostly a monologue . "
+   Actual=1.032, Pred=7.000
+2. In midafternoon trading , the Nasdaq composite index was up 8.34 , or 0.5 percent , to 1,790.47 . <|endoftext|> The Nasdaq Composite Index .IXIC dipped 8.59 points , or 0.48 percent , to 1,773.54 .
+   Actual=0.937, Pred=8.000
+3. Donations stemming from the Sept . 11 attacks helped push up contributions to human service organizations and large branches of the United Way by 15 percent and 28.6 percent , respectively . <|endoftext|> Donations stemming from the Sept . 11 attacks helped push up contributions to human service organizations by 15 percent and to large branches of the United Way by 28.6 percent .
+   Actual=0.968, Pred=8.000
+4. An episode is declared when the ozone reaches .20 parts per million parts of air for one hour . <|endoftext|> A Stage 1 episode is declared when ozone levels reach 0.20 parts per million .
+   Actual=0.856, Pred=8.000
+5. It 's the first such drill since the September 11 terrorist attacks on New York and Washington . <|endoftext|> It is the nation 's first large-scale counterterrorism exercise since the Sept . 11 terrorist attacks .
+   Actual=0.814, Pred=9.000
+
+Pearson correlation: -0.8841
+======================================================================
+
+Layer 2, Feature 9239
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the pattern or concept of repeated or nearly identical text.
+
+Evaluation sentence pairs:
+1. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the legislature building here to call for free elections and the resignation of Hong Kong 's leader . <|endoftext|> Tens of thousands of demonstrators gathered yesterday evening to stand before this city 's legislature building and call for free elections and the resignation of Hong Kong 's leader .
+   Actual=0.389, Pred=8.000
+2. However , Lapidus expects foreign brands ' sales to be up 4 percent , driven by strong truck sales at Honda Motor Co . <|endoftext|> Lapidus expects Ford to be down 5 percent , Chrysler down 10 percent and foreign brands up 4 percent driven by strong truck sales at Honda .
+   Actual=0.358, Pred=6.000
+3. However , EPA officials would not confirm the 20 percent figure . <|endoftext|> Only in the past few weeks have officials settled on the 20 percent figure .
+   Actual=0.358, Pred=8.000
+4. However , a recent slide in prices and OPEC 's expectations of a surge in oil inventories have compounded its fears about a further softening of the market . <|endoftext|> A 14 percent slide in crude prices this month and expectations of a build up in oil inventories compounded OPEC 's fears of a further softening of the market .
+   Actual=0.358, Pred=8.000
+5. Morgan Stanley raised its rating on the beverage maker to " overweight " from " equal-weight " saying in part that pricing power with its bottlers should improve in 2004 . <|endoftext|> Morgan Stanley raised its rating on the company to " overweight " from " equal-weight , " saying the beverage maker 's pricing power with bottlers should improve in 2004 .
+   Actual=0.383, Pred=8.000
+
+Pearson correlation: 0.4046
+======================================================================
+
+Layer 2, Feature 12172
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to patterns of **phrase or sentence repetition** or **near-duplicate text** with a focus on the similarity between consecutive sentences.
+
+Evaluation sentence pairs:
+1. However , EPA officials would not confirm the 20 percent figure . <|endoftext|> Only in the past few weeks have officials settled on the 20 percent figure .
+   Actual=2.186, Pred=8.000
+2. He replaces Ron Dittemore , who announced his resignation in April . <|endoftext|> Dittemore announced his plans to resign on April 23 .
+   Actual=2.097, Pred=8.000
+3. PeopleSoft also said its board had officially rejected Oracle 's offer . <|endoftext|> Thursday morning , PeopleSoft 's board rejected the Oracle takeover offer .
+   Actual=1.992, Pred=8.000
+4. Gasps could be heard in the courtroom when the photo was displayed . <|endoftext|> Gasps could be heard as the photo was projected onto the screen .
+   Actual=2.203, Pred=9.000
+5. Large swells and dangerous surf already were being felt along sections of the coast . <|endoftext|> Already large swells and dangerous surf have arrived along the mid-Atlantic .
+   Actual=2.197, Pred=9.000
+
+Pearson correlation: 0.6534
+======================================================================
+
+Layer 2, Feature 14201
+----------------------------------------------------------------------
+Interpretation:
+Based on the provided data, this sparse autoencoder feature from GPT-2 appears to respond to patterns of paraphrased text that involve a degree of similarity or equivalence in the semantic meaning, but with variations in wording or phrasing. 
+
+In particular, it seems to focus on detecting subtle changes in sentence structure, word choice, and phrasing, while still capturing the underlying semantic relationship between the two sentences. This feature may be useful for tasks such as paraphrase detection, sentiment analysis, or language understanding.
+
+Some specific patterns or concepts that this feature responds to include:
+
+- Similarity in sentence structure and word choice, but with variations in phrasing (e.g., example 1 and 2).
+- Changes in word choice or phrasing
+
+Evaluation sentence pairs:
+1. " But they never climb out of the pot of beer again . " <|endoftext|> It 's just that they never climb out of the beer again . "
+   Actual=9.745, Pred=9.000
+2. Q : Can I buy coverage for prescription drugs right away ? <|endoftext|> Congress has added a new benefit - an option to buy insurance coverage for prescription drugs .
+   Actual=9.562, Pred=6.000
+3. Columbia broke up over Texas upon re-entry on Feb. 1 . <|endoftext|> Columbia broke apart in the skies above Texas on Feb. 1 .
+   Actual=9.434, Pred=7.000
+4. Carlson on Tuesday said he would not recuse himself from the case . <|endoftext|> Service officials said Carlson refused to recuse himself from the case .
+   Actual=8.485, Pred=8.000
+5. " Overwhelmingly the Windows brand really resonated with them . " <|endoftext|> " Windows was the part of the experience that really resonated with people . "
+   Actual=8.718, Pred=8.000
+
+Pearson correlation: -0.1722
+======================================================================
+
+Layer 2, Feature 14825
+----------------------------------------------------------------------
+Interpretation:
+Based on the provided data, this feature responds to a pattern or concept related to **sentence structure and word order changes in paraphrased sentences**.
+
+Evaluation sentence pairs:
+1. Thus far , Stewart 's company appears ready to stand behind her . <|endoftext|> For now , the company 's management appears to be standing behind Stewart .
+   Actual=6.736, Pred=8.000
+2. Gregory Parseghian , a former investment banker , was appointed chief executive . <|endoftext|> Greg Parseghian was appointed the new chief executive .
+   Actual=7.389, Pred=7.000
+3. Glover spoke at a news conference that included about 20 relatives of the victims . <|endoftext|> About 20 family members of the victims were invited to the news conference .
+   Actual=7.688, Pred=6.000
+4. It does not affect the current Windows Media Player 9.0 Series . <|endoftext|> Windows Media Player has had security problems before .
+   Actual=7.330, Pred=7.000
+5. Columbia broke up over Texas upon re-entry on Feb. 1 . <|endoftext|> Columbia broke apart in the skies above Texas on Feb. 1 .
+   Actual=7.156, Pred=8.000
+
+Pearson correlation: -0.9011
+======================================================================
+
+Layer 2, Feature 14926
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature from GPT-2 on MRPC paraphrase detection appears to respond to patterns of similarity or repetition between sentence pairs, particularly in the context of synonymous word usage and similar sentence structures.
+
+Evaluation sentence pairs:
+1. But I would rather be talking about high standards than low standards . " <|endoftext|> " I would rather be talking about positive numbers rather than negative .
+   Actual=5.689, Pred=8.000
+2. But plaque volume increased by 2.7 percent in pravastatin patients . <|endoftext|> The volume of plaque in Pravachol patients ' arteries rose by 3 % .
+   Actual=5.353, Pred=9.000
+3. Columbia broke up over Texas upon re-entry on Feb. 1 . <|endoftext|> Columbia broke apart in the skies above Texas on Feb. 1 .
+   Actual=5.273, Pred=9.000
+4. " It 's a major victory for Maine , and it 's a major victory for other states . <|endoftext|> The Maine program could be a model for other states .
+   Actual=5.306, Pred=5.000
+5. " Overwhelmingly the Windows brand really resonated with them . " <|endoftext|> " Windows was the part of the experience that really resonated with people . "
+   Actual=4.951, Pred=8.000
+
+Pearson correlation: 0.0130
+======================================================================
+
+Layer 2, Feature 19324
+----------------------------------------------------------------------
+Interpretation:
+The feature responds to a pattern of repeated or similar information in the two sentences, particularly when the repeated information is in the form of a paraphrased or restated idea, often with a slight variation in wording.
+
+Evaluation sentence pairs:
+1. " Overwhelmingly the Windows brand really resonated with them . " <|endoftext|> " Windows was the part of the experience that really resonated with people . "
+   Actual=3.038, Pred=8.000
+2. Carlson on Tuesday said he would not recuse himself from the case . <|endoftext|> Service officials said Carlson refused to recuse himself from the case .
+   Actual=2.786, Pred=8.000
+3. Federal Emergency Management Administration designated $ 20 million to establish the registry . <|endoftext|> The registry was launched with $ 20 million from the Federal Emergency Management Agency .
+   Actual=3.253, Pred=9.000
+4. The show 's closure affected third-quarter earnings per share by a penny . <|endoftext|> The company said this impacted earnings by a penny a share .
+   Actual=3.249, Pred=8.000
+5. McCabe said he was considered a witness , not a suspect . <|endoftext|> " He is not considered a suspect , " McCabe said .
+   Actual=2.755, Pred=8.000
+
+Pearson correlation: 0.5493
+======================================================================
+
+Layer 2, Feature 20954
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to instances of quote repetition or near-quotation within paraphrased texts, particularly where a sentence or phrase is repeated with slight modifications or variations in wording.
+
+Evaluation sentence pairs:
+1. Unable to find a home for him , a judge told mental health authorities they needed to find supervised housing and treatment for DeVries somewhere in California . <|endoftext|> The judge had told the state Department of Mental Health to find supervised housing and treatment for DeVries somewhere in California .
+   Actual=0.218, Pred=6.000
+2. They note that after several weeks of rallies on upbeat earnings , investors are looking for stronger evidence of a recovery before sending stocks higher . <|endoftext|> After several weeks of market rallies on upbeat earnings , many investors are looking for more concrete signs of an economic recovery .
+   Actual=0.223, Pred=3.000
+3. If the MTA 's appeal to a higher court is successful , the $ 2 bus and subway base fare won 't be rolled back . <|endoftext|> If the MTA 's appeal is successful , the $ 2 bus and subway base fare won 't change .
+   Actual=0.203, Pred=6.000
+4. We strongly disagree with Novell 's position and view it as a desperate measure to curry favor with the Linux community . <|endoftext|> McBride characterized Novell 's move as " a desperate measure to curry favor with the Linux community . "
+   Actual=0.220, Pred=8.000
+5. The jury verdict , reached Wednesday after less than four hours of deliberation , followed a 2 week trial , during which Waagner represented himself . <|endoftext|> The quick conviction followed a 2 1 / 2 week trial , during which the Venango County man represented himself .
+   Actual=0.219, Pred=9.000
+
+Pearson correlation: -0.0642
+======================================================================
+
+Layer 2, Feature 21873
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the pattern or concept of "minor variations in repeated or similar text segments."
+
+Evaluation sentence pairs:
+1. Shattered Glass , " starring Hayden Christensen as Stephen Glass , debuted well with $ 80,000 in eight theaters . <|endoftext|> " Shattered Glass " _ starring Hayden Christensen as Stephen Glass , The New Republic journalist fired for fabricating stories _ debuted well with $ 80,000 in eight theaters .
+   Actual=0.582, Pred=8.000
+2. As Samudra sat down to hear the indictment , he looked over to his nine lawyers and shouted ``God is Great ' ' three times . <|endoftext|> As he sat down to hear the indictment , Samudra looked over to his nine lawyers and shouted " Takbir ! " , or " Proclaim ! " , a religious rallying cry .
+   Actual=0.676, Pred=7.000
+3. " Close co-operation between our law enforcement agencies , close co-operation between our intelligence services lie at the heart of the ongoing fight against terrorism . " <|endoftext|> Close cooperation between regional law enforcement agencies and intelligence services was at the heart of the fight against terrorism , he said .
+   Actual=0.640, Pred=9.000
+4. " Overwhelmingly the Windows brand really resonated with them . " <|endoftext|> " Windows was the part of the experience that really resonated with people . "
+   Actual=0.594, Pred=8.000
+5. No dates have been set for the civil or the criminal trial . <|endoftext|> No dates have been set for the criminal or civil cases , but Shanley has pleaded not guilty .
+   Actual=0.608, Pred=8.000
+
+Pearson correlation: -0.3373
+======================================================================
+

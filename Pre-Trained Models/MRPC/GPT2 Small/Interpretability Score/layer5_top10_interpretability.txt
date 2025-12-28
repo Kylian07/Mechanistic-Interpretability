@@ -1,0 +1,230 @@
+INTERPRETABILITY REPORT – MRPC Layer 5, top-10 global features
+======================================================================
+
+Layer 5, Feature 3482
+----------------------------------------------------------------------
+Interpretation:
+After analyzing the given data from the sparse autoencoder feature on MRPC paraphrase detection, I notice that this feature responds to a pattern or concept related to "similarity in word choice or phrase structure between two sentences, particularly in the context of synonyms or near-synonyms."
+
+More specifically, the high activations in the feature are often found in regions where the two sentences have similar word choices or phrases, such as:
+
+* Similar verbs (e.g., "said" and "refused to say"), synonyms (e.g., "sluggish" and "slow"), or near-synonyms (e.g., "killed" and "injured").
+* Similar prepositional phrases (e.g., "in response to" and "
+
+Evaluation sentence pairs:
+1. Donations stemming from the Sept . 11 attacks helped push up contributions to human service organizations and large branches of the United Way by 15 percent and 28.6 percent , respectively . <|endoftext|> Donations stemming from the Sept . 11 attacks helped push up contributions to human service organizations by 15 percent and to large branches of the United Way by 28.6 percent .
+   Actual=1.186, Pred=6.000
+2. Spansion products are to be available from both AMD and Fujitsu , AMD said . <|endoftext|> Spansion Flash memory solutions are available worldwide from AMD and Fujitsu .
+   Actual=1.049, Pred=7.000
+3. But I would rather be talking about high standards than low standards . " <|endoftext|> " I would rather be talking about positive numbers rather than negative .
+   Actual=1.160, Pred=7.000
+4. Thus far , Stewart 's company appears ready to stand behind her . <|endoftext|> For now , the company 's management appears to be standing behind Stewart .
+   Actual=0.989, Pred=8.000
+5. McCabe said he was considered a witness , not a suspect . <|endoftext|> " He is not considered a suspect , " McCabe said .
+   Actual=0.970, Pred=8.000
+
+Pearson correlation: -0.9065
+======================================================================
+
+Layer 5, Feature 4817
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the pattern or concept of **redundancy or word repetition** in the paraphrased text. 
+
+The feature is highly active when there is a repeated word or phrase in the two sentences, such as "sluggish sales" and "Cisco pared spending to compensate for sluggish sales", or "refused to recuse himself from the case" and "Service officials said Carlson refused to recuse himself from the case". This suggests that the feature is detecting the similarity between the two sentences and is highly active when there is a direct repetition of words or phrases. 
+
+This pattern is consistent across all the examples provided, where the feature is highly active when there is a repeated word or phrase in the two sentences
+
+Evaluation sentence pairs:
+1. Columbia broke up over Texas upon re-entry on Feb. 1 . <|endoftext|> Columbia broke apart in the skies above Texas on Feb. 1 .
+   Actual=4.637, Pred=9.000
+2. Thus far , Stewart 's company appears ready to stand behind her . <|endoftext|> For now , the company 's management appears to be standing behind Stewart .
+   Actual=4.147, Pred=9.000
+3. He replaces Ron Dittemore , who announced his resignation in April . <|endoftext|> Dittemore announced his plans to resign on April 23 .
+   Actual=4.200, Pred=0.000
+4. But I would rather be talking about high standards than low standards . " <|endoftext|> " I would rather be talking about positive numbers rather than negative .
+   Actual=4.547, Pred=10.000
+5. However , EPA officials would not confirm the 20 percent figure . <|endoftext|> Only in the past few weeks have officials settled on the 20 percent figure .
+   Actual=3.852, Pred=8.000
+
+Pearson correlation: 0.2652
+======================================================================
+
+Layer 5, Feature 10823
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature from GPT-2 on MRPC paraphrase detection responds to the pattern or concept of "similar sentence structure" or "parallel sentence structure" with slight modifications, particularly in the context of sentence pairs where the same entities or phrases are used but with different wording or phrase ordering.
+
+Evaluation sentence pairs:
+1. Terri Schiavo , 39 , underwent the procedure at the Tampa Bay area hospice where she has been living for several years , said her father , Bob Schindler . <|endoftext|> The tube was removed Wednesday from Terri Schiavo , 39 , at the Tampa Bay-area hospice where she has lived for several years .
+   Actual=1.045, Pred=8.000
+2. After 18 months , Nissen found that Lipitor stopped plaque buildup in the patients ' arteries . <|endoftext|> After 18 months , the atorvastatin patients had no change in the plaque in their arteries .
+   Actual=1.026, Pred=9.000
+3. Barry Callebaut will be able to use Brach 's retail network to sell products made from its German subsidiary Stollwerck , which makes chocolate products not sold in the United States . <|endoftext|> Barry Callebaut will be able to use Brach 's retail network to sell products made from its German subsidiary Stollwerck , which makes chocolate products unknown to the American market .
+   Actual=1.025, Pred=8.000
+4. Terri Schiavo , 39 , is expected to die sometime in the next two weeks in the Tampa-area hospice where she has spent the past several years . <|endoftext|> Terri Schiavo , 39 , underwent the procedure at the Tampa Bay area hospice where she has been living for several years , said her father , Bob Schindler .
+   Actual=1.106, Pred=9.000
+5. U.S. corporate bond yield spreads tightened in spotty trading on Friday as Wall Street labored to get back on its feet after the largest power outage ever in North America . <|endoftext|> U.S. stocks rose slightly on feather-light volume on Friday , as Wall Street regrouped after the biggest-ever power outage in North America .
+   Actual=1.023, Pred=8.000
+
+Pearson correlation: 0.5399
+======================================================================
+
+Layer 5, Feature 14515
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the concept of "minor variation in wording".
+
+Evaluation sentence pairs:
+1. A recent poll showed Edwards with a narrow lead in South Carolina , and he plans a rally there later on Tuesday . <|endoftext|> A recent poll showed Edwards in a virtual four-way tie at the top in South Carolina , and he plans a rally there later on Tuesday .
+   Actual=0.056, Pred=6.000
+2. Witnesses said they believed the man planned to crash the Launceston-bound Qantas flight 1737 , which was carrying 47 passengers and six crew . <|endoftext|> Witnesses believe he wanted to crash Flight 1737 , which had 47 passengers and six crew .
+   Actual=0.050, Pred=8.000
+3. O 'Brien was charged with leaving the scene of a fatal accident , a felony . <|endoftext|> Bishop Thomas O 'Brien , 67 , was booked on a charge of leaving the scene of a fatal accident .
+   Actual=0.049, Pred=6.000
+4. The charges allege that he was part of the conspiracy to kill and kidnap persons in a foreign country . <|endoftext|> The government now charges that Sattar conspired with Rahman to kill and kidnap individuals in foreign countries .
+   Actual=0.045, Pred=6.000
+5. The agency charged that one WD Energy worker discussed false reporting with traders at two other energy companies . <|endoftext|> The agency found further that a WD Energy employee discussed false reporting with traders at two other energy companies , which the CFTC didn 't identify .
+   Actual=0.041, Pred=7.000
+
+Pearson correlation: -0.1263
+======================================================================
+
+Layer 5, Feature 15696
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the pattern or concept of "similar wording or phrasing between two sentences."
+
+Evaluation sentence pairs:
+1. Authorities had no evidence to suggest the two incidents were connected . <|endoftext|> There was no immediate evidence that the two incidents were connected , police said .
+   Actual=3.966, Pred=8.000
+2. Columbia broke up over Texas upon re-entry on Feb. 1 . <|endoftext|> Columbia broke apart in the skies above Texas on Feb. 1 .
+   Actual=3.965, Pred=8.000
+3. Thus far , Stewart 's company appears ready to stand behind her . <|endoftext|> For now , the company 's management appears to be standing behind Stewart .
+   Actual=3.542, Pred=8.000
+4. My decision today is not based on any one event . " <|endoftext|> Governor Rowland said his decision was " not based on any one event . "
+   Actual=3.692, Pred=8.000
+5. The blasts killed two people and injured more than 150 others . <|endoftext|> The Atlanta Olympic Games attack killed one woman and injured more than 100 other people .
+   Actual=3.691, Pred=7.000
+
+Pearson correlation: 0.2385
+======================================================================
+
+Layer 5, Feature 17468
+----------------------------------------------------------------------
+Interpretation:
+After analyzing the given activation patterns for the sparse autoencoder feature from GPT-2 on MRPC paraphrase detection, I've identified a specific pattern or concept that this feature responds to.
+
+This feature appears to respond to **similar phrases or sentences with slight rewording**, particularly when the rewording involves **rearranging or omitting words**. This is evident in examples 2 and 5, where the sentences are almost identical, and the feature activations are relatively high, indicating a strong response to the similarity.
+
+In example 1, the feature responds to the similarity between two sentences with slightly different wording, but the response is weaker compared to examples 2 and 5.
+
+In example 4, the feature does not respond strongly
+
+Evaluation sentence pairs:
+1. In an unusual move , the U.S. Patent and Trademark Office is reconsidering a patent affecting Internet pages that critics contend could disrupt millions of Web sites . <|endoftext|> In an unusual move that critics contend could disrupt millions of Web sites , the U.S. Patent and Trademark Office is reconsidering a patent affecting Internet pages .
+   Actual=1.714, Pred=9.000
+2. Carlson on Tuesday said he would not recuse himself from the case . <|endoftext|> Service officials said Carlson refused to recuse himself from the case .
+   Actual=1.593, Pred=8.000
+3. Sen. Patrick Leahy of Vermont , the committee 's senior Democrat , later said the problem is serious but called Hatch 's suggestion too drastic . <|endoftext|> Sen. Patrick Leahy , the committee 's senior Democrat , later said the problem is serious but called Hatch 's idea too drastic a remedy to be considered .
+   Actual=1.661, Pred=7.000
+4. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the legislature building here to call for free elections and the resignation of Hong Kong 's leader . <|endoftext|> Tens of thousands of demonstrators gathered yesterday evening to stand before this city 's legislature building and call for free elections and the resignation of Hong Kong 's leader .
+   Actual=1.562, Pred=7.000
+5. The woman was exposed to the SARS virus while in the hospital but was not a health care worker , said Dr. Colin D ’ Cunha , Ontario ’ s commissioner of public health . <|endoftext|> The woman was exposed to the SARS virus while in the hospital but was not a health-care worker , said Dr Colin D 'Cunha , Ontario 's commissioner of public health .
+   Actual=1.445, Pred=8.000
+
+Pearson correlation: 0.2488
+======================================================================
+
+Layer 5, Feature 35425
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the concept of **phrase paraphrasing with similar sentence structure**, particularly when the paraphrased sentence has a very similar structure to the original sentence, with only slight variations in wording and word order.
+
+Evaluation sentence pairs:
+1. " I think it 's going to be a close vote , but I think the grant proposal is going to win , " McConnell said . <|endoftext|> " I think it 's going to be a close vote , but I think the grant proposal 's going to win , " said Sen. Mitch McConnell , assistant majority leader .
+   Actual=4.520, Pred=6.000
+2. Tom Kraynak , manager of operations and resources for the Canton , Ohio-based East Central Area Reliability Council , said that scenario is one among many that investigators are considering . <|endoftext|> Tom Kraynak , manager of operations and resources for the Canton , Ohio-based East Central Area Reliability Council , said investigators are considering the scenario .
+   Actual=4.866, Pred=7.000
+3. " It is probably not the easiest time to come in and take over the shuttle program , but then again , I look forward to the challenge , " he said . <|endoftext|> " It 's probably not the easiest time to come in and take over the shuttle program , but I look forward to the challenge , " Parsons told reporters at NASA headquarters .
+   Actual=4.973, Pred=8.000
+4. It 's happened five times in the last 11 years : A disaster puts this Southwestern town in the headlines during the summer tourist season . <|endoftext|> It 's happened five times in the last decade : A disaster puts this tourist town in the headlines during summer , its busiest season .
+   Actual=4.672, Pred=8.000
+5. We 'll be listening carefully to the [ IAEA ] director general 's report at the next board meeting . <|endoftext|> " We 'll be listening carefully to the ( IAEA ) director-general 's report at the next board meeting . "
+   Actual=4.851, Pred=8.000
+
+Pearson correlation: 0.6589
+======================================================================
+
+Layer 5, Feature 38895
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature from GPT-2 on MRPC paraphrase detection appears to respond to the pattern or concept of **semantic equivalence in negated or contrasting phrases**.
+
+The feature is activated when the two sentences in a pair have similar meaning but with negated or contrasting elements, such as "not recuse himself" vs. "refused to recuse himself" or "sluggish sales" vs. "in response to sluggish sales". The feature's strong activations are often found at the positions of words related to negation or contrast, such as "not", "refused", "in response to", etc.
+
+This suggests that the feature is learning to capture the semantic relationships between sentences with negated or contrasting elements, which
+
+Evaluation sentence pairs:
+1. Ridge said no actual explosives or other harmful substances will be used . <|endoftext|> Ridge said no real explosives or harmful devices will be used in the exercise .
+   Actual=11.795, Pred=8.000
+2. Thus far , Stewart 's company appears ready to stand behind her . <|endoftext|> For now , the company 's management appears to be standing behind Stewart .
+   Actual=11.701, Pred=1.000
+3. Authorities had no evidence to suggest the two incidents were connected . <|endoftext|> There was no immediate evidence that the two incidents were connected , police said .
+   Actual=12.535, Pred=8.000
+4. Columbia broke up over Texas upon re-entry on Feb. 1 . <|endoftext|> Columbia broke apart in the skies above Texas on Feb. 1 .
+   Actual=12.486, Pred=2.000
+5. Q : Can I buy coverage for prescription drugs right away ? <|endoftext|> Congress has added a new benefit - an option to buy insurance coverage for prescription drugs .
+   Actual=12.084, Pred=3.000
+
+Pearson correlation: 0.1786
+======================================================================
+
+Layer 5, Feature 42054
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature on MRPC paraphrase detection seems to respond to the concept of "similar wording" or "minor wording variations" between two sentences, especially when the variations are related to phrases like "will establish connections" vs. "will establish connections" (example 1), "The first" vs. "The high" (example 2), "a busy couple of days" vs. "a busy couple of days" (example 3), "colored by some non-traditional touches" vs. "colored by some nontraditional touches" (example 4), and "flight UTA 141" vs. "the plane" (example 5).
+
+Evaluation sentence pairs:
+1. Some of the company 's software developers will join Microsoft , but details haven 't been finalized , said Mike Nash , corporate vice president of Microsoft 's security business unit . <|endoftext|> Some of the companys software developers will join Microsoft , but details havent been finalized , said Mike Nash , corporate vice president of Microsofts security business unit .
+   Actual=0.694, Pred=6.000
+2. It 's the first such drill since the September 11 terrorist attacks on New York and Washington . <|endoftext|> It is the nation 's first large-scale counterterrorism exercise since the Sept . 11 terrorist attacks .
+   Actual=0.594, Pred=8.000
+3. Only one of the five buildings in the Baghdad compound of the United Nations Development Program escaped being burned , the UN said on its Web site . <|endoftext|> Only one of the five buildings in the compound in Baghdad run by the UN Development Program , escaped being burned , the UN said on its Web site .
+   Actual=0.637, Pred=6.000
+4. They were being held Sunday in the Camden County Jail on $ 100,000 bail . <|endoftext|> They remained in Camden County Jail on Sunday on $ 100,000 bail .
+   Actual=0.574, Pred=8.000
+5. Some of the computers also are used to send spam e-mail messages to drum up traffic to the sites . <|endoftext|> Some are also used to send spam e-mail messages to boost traffic to the sites .
+   Actual=0.517, Pred=3.000
+
+Pearson correlation: 0.3354
+======================================================================
+
+Layer 5, Feature 45079
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature from GPT-2 appears to respond to the pattern of "sentence paraphrasing with minor semantic changes." 
+
+This is evident in examples 1 and 2, where the sentences are paraphrased versions of each other but with slight changes in wording. The feature's high activation in these examples suggests that it is sensitive to these minor semantic changes.
+
+Similarly, in examples 4 and 5, the sentences are also paraphrased versions of each other, and the feature shows high activation.
+
+In contrast, in example 3, the sentences are not paraphrased versions of each other, and the feature shows relatively low activation.
+
+Overall, this feature appears to be detecting subtle patterns in language that indicate paraphrasing, and
+
+Evaluation sentence pairs:
+1. Danbury prosecutor Warren Murray could not be reached for comment Monday . <|endoftext|> Prosecutors could not be reached for comment after the legal papers were obtained late Monday afternoon .
+   Actual=0.878, Pred=9.000
+2. However , EPA officials would not confirm the 20 percent figure . <|endoftext|> Only in the past few weeks have officials settled on the 20 percent figure .
+   Actual=0.859, Pred=8.000
+3. My decision today is not based on any one event . " <|endoftext|> Governor Rowland said his decision was " not based on any one event . "
+   Actual=0.897, Pred=9.000
+4. The blasts killed two people and injured more than 150 others . <|endoftext|> The Atlanta Olympic Games attack killed one woman and injured more than 100 other people .
+   Actual=0.877, Pred=7.000
+5. Thus far , Stewart 's company appears ready to stand behind her . <|endoftext|> For now , the company 's management appears to be standing behind Stewart .
+   Actual=0.833, Pred=9.000
+
+Pearson correlation: -0.0712
+======================================================================
+
