@@ -1,0 +1,178 @@
+INTERPRETABILITY REPORT – Gemma-2B MRPC Layer 10
+Top-5 Global Features (by frequency)
+Analyzed on 408 validation examples
+======================================================================
+
+Layer 10, Feature 1
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of proper nouns or notable individuals, as it shows relatively high activation across a range of sentences containing specific names (e.g., Blair, Jack Straw, Rumsfeld).
+
+Top examples used for interpretation:
+1. Blair 's Foreign Secretary Jack Straw was to take his place on Monday to give a ...
+   Activation: 5.794
+2. GM , the world 's largest automaker , has 115,000 active UAW workers and another...
+   Activation: 5.298
+3. Prosecutors allege that Nichols and co-conspirator Timothy McVeigh worked togeth...
+   Activation: 4.614
+4. November 17 's last victim was British defence attache Stephen Saunders , who wa...
+   Activation: 4.676
+5. Rumsfeld , who has been feuding for two years with Army leadership , passed over...
+   Activation: 5.555
+
+Evaluation examples:
+1. While the Ibrahims had one separation operation , Goodrich and Dr. David Staffen...
+   Actual=4.764, Pred=8.000
+2. The market remains pinned in a narrow range after a powerful rally drove the bro...
+   Actual=3.837, Pred=0.000
+3. Donations stemming from the Sept . 11 attacks helped push up contributions to hu...
+   Actual=3.637, Pred=8.000
+4. A European Union spokesman said the Commission was consulting EU member states "...
+   Actual=4.601, Pred=8.000
+5. But MTA officials appropriated the money to the 2003 and 2004 budgets without no...
+   Actual=3.637, Pred=8.000
+
+Pearson correlation: 0.2649
+======================================================================
+
+Layer 10, Feature 131
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to a pattern of high-level, contextually-relevant noun phrases or proper nouns that indicate significant or notable concepts, such as company names, national locations, or formal titles.
+
+Top examples used for interpretation:
+1. The steel tariffs , which the U.S. president imposed in March 2002 , will offici...
+   Activation: 5.333
+2. Citigroup Inc . C.N , the world 's largest financial services company , on Wedne...
+   Activation: 6.293
+3. Only one of the five buildings in the Baghdad compound of the United Nations Dev...
+   Activation: 5.936
+4. Estonia 's place in the European mainstream and safeguard its independence regai...
+   Activation: 6.792
+5. Federal regulators have turned from sour to sweet on a proposed $ 2.8 billion me...
+   Activation: 4.654
+
+Evaluation examples:
+1. Three such vigilante-style attacks forced the hacker organizer , who identified ...
+   Actual=3.743, Pred=3.000
+2. Wal-Mart , the nation 's largest private employer , has expanded its antidiscrim...
+   Actual=4.378, Pred=7.000
+3. Their contract will expire at 12 : 01 a.m. Wednesday instead of 12 : 01 a.m. Sun...
+   Actual=3.109, Pred=6.000
+4. Today in the US , the book - kept under wraps by its publishers , G. P. Putnam '...
+   Actual=4.059, Pred=8.000
+5. Secretary of State Colin Powell designated the Chechen leader believed responsib...
+   Actual=3.371, Pred=7.000
+
+Pearson correlation: 0.2312
+======================================================================
+
+Layer 10, Feature 132
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of monetary or numerical values, as evidenced by the high activation in sentences mentioning specific dollar amounts or economic statistics.
+
+Top examples used for interpretation:
+1. President Bush raised a record-breaking $ 49.5 million for his re-election campa...
+   Activation: 13.641
+2. Gilead had earnings of $ 73.1 million , or 33 cents a share , compared with $ 20...
+   Activation: 13.310
+3. The civilian unemployment rate improved marginally last month -- slipping to 6.1...
+   Activation: 14.543
+4. BREAST cancer cases in the UK have hit an all-time high with more than 40,000 wo...
+   Activation: 13.696
+5. Detectives told Deasean 's father , Stelly Chisolm , a college student , and mot...
+   Activation: 14.558
+
+Evaluation examples:
+1. Consumers who said jobs are difficult to find jumped from 29.4 to 32.6 , while t...
+   Actual=12.693, Pred=9.500
+2. The Dow Jones industrial average < .DJI > added 28 points , or 0.27 percent , at...
+   Actual=13.424, Pred=9.000
+3. The market remains pinned in a narrow range after a powerful rally drove the bro...
+   Actual=13.173, Pred=6.000
+4. After losing as much as 84.56 earlier , the Dow Jones industrial average closed ...
+   Actual=12.378, Pred=9.000
+5. The broad Standard & Poor 's 500 < .SPX > eased 0.37 of a point , or 0.03 percen...
+   Actual=11.576, Pred=8.000
+
+Pearson correlation: -0.1181
+======================================================================
+
+Layer 10, Feature 147
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature from Gemma-2B responds to the concept of stock market price movements or direction, as it shows high activation when the Dow Jones industrial average or other indices increase in value, and lower activation when they decrease or decline.
+
+Top examples used for interpretation:
+1. The technology-laced Nasdaq Composite Index < .IXIC > declined 25.78 points , or...
+   Activation: 12.949
+2. The Dow Jones industrial average ended the day down 10.89 at 9,837.94 , after ad...
+   Activation: 13.337
+3. The Dow Jones industrial average .DJI ended up 64.64 points , or 0.71 percent , ...
+   Activation: 12.085
+4. After losing as much as 84.56 earlier , the Dow Jones industrial average closed ...
+   Activation: 10.974
+5. The broader Standard & Poor 's 500 Index .SPX gave up 11.91 points , or 1.19 per...
+   Activation: 10.714
+
+Evaluation examples:
+1. Altria shares fell 2.5 percent or $ 1.11 to $ 42.57 and were the Dow 's biggest ...
+   Actual=11.127, Pred=1.000
+2. The S & P / TSX composite rose 87.74 points on the week , while the TSX Venture ...
+   Actual=11.184, Pred=7.000
+3. The Dow Jones industrial average < .DJI > added 28 points , or 0.27 percent , at...
+   Actual=9.622, Pred=8.000
+4. The Hartford shares rose $ 2.88 , or 6.6 percent , to close Monday at $ 46.50 on...
+   Actual=10.529, Pred=7.000
+5. In midafternoon trading , the Nasdaq composite index was up 8.34 , or 0.5 percen...
+   Actual=8.887, Pred=9.000
+
+Pearson correlation: -0.6859
+======================================================================
+
+Layer 10, Feature 336
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of uncertainty or ambiguity in text, as indicated by the higher activation values for sentences that contain words or phrases suggesting doubt or uncertainty.
+
+Top examples used for interpretation:
+1. Second-quarter results reflected a gain of 10 cents per diluted share , while th...
+   Activation: 6.050
+2. " It is probably not the easiest time to come in and take over the shuttle progr...
+   Activation: 6.505
+3. " I don 't know if the person I 'm talking to now may end up being someone else ...
+   Activation: 7.059
+4. The dollar was at 116.92 yen against the yen , flat on the session , and at 1.28...
+   Activation: 4.870
+5. " I think it 's going to be a close vote , but I think the grant proposal is goi...
+   Activation: 5.862
+
+Evaluation examples:
+1. The broad Standard & Poor 's 500 < .SPX > eased 0.37 of a point , or 0.03 percen...
+   Actual=4.332, Pred=3.000
+2. The euro was at 1.5281 versus the Swiss franc EURCHF = , up 0.2 percent on the s...
+   Actual=4.075, Pred=2.000
+3. In midafternoon trading , the Nasdaq composite index was up 8.34 , or 0.5 percen...
+   Actual=4.841, Pred=3.000
+4. Next Monday at about 2 p.m. ( CST ) , hospital officials in and near Chicago wil...
+   Actual=5.632, Pred=8.000
+5. The Dow Jones industrial average < .DJI > added 28 points , or 0.27 percent , at...
+   Actual=4.397, Pred=2.000
+
+Pearson correlation: 0.9317
+======================================================================
+
+
+SUMMARY FOR LAYER 10
+======================================================================
+Features analyzed: 5
+Average Pearson correlation: 0.1247
+Best feature: 336 (correlation: 0.9317)
+
+All correlations:
+  Feature 336: 0.9317
+  Feature 1: 0.2649
+  Feature 131: 0.2312
+  Feature 132: -0.1181
+  Feature 147: -0.6859

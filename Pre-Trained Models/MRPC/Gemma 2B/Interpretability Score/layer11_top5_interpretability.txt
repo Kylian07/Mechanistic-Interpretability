@@ -1,0 +1,178 @@
+INTERPRETABILITY REPORT – Gemma-2B MRPC Layer 11
+Top-5 Global Features (by frequency)
+Analyzed on 408 validation examples
+======================================================================
+
+Layer 11, Feature 12
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to patterns of numerical or financial information, as most of the high-activation examples contain specific numbers or monetary values.
+
+Top examples used for interpretation:
+1. Consumers who said jobs are difficult to find jumped from 29.4 to 32.6 , while t...
+   Activation: 5.289
+2. A landslide in central Chungchong province derailed a Seoul-bound train and 28 p...
+   Activation: 6.766
+3. Three such vigilante-style attacks forced the hacker organizer , who identified ...
+   Activation: 4.977
+4. Gilead had earnings of $ 73.1 million , or 33 cents a share , compared with $ 20...
+   Activation: 4.159
+5. Mr Russell , 46 , a coal miner from Brisbane , said : " They are obviously hurti...
+   Activation: 6.012
+
+Evaluation examples:
+1. In the year-ago quarter , the steelmaker recorded a profit of $ 16.2 million , o...
+   Actual=5.063, Pred=8.000
+2. " I think it 's going to be a close vote , but I think the grant proposal is goi...
+   Actual=5.295, Pred=2.000
+3. Asked if the delegates could leave on Friday , police intelligence chief in Aceh...
+   Actual=5.888, Pred=4.000
+4. Second-quarter results reflected a gain of 10 cents per diluted share , while th...
+   Actual=4.044, Pred=9.000
+5. The association said 28.2 million DVDs were rented in the week that ended June 1...
+   Actual=4.978, Pred=9.000
+
+Pearson correlation: -0.6858
+======================================================================
+
+Layer 11, Feature 22
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of dates and temporal information in the text.
+
+Top examples used for interpretation:
+1. Today , analysts say , UN members can no longer ignore the shifts since the Sept...
+   Activation: 6.019
+2. The dollar was at 116.92 yen against the yen , flat on the session , and at 1.28...
+   Activation: 3.959
+3. The seizure took place at 4 a.m. on March 18 , just hours before the first Ameri...
+   Activation: 5.502
+4. The woman was exposed to the SARS virus while in the hospital but was not a heal...
+   Activation: 3.945
+5. Three such vigilante-style attacks forced the hacker organizer , who identified ...
+   Activation: 3.502
+
+Evaluation examples:
+1. Detectives told Deasean 's father , Stelly Chisolm , a college student , and mot...
+   Actual=3.816, Pred=1.000
+2. In February 2000 , the officers — Kenneth Boss , Sean Carroll , Edward McMellon ...
+   Actual=4.014, Pred=9.000
+3. In three years , Lend Lease has slipped from a top-five stock , when its share p...
+   Actual=3.697, Pred=8.000
+4. Drax faced a financial crisis late last year after it lost its most lucrative sa...
+   Actual=4.785, Pred=7.000
+5. The decision came a year after Whipple ended federal oversight of the district '...
+   Actual=4.603, Pred=7.000
+
+Pearson correlation: 0.2272
+======================================================================
+
+Layer 11, Feature 24
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of specific, contextually relevant numbers or quantities, particularly those related to financial data and percentages.
+
+Top examples used for interpretation:
+1. The dollar was at 116.92 yen against the yen , flat on the session , and at 1.28...
+   Activation: 2.483
+2. Most economists had expected a more dire report , with many anticipating the fif...
+   Activation: 3.516
+3. The broader Standard & Poor 's 500 Index .SPX edged down 9 points , or 0.98 perc...
+   Activation: 2.119
+4. The euro was at 1.5281 versus the Swiss franc EURCHF = , up 0.2 percent on the s...
+   Activation: 1.560
+5. IBM of the US and Infineon Technologies of Germany will today announce a technol...
+   Activation: 2.173
+
+Evaluation examples:
+1. The Dow Jones industrial average .DJI ended up 64.64 points , or 0.71 percent , ...
+   Actual=1.587, Pred=8.000
+2. Citigroup Inc . C.N , the world 's largest financial services company , on Wedne...
+   Actual=1.932, Pred=9.000
+3. The technology-laced Nasdaq Composite Index < .IXIC > declined 25.78 points , or...
+   Actual=1.364, Pred=8.000
+4. The 12-nation currency has risen by 33 percent against the dollar over the past ...
+   Actual=2.455, Pred=8.000
+5. The Dow Jones industrial average < .DJI > added 28 points , or 0.27 percent , at...
+   Actual=1.403, Pred=8.000
+
+Pearson correlation: 0.2264
+======================================================================
+
+Layer 11, Feature 35
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to a pattern of formal or institutional language, as it consistently shows higher activations when encountering texts containing proper nouns or references to organizations (e.g., U.N., officers' names, Olympic Games, company names).
+
+Top examples used for interpretation:
+1. The U.N. troops are in Congo to protect U.N. installations and personnel , and t...
+   Activation: 4.858
+2. In February 2000 , the officers — Kenneth Boss , Sean Carroll , Edward McMellon ...
+   Activation: 5.064
+3. It 's happened five times in the last 11 years : A disaster puts this Southweste...
+   Activation: 5.693
+4. He is charged in three bombings in Atlanta including a blast at the 1996 Olympic...
+   Activation: 5.851
+5. Cintas is battling efforts to unionize 17,000 of its workers and to let unions o...
+   Activation: 3.966
+
+Evaluation examples:
+1. One of the FBI ’ s key operatives , who had a falling out with the bureau , prov...
+   Actual=4.140, Pred=8.000
+2. Peterson , a former fertilizer salesman , is charged with murder in the deaths o...
+   Actual=4.556, Pred=2.000
+3. He said they lied on a sworn affidavit that requires them to list prior marriage...
+   Actual=6.107, Pred=8.000
+4. Barry Callebaut will be able to use Brach 's retail network to sell products mad...
+   Actual=3.782, Pred=9.000
+5. " It is probably not the easiest time to come in and take over the shuttle progr...
+   Actual=3.968, Pred=4.000
+
+Pearson correlation: 0.1030
+======================================================================
+
+Layer 11, Feature 37
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to the presence of specific numerical comparisons or data points, such as percentages, dollar amounts, or quantities.
+
+Top examples used for interpretation:
+1. Consumers who said jobs are difficult to find jumped from 29.4 to 32.6 , while t...
+   Activation: 3.347
+2. A year or two later , 259 , or 10 per cent , of the youths reported that they ha...
+   Activation: 1.907
+3. Gilead had earnings of $ 73.1 million , or 33 cents a share , compared with $ 20...
+   Activation: 1.473
+4. Donations stemming from the Sept . 11 attacks helped push up contributions to hu...
+   Activation: 1.568
+5. By skirting the FDA 's oversight , Eagan said , the quality of the imported drug...
+   Activation: 1.867
+
+Evaluation examples:
+1. Twenty percent of Latino students and 23 percent of black students performed at ...
+   Actual=2.029, Pred=8.000
+2. The woman was exposed to the SARS virus while in the hospital but was not a heal...
+   Actual=1.279, Pred=0.000
+3. The blasts killed two people and injured more than 150 others . <|endoftext|> Th...
+   Actual=2.260, Pred=8.000
+4. Clinton did not mention that two Democratic senators , Charles Robb of Virginia ...
+   Actual=1.592, Pred=1.000
+5. In three years , Lend Lease has slipped from a top-five stock , when its share p...
+   Actual=1.125, Pred=8.000
+
+Pearson correlation: 0.4370
+======================================================================
+
+
+SUMMARY FOR LAYER 11
+======================================================================
+Features analyzed: 5
+Average Pearson correlation: 0.0615
+Best feature: 37 (correlation: 0.4370)
+
+All correlations:
+  Feature 37: 0.4370
+  Feature 22: 0.2272
+  Feature 24: 0.2264
+  Feature 35: 0.1030
+  Feature 12: -0.6858
