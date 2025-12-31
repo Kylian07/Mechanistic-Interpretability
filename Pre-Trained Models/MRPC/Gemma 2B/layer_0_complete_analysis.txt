@@ -1,0 +1,37 @@
+======================================================================
+LAYER 0 - COMPLETE ANALYSIS (Gemma-2B on MRPC)
+======================================================================
+
+A. LAYER PERFORMANCE (Raw Representations)
+----------------------------------------------------------------------
+Accuracy: 0.6495 (64.95%)
+Precision: 0.7957
+Recall: 0.6559
+F1-Score: 0.7191
+Baseline Accuracy: 0.6838
+Improvement over baseline: -3.43%
+
+Confusion Matrix:
+              Predicted
+         Not-Para  Para
+Actual 0  [   82     47]
+       1  [   96    183]
+
+B. SAE FEATURE COUNTS
+----------------------------------------------------------------------
+Total PARAPHRASE samples: 279
+Total NON-PARAPHRASE samples: 129
+
+Total features activated for PARAPHRASE: 16314
+Total features activated for NON-PARAPHRASE: 16271
+COMMON features: 16264
+UNIQUE to PARAPHRASE: 50
+UNIQUE to NON-PARAPHRASE: 7
+
+C. TOP 5 MOST ACTIVATING FEATURES (PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 8018: avg_activation=7.7489, frequency=279/279 (100.0%) | COMMON
+2. Feature 7942: avg_activation=7.5510, frequency=279/279 (100.0%) | COMMON
+3. Feature 2918: avg_activation=7.5361, frequency=279/279 (100.0%) | COMMON
+4. Feature 296: avg_activation=6.9775, frequency=279/279 (100.0%) | COMMON
+5. Feature 7010: avg_activation=6.7735, frequency=279/279 (100.0%) | COMMON

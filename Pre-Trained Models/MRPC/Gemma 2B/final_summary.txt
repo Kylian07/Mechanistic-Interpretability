@@ -1,0 +1,14 @@
+======================================================================
+FINAL SUMMARY - GEMMA-2B ON MRPC
+======================================================================
+
+1. BASELINE (Zero-Shot Prompting)
+----------------------------------------------------------------------
+Accuracy: 68.38%
+F1-Score: 0.8122
+
+2. Top 2 Layers: [10, 11]
+
+INTERPRETATION:
+- MRPC is paraphrase detection (sentence pairs)
+- SAE features capture semantic similarity patterns
