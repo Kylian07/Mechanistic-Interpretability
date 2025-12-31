@@ -1,0 +1,102 @@
+======================================================================
+FINAL SUMMARY - LAYER-WISE ANALYSIS
+======================================================================
+
+1. BASELINE (Zero-Shot Prompting)
+----------------------------------------------------------------------
+Accuracy: 53.44%
+F1-Score: 0.6828
+
+2. LAYER-WISE PERFORMANCE & SAE FEATURE STATISTICS
+----------------------------------------------------------------------
+Layer  Acc%     Improv     Pos Feat   Neg Feat   Common     Pos Only   Neg Only  
+------------------------------------------------------------------------------------
+L0     77.64%   +24.20%    4114       4054       2419       1695       1635      
+L1     76.61%   +23.17%    4542       4552       3306       1236       1246      
+L2     77.52%   +24.08%    8122       8087       5859       2263       2228      
+L3     80.50%   +27.06%    12422      12311      9593       2829       2718      
+L4     80.16%   +26.72%    14167      14252      11503      2664       2749      
+L5     80.62%   +27.18%    10126      9773       6985       3141       2788      
+L6     82.34%   +28.90%    9102       9341       7405       1697       1936      
+L7     82.91%   +29.47%    8279       8338       6272       2007       2066      
+L8     82.11%   +28.67%    7242       7326       5703       1539       1623      
+L9     81.42%   +27.98%    4720       4668       3776       944        892       
+L10    80.62%   +27.18%    4459       4245       3333       1126       912       
+L11    77.87%   +24.43%    1510       1542       1147       363        395       
+
+3. TOP K MOST FREQUENT FEATURES PER LAYER
+----------------------------------------------------------------------
+
+Layer 0:
+  POSITIVE (top-k by frequency): F451(444) F24540(444) F9303(434) F23072(420) F12824(419) F13875(410) F18045(400) F12560(385) F10838(379) F18238(363)
+  NEGATIVE (top-k by frequency): F451(428) F24540(428) F9303(417) F13875(400) F12824(398) F23072(397) F18238(396) F18045(371) F10392(365) F10838(352)
+  Common in top-k: 9 features
+
+Layer 1:
+  POSITIVE (top-k by frequency): F9806(444) F14396(444) F17148(444) F3285(443) F10623(441) F1061(440) F4568(439) F5315(436) F12128(436) F4585(434)
+  NEGATIVE (top-k by frequency): F3285(428) F9806(428) F14396(428) F17148(428) F4568(424) F10623(422) F1061(419) F11548(419) F12128(419) F4585(414)
+  Common in top-k: 9 features
+
+Layer 2:
+  POSITIVE (top-k by frequency): F5578(444) F9239(444) F20954(444) F21873(444) F6842(438) F17201(438) F8465(432) F9759(429) F6286(416) F7503(415)
+  NEGATIVE (top-k by frequency): F5578(428) F9239(428) F20954(428) F21873(428) F6842(425) F17201(423) F9759(413) F8465(411) F7503(402) F6286(385)
+  Common in top-k: 10 features
+
+Layer 3:
+  POSITIVE (top-k by frequency): F19190(444) F15587(429) F12467(408) F8524(407) F20897(396) F23618(387) F17499(369) F7159(367) F23268(361) F23967(325)
+  NEGATIVE (top-k by frequency): F19190(428) F15587(416) F12467(398) F8524(390) F20897(383) F7159(379) F23618(366) F23268(366) F17499(335) F12839(313)
+  Common in top-k: 9 features
+
+Layer 4:
+  POSITIVE (top-k by frequency): F835(444) F16833(444) F13854(434) F20223(391) F2254(369) F591(352) F9700(351) F15412(348) F12446(324) F6156(298)
+  NEGATIVE (top-k by frequency): F835(428) F16833(427) F13854(416) F20223(373) F591(358) F9700(345) F15412(331) F2254(329) F12446(307) F9356(280)
+  Common in top-k: 9 features
+
+Layer 5:
+  POSITIVE (top-k by frequency): F10823(444) F14515(444) F33380(444) F16428(434) F33789(425) F45079(413) F16178(411) F34879(383) F11294(339) F9913(333)
+  NEGATIVE (top-k by frequency): F10823(428) F14515(428) F33380(428) F16428(422) F33789(406) F16178(400) F45079(391) F34879(371) F36232(320) F9913(307)
+  Common in top-k: 9 features
+
+Layer 6:
+  POSITIVE (top-k by frequency): F7182(444) F7683(444) F8399(444) F21712(417) F17720(378) F1139(357) F3345(335) F15262(294) F2750(272) F6340(272)
+  NEGATIVE (top-k by frequency): F7182(428) F7683(428) F8399(428) F21712(400) F1139(347) F17720(320) F15262(288) F15956(268) F3345(265) F5175(242)
+  Common in top-k: 8 features
+
+Layer 7:
+  POSITIVE (top-k by frequency): F43763(444) F7791(383) F3306(376) F31580(373) F5386(358) F42722(303) F14047(298) F28639(296) F40033(293) F46201(292)
+  NEGATIVE (top-k by frequency): F43763(428) F7791(365) F31580(364) F3306(346) F46201(336) F5386(320) F14219(303) F14823(278) F40033(276) F27049(254)
+  Common in top-k: 7 features
+
+Layer 8:
+  POSITIVE (top-k by frequency): F19312(444) F18798(442) F21409(437) F20762(405) F16420(389) F2650(358) F13322(339) F15117(325) F7469(309) F2890(308)
+  NEGATIVE (top-k by frequency): F18798(428) F19312(428) F21409(406) F16420(402) F20762(382) F2890(354) F7469(343) F2650(321) F1568(294) F8615(282)
+  Common in top-k: 8 features
+
+Layer 9:
+  POSITIVE (top-k by frequency): F13021(444) F934(421) F1638(403) F20634(382) F22424(380) F16452(342) F1859(314) F1935(308) F18355(281) F2150(272)
+  NEGATIVE (top-k by frequency): F13021(428) F934(417) F22424(366) F1638(329) F1859(327) F1935(310) F12818(289) F16452(285) F7926(275) F18355(273)
+  Common in top-k: 8 features
+
+Layer 10:
+  POSITIVE (top-k by frequency): F4437(444) F23044(436) F7566(418) F12905(390) F10672(370) F12695(335) F24064(320) F15725(317) F16540(309) F1856(301)
+  NEGATIVE (top-k by frequency): F4437(428) F23044(422) F7566(404) F10672(378) F12905(357) F16540(328) F1075(323) F24415(306) F24064(298) F15725(291)
+  Common in top-k: 8 features
+
+Layer 11:
+  POSITIVE (top-k by frequency): F1958(444) F13955(443) F1342(435) F11899(432) F17683(417) F5787(389) F17981(356) F8718(355) F14757(342) F796(341)
+  NEGATIVE (top-k by frequency): F1958(428) F13955(427) F1342(423) F11899(409) F17683(405) F796(388) F8718(386) F14757(384) F5787(366) F21147(353)
+  Common in top-k: 9 features
+
+4. KEY FINDINGS
+----------------------------------------------------------------------
+Best Performing Layer: Layer 7
+  Accuracy: 82.91%
+  Improvement over baseline: +29.47%
+
+Worst Performing Layer: Layer 1
+  Accuracy: 76.61%
+
+INTERPRETATION:
+- Higher accuracy = more sentiment information in that layer
+- Many pos-only / neg-only SAE features = stronger class separation
+- Overlap among top-k frequent features quantifies common concepts
