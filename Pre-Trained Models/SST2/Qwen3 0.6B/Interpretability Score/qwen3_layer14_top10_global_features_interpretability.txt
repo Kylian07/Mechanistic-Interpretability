@@ -1,0 +1,205 @@
+INTERPRETABILITY REPORT – Qwen3-0.6B, Layer 14, top-10 global frequent features
+======================================================================
+
+Layer 14, Feature 0
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature appears to respond to the presence of Robert De Niro or mentions of his acting.
+
+Evaluation sentences:
+1. thekids will probably stay amused at the kaleidoscope of big , colorful characters . 
+   Actual=0.000, Pred=0.000
+2. bad . 
+   Actual=0.000, Pred=0.000
+3. ultimately feels empty and unsatisfying , like swallowing a communion wafer without the wine . 
+   Actual=0.000, Pred=0.000
+4. immersing us in the endlessly inventive , fiercely competitive world of hip-hop djs , the project is sensational and revelatory , even if scratching makes you itch . 
+   Actual=0.000, Pred=0.000
+5. yes , dull . 
+   Actual=0.000, Pred=0.000
+
+Pearson correlation: nan
+======================================================================
+
+Layer 14, Feature 1
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature appears to respond to the concept of pretentious or overly ambitious artistic endeavors, often with an emphasis on the phrase "in-your-face" or the sentiment of something being "challenging" or "daring."
+
+Evaluation sentences:
+1. all the amped-up tony hawk-style stunts and thrashing rap-metal ca n't disguise the fact that , really , we 've been here , done that . 
+   Actual=26.514, Pred=6.000
+2. care deftly captures the wonder and menace of growing up , but he never really embraces the joy of fuhrman 's destructive escapism or the grace-in-rebellion found by his characters . 
+   Actual=28.880, Pred=3.000
+3. pumpkin takes an admirable look at the hypocrisy of political correctness , but it does so with such an uneven tone that you never know when humor ends and tragedy begins . 
+   Actual=28.740, Pred=5.000
+4. the experience of going to a film festival is a rewarding one ; the experiencing of sampling one through this movie is not . 
+   Actual=32.278, Pred=7.000
+5. there seems to be no clear path as to where the story 's going , or how long it 's going to take to get there . 
+   Actual=23.208, Pred=3.000
+
+Pearson correlation: 0.6190
+======================================================================
+
+Layer 14, Feature 2
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to negative or critical opinions about films, particularly when they are compared unfavorably to other works or are described as lacking quality.
+
+Evaluation sentences:
+1. thekids will probably stay amused at the kaleidoscope of big , colorful characters . 
+   Actual=0.000, Pred=1.000
+2. ramsay , as in ratcatcher , remains a filmmaker with an acid viewpoint and a real gift for teasing chilly poetry out of lives and settings that might otherwise seem drab and sordid . 
+   Actual=0.000, Pred=3.000
+3. ` de niro ... is a veritable source of sincere passion that this hollywood contrivance orbits around . ' 
+   Actual=0.000, Pred=1.000
+4. overall very good for what it 's trying to do . 
+   Actual=0.000, Pred=3.000
+5. true tale of courage -- and complicity -- at auschwitz is a harrowing drama that tries to tell of the unspeakable . 
+   Actual=0.000, Pred=7.000
+
+Pearson correlation: 0.4556
+======================================================================
+
+Layer 14, Feature 3
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the concept of a "negative opinion" or "criticism," particularly when discussing a movie or film.
+
+Evaluation sentences:
+1. ` easily my choice for one of the year 's best films . ' 
+   Actual=60.717, Pred=0.000
+2. ultimately feels empty and unsatisfying , like swallowing a communion wafer without the wine . 
+   Actual=45.188, Pred=8.000
+3. true tale of courage -- and complicity -- at auschwitz is a harrowing drama that tries to tell of the unspeakable . 
+   Actual=56.447, Pred=3.000
+4. immersing us in the endlessly inventive , fiercely competitive world of hip-hop djs , the project is sensational and revelatory , even if scratching makes you itch . 
+   Actual=51.932, Pred=2.000
+5. prurient playthings aside , there 's little to love about this english trifle . 
+   Actual=55.166, Pred=8.000
+
+Pearson correlation: -0.6608
+======================================================================
+
+Layer 14, Feature 4
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to a pattern of strong, consistent activation in the presence of film-related adjectives or phrases, particularly when they are preceded by numbers or words like "true," "veritable," or "best." However, in the case of this sparse autoencoder, it seems that a specific token or sequence of tokens is driving the activation.
+
+In the given examples, the feature consistently activates at a very low value (~9.89e-08) whenever the token "true" appears. This indicates that the feature may be responding to the presence of the word "true" in a particular context.
+
+Evaluation sentences:
+1. confirms the nagging suspicion that ethan hawke would be even worse behind the camera than he is in front of it . 
+   Actual=0.000, Pred=3.000
+2. american chai encourages rueful laughter at stereotypes only an indian-american would recognize . 
+   Actual=0.000, Pred=0.000
+3. thekids will probably stay amused at the kaleidoscope of big , colorful characters . 
+   Actual=0.000, Pred=0.000
+4. overall the film feels like a low-budget tv pilot that could not find a buyer to play it on the tube . 
+   Actual=0.000, Pred=0.000
+5. overall very good for what it 's trying to do . 
+   Actual=0.000, Pred=1.000
+
+Pearson correlation: -0.5701
+======================================================================
+
+Layer 14, Feature 5
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of words associated with high praise for a film, particularly when they are used to describe a director's work.
+
+Evaluation sentences:
+1. overall very good for what it 's trying to do . 
+   Actual=0.000, Pred=1.000
+2. aside from minor tinkering , this is the same movie you probably loved in 1994 , except that it looks even better . 
+   Actual=0.000, Pred=1.000
+3. even horror fans will most likely not find what they 're seeking with trouble every day ; the movie lacks both thrills and humor . 
+   Actual=0.000, Pred=0.000
+4. thekids will probably stay amused at the kaleidoscope of big , colorful characters . 
+   Actual=0.000, Pred=1.000
+5. true tale of courage -- and complicity -- at auschwitz is a harrowing drama that tries to tell of the unspeakable . 
+   Actual=0.000, Pred=3.000
+
+Pearson correlation: -0.5705
+======================================================================
+
+Layer 14, Feature 6
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to patterns related to nouns and adjectives that convey a sense of grandeur, drama, or intensity, often paired with strong emotions like passion, courage, or amusement.
+
+Evaluation sentences:
+1. overall the film feels like a low-budget tv pilot that could not find a buyer to play it on the tube . 
+   Actual=0.000, Pred=0.000
+2. care deftly captures the wonder and menace of growing up , but he never really embraces the joy of fuhrman 's destructive escapism or the grace-in-rebellion found by his characters . 
+   Actual=0.000, Pred=8.000
+3. ultimately feels empty and unsatisfying , like swallowing a communion wafer without the wine . 
+   Actual=0.000, Pred=2.000
+4. even if you do n't think ( kissinger 's ) any more guilty of criminal activity than most contemporary statesmen , he 'd sure make a courtroom trial great fun to watch . 
+   Actual=0.000, Pred=8.000
+5. visually imaginative , thematically instructive and thoroughly delightful , it takes us on a roller-coaster ride from innocence to experience without even a hint of that typical kiddie-flick sentimentality . 
+   Actual=0.000, Pred=8.000
+
+Pearson correlation: -0.0740
+======================================================================
+
+Layer 14, Feature 7
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature appears to respond to the presence of positive, enthusiastic language expressing subjective appreciation or praise for a film, particularly highlighting qualities such as a talented director or the film's entertainment value (e.g., good car chases, great fight scenes).
+
+Evaluation sentences:
+1. ` de niro ... is a veritable source of sincere passion that this hollywood contrivance orbits around . ' 
+   Actual=0.000, Pred=6.000
+2. writer/director joe carnahan 's grimy crime drama is a manual of precinct cliches , but it moves fast enough to cover its clunky dialogue and lapses in logic . 
+   Actual=0.000, Pred=2.000
+3. true tale of courage -- and complicity -- at auschwitz is a harrowing drama that tries to tell of the unspeakable . 
+   Actual=0.000, Pred=4.000
+4. good film , but very glum . 
+   Actual=0.000, Pred=2.000
+5. american chai encourages rueful laughter at stereotypes only an indian-american would recognize . 
+   Actual=0.000, Pred=6.000
+
+Pearson correlation: -0.6995
+======================================================================
+
+Layer 14, Feature 8
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature appears to respond to descriptions of films, particularly focusing on the artistic merit and critique of cinematic works, often highlighting poetic visuals, acid viewpoints, and the ability to convey unsettling or realistic themes.
+
+Evaluation sentences:
+1. vera 's technical prowess ends up selling his film short ; he smoothes over hard truths even as he uncovers them . 
+   Actual=26.206, Pred=8.000
+2. aside from minor tinkering , this is the same movie you probably loved in 1994 , except that it looks even better . 
+   Actual=26.193, Pred=6.000
+3. manages to be sweet and wickedly satisfying at the same time . 
+   Actual=23.241, Pred=3.000
+4. add yet another hat to a talented head , clooney 's a good director . 
+   Actual=21.070, Pred=2.000
+5. no sophomore slump for director sam mendes , who segues from oscar winner to oscar-winning potential with a smooth sleight of hand . 
+   Actual=24.328, Pred=4.000
+
+Pearson correlation: 0.9214
+======================================================================
+
+Layer 14, Feature 9
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the concept of a movie's emotional depth or sincerity.
+
+Evaluation sentences:
+1. ... takes the beauty of baseball and melds it with a story that could touch anyone regardless of their familiarity with the sport 
+   Actual=0.000, Pred=8.000
+2. true tale of courage -- and complicity -- at auschwitz is a harrowing drama that tries to tell of the unspeakable . 
+   Actual=0.000, Pred=8.000
+3. ` easily my choice for one of the year 's best films . ' 
+   Actual=0.000, Pred=3.000
+4. ultimately feels empty and unsatisfying , like swallowing a communion wafer without the wine . 
+   Actual=0.000, Pred=9.000
+5. add yet another hat to a talented head , clooney 's a good director . 
+   Actual=0.000, Pred=2.000
+
+Pearson correlation: 0.0545
+======================================================================
+
