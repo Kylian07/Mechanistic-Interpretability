@@ -1,0 +1,209 @@
+GEMMA-2B INTERPRETABILITY REPORT  Layer 10, top-10 sentiment features
+======================================================================
+
+Layer 10, Feature 437
+----------------------------------------------------------------------
+Interpretation:
+Detects positive descriptions of artistic skill or talent.
+
+Evaluation sentences:
+1. it seems like i have been waiting my whole life for this movie and now i ca n't wait for the sequel . 
+   Actual=0.563, Pred=1.000
+2. that dogged good will of the parents and ` vain ' jia 's defoliation of ego , make the film touching despite some doldrums . 
+   Actual=0.559, Pred=2.000
+3. whaley 's determination to immerse you in sheer , unrelenting wretchedness is exhausting . 
+   Actual=0.559, Pred=3.000
+4. irwin is a man with enough charisma and audacity to carry a dozen films , but this particular result is ultimately held back from being something greater . 
+   Actual=0.548, Pred=5.000
+5. the continued good chemistry between carmen and juni is what keeps this slightly disappointing sequel going , with enough amusing banter -- blessedly curse-free -- to keep both kids and parents entertained . 
+   Actual=0.538, Pred=2.000
+
+Pearson correlation: -0.3206
+======================================================================
+
+Layer 10, Feature 1795
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of strong positive sentiment words or phrases in a sentence.
+
+Evaluation sentences:
+1. while locals will get a kick out of spotting cleveland sites , the rest of the world will enjoy a fast-paced comedy with quirks that might make the award-winning coen brothers envious . 
+   Actual=5.306, Pred=8.000
+2. by getting myself wrapped up in the visuals and eccentricities of many of the characters , i found myself confused when it came time to get to the heart of the movie . 
+   Actual=5.296, Pred=2.000
+3. even in its most tedious scenes , russian ark is mesmerizing . 
+   Actual=5.220, Pred=8.000
+4. a coda in every sense , the pinochet case splits time between a minute-by-minute account of the british court 's extradition chess game and the regime 's talking-head survivors . 
+   Actual=5.217, Pred=2.000
+5. funny but perilously slight . 
+   Actual=5.162, Pred=1.000
+
+Pearson correlation: 0.4190
+======================================================================
+
+Layer 10, Feature 1915
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of enthusiastic or energetic language, particularly when describing creative, imaginative, or joyful concepts.
+
+Evaluation sentences:
+1. despite all evidence to the contrary , this clunker has somehow managed to pose as an actual feature movie , the kind that charges full admission and gets hyped on tv and purports to amuse small children and ostensible adults . 
+   Actual=6.078, Pred=2.000
+2. gives you the steady pulse of life in a beautiful city viewed through the eyes of a character who , in spite of tragic loss and increasing decrepitude , knows in his bones that he is one of the luckiest men alive . 
+   Actual=5.890, Pred=2.000
+3. it does nothing new with the old story , except to show fisticuffs in this sort of stop-go slow motion that makes the gang rumbles look like they 're being streamed over a 28k modem . 
+   Actual=5.728, Pred=8.000
+4. whether writer-director anne fontaine 's film is a ghost story , an account of a nervous breakdown , a trip down memory lane , all three or none of the above , it is as seductive as it is haunting . 
+   Actual=5.728, Pred=6.000
+5. the affectionate loopiness that once seemed congenital to demme 's perspective has a tough time emerging from between the badly dated cutesy-pie mystery scenario and the newfangled hollywood post-production effects . 
+   Actual=5.530, Pred=2.000
+
+Pearson correlation: -0.2694
+======================================================================
+
+Layer 10, Feature 2226
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to strong activation on words and phrases that convey a sense of strong intensity or extremity, including superlatives (e.g., "most", "worst"), emphatic language (e.g., "stultifyingly", "mind-numbingly"), and absolute negatives (e.g., "bad", "horrific").
+
+Evaluation sentences:
+1. scores no points for originality , wit , or intelligence . 
+   Actual=11.194, Pred=8.000
+2. less dizzying than just dizzy , the jaunt is practically over before it begins . 
+   Actual=11.162, Pred=4.000
+3. for the most part , director anne-sophie birot 's first feature is a sensitive , extraordinarily well-acted drama . 
+   Actual=11.153, Pred=8.000
+4. a strangely compelling and brilliantly acted psychological drama . 
+   Actual=11.111, Pred=2.000
+5. reggio 's continual visual barrage is absorbing as well as thought-provoking . 
+   Actual=11.098, Pred=2.000
+
+Pearson correlation: 0.8307
+======================================================================
+
+Layer 10, Feature 2710
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of words related to depth or intensity in a sentence, which tend to activate when describing more extreme or profound emotions, but only in a negative context, indicating a lack or absence of certain qualities.
+
+Evaluation sentences:
+1. it has all the excitement of eating oatmeal . 
+   Actual=3.971, Pred=1.000
+2. rarely has leukemia looked so shimmering and benign . 
+   Actual=3.967, Pred=0.000
+3. that 's a cheat . 
+   Actual=3.950, Pred=2.000
+4. you wo n't like roger , but you will quickly recognize him . 
+   Actual=3.912, Pred=2.000
+5. detox is ultimately a pointless endeavor . 
+   Actual=3.906, Pred=8.000
+
+Pearson correlation: -0.7648
+======================================================================
+
+Layer 10, Feature 2712
+----------------------------------------------------------------------
+Interpretation:
+Detects positive emotion words and phrases, particularly in the context of describing a movie as 'magnificent', 'pleasant', or 'strangely magnetic'.
+
+Evaluation sentences:
+1. no sophomore slump for director sam mendes , who segues from oscar winner to oscar-winning potential with a smooth sleight of hand . 
+   Actual=2.696, Pred=2.000
+2. for all the writhing and wailing , tears , rage and opium overdoses , there 's no sense of actual passion being washed away in love 's dissolution . 
+   Actual=2.580, Pred=3.000
+3. it feels like an after-school special gussied up with some fancy special effects , and watching its rote plot points connect is about as exciting as gazing at an egg timer for 93 minutes . 
+   Actual=2.428, Pred=1.000
+4. charles ' entertaining film chronicles seinfeld 's return to stand-up comedy after the wrap of his legendary sitcom , alongside wannabe comic adams ' attempts to get his shot at the big time . 
+   Actual=2.409, Pred=1.000
+5. a nightmare date with a half-formed wit done a great disservice by a lack of critical distance and a sad trust in liberal arts college bumper sticker platitudes . 
+   Actual=2.378, Pred=3.000
+
+Pearson correlation: 0.2234
+======================================================================
+
+Layer 10, Feature 3748
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to linguistic concepts related to comparison and evaluation, particularly when a subject or idea is unfavorably evaluated or found lacking compared to others, often using words like "unfortunate", "not any funnier", "too predictable", and "lacking".
+
+Evaluation sentences:
+1. for all its technical virtuosity , the film is so mired in juvenile and near-xenophobic pedagogy that it 's enough to make one pine for the day when godard can no longer handle the rigors of filmmaking . 
+   Actual=13.015, Pred=9.000
+2. stealing harvard is evidence that the farrelly bros. -- peter and bobby -- and their brand of screen comedy are wheezing to an end , along with green 's half-hearted movie career . 
+   Actual=12.884, Pred=8.000
+3. may be far from the best of the series , but it 's assured , wonderfully respectful of its past and thrilling enough to make it abundantly clear that this movie phenomenon has once again reinvented itself for a new generation . 
+   Actual=12.755, Pred=4.000
+4. whether writer-director anne fontaine 's film is a ghost story , an account of a nervous breakdown , a trip down memory lane , all three or none of the above , it is as seductive as it is haunting . 
+   Actual=12.597, Pred=2.000
+5. this is a train wreck of an action film -- a stupefying attempt by the filmmakers to force-feed james bond into the mindless xxx mold and throw 40 years of cinematic history down the toilet in favor of bright flashes and loud bangs . 
+   Actual=12.517, Pred=9.000
+
+Pearson correlation: 0.3657
+======================================================================
+
+Layer 10, Feature 4354
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the sentiment pattern of detecting strong, exaggerated, or over-the-top expressions, often associated with negative emotions or sarcasm.
+
+Evaluation sentences:
+1. this tenth feature is a big deal , indeed -- at least the third-best , and maybe even a notch above the previous runner-up , nicholas meyer 's star trek vi : the undiscovered country . 
+   Actual=6.415, Pred=9.000
+2. combining quick-cut editing and a blaring heavy metal much of the time , beck seems to be under the illusion that he 's shooting the latest system of a down video . 
+   Actual=6.200, Pred=9.000
+3. it 's hard to like a film about a guy who is utterly unlikeable , and shiner , starring michael caine as an aging british boxing promoter desperate for a taste of fame and fortune , is certainly that . 
+   Actual=6.065, Pred=7.000
+4. as the latest bid in the tv-to-movie franchise game , i spy makes its big-screen entry with little of the nervy originality of its groundbreaking small-screen progenitor . 
+   Actual=6.047, Pred=8.000
+5. the special effects and many scenes of weightlessness look as good or better than in the original , while the oscar-winning sound and james horner 's rousing score make good use of the hefty audio system . 
+   Actual=5.904, Pred=2.000
+
+Pearson correlation: 0.7834
+======================================================================
+
+Layer 10, Feature 4463
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the sentiment pattern of detecting strong positive emotion words and phrases, particularly in contexts where they convey a sense of surprise, satisfaction, or fascination.
+
+Evaluation sentences:
+1. a swashbuckling tale of love , betrayal , revenge and above all , faith . 
+   Actual=2.791, Pred=5.000
+2. ( lawrence bounces ) all over the stage , dancing , running , sweating , mopping his face and generally displaying the wacky talent that brought him fame in the first place . 
+   Actual=2.732, Pred=8.000
+3. jose campanella delivers a loosely autobiographical story brushed with sentimentality but brimming with gentle humor , bittersweet pathos , and lyric moments that linger like snapshots of memory . 
+   Actual=2.698, Pred=8.000
+4. maud and roland 's search for an unknowable past makes for a haunting literary detective story , but labute pulls off a neater trick in possession : he makes language sexy . 
+   Actual=2.692, Pred=8.000
+5. partway through watching this saccharine , easter-egg-colored concoction , you realize that it is made up of three episodes of a rejected tv show . 
+   Actual=2.678, Pred=2.000
+
+Pearson correlation: 0.0505
+======================================================================
+
+Layer 10, Feature 4966
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of positive adjectives or adverbs, such as 'fleetingly amusing', 'considerable potential', and 'naivetÃ©', and their collocations with other words.
+
+Evaluation sentences:
+1. it moves quickly , adroitly , and without fuss ; it does n't give you time to reflect on the inanity -- and the cold war datedness -- of its premise . 
+   Actual=0.702, Pred=9.000
+2. they should have called it gutterball . 
+   Actual=0.687, Pred=0.000
+3. because of an unnecessary and clumsy last scene , ` swimfan ' left me with a very bad feeling . 
+   Actual=0.663, Pred=4.000
+4. it offers little beyond the momentary joys of pretty and weightless intellectual entertainment . 
+   Actual=0.657, Pred=8.000
+5. it 's clear the filmmakers were n't sure where they wanted their story to go , and even more clear that they lack the skills to get us to this undetermined destination . 
+   Actual=0.655, Pred=1.000
+
+Pearson correlation: 0.2338
+======================================================================
+
+
+======================================================================
+SUMMARY: Layer 10
+Mean Pearson correlation: 0.1552
+Features analyzed: 10/10
+======================================================================

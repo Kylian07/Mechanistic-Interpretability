@@ -1,0 +1,209 @@
+GEMMA-2B INTERPRETABILITY REPORT â€“ Layer 9, top-10 sentiment features
+======================================================================
+
+Layer 9, Feature 7
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to intense or extreme sentiment words.
+
+Evaluation sentences:
+1. bad . 
+   Actual=5.733, Pred=2.000
+2. lovely and poignant . 
+   Actual=5.667, Pred=2.000
+3. it 's a buggy drag . 
+   Actual=5.665, Pred=8.000
+4. it 's fun lite . 
+   Actual=5.660, Pred=2.000
+5. cool ? 
+   Actual=5.646, Pred=1.000
+
+Pearson correlation: -0.0642
+======================================================================
+
+Layer 9, Feature 18
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the sentiment pattern of detecting the presence of critique or negative evaluation of a creative work (e.g., movies, books), particularly focusing on criticism of storytelling, pacing, or overall quality.
+
+Evaluation sentences:
+1. passable entertainment , but it 's the kind of motion picture that wo n't make much of a splash when it 's released , and will not be remembered long afterwards . 
+   Actual=2.462, Pred=8.000
+2. so devoid of any kind of intelligible story that it makes films like xxx and collateral damage seem like thoughtful treatises 
+   Actual=2.350, Pred=9.000
+3. it has its moments of swaggering camaraderie , but more often just feels generic , derivative and done to death . 
+   Actual=2.244, Pred=8.000
+4. deadeningly dull , mired in convoluted melodrama , nonsensical jargon and stiff-upper-lip laboriousness . 
+   Actual=2.237, Pred=10.000
+5. deliriously funny , fast and loose , accessible to the uninitiated , and full of surprises 
+   Actual=2.147, Pred=2.000
+
+Pearson correlation: 0.5321
+======================================================================
+
+Layer 9, Feature 19
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the sentiment pattern of 'Detects strongly negative sentiment towards movies or film-related concepts'.
+
+Evaluation sentences:
+1. a difficult , absorbing film that manages to convey more substance despite its repetitions and inconsistencies than do most films than are far more pointed and clear . 
+   Actual=1.688, Pred=6.000
+2. it takes a strange kind of laziness to waste the talents of robert forster , anne meara , eugene levy , and reginald veljohnson all in the same movie . 
+   Actual=1.632, Pred=8.000
+3. at the very least , if you do n't know anything about derrida when you walk into the theater , you wo n't know much more when you leave . 
+   Actual=1.608, Pred=1.000
+4. the story and the friendship proceeds in such a way that you 're watching a soap opera rather than a chronicle of the ups and downs that accompany lifelong friendships . 
+   Actual=1.596, Pred=6.000
+5. the fly-on-the-wall method used to document rural french school life is a refreshing departure from the now more prevalent technique of the docu-makers being a visible part of their work . 
+   Actual=1.589, Pred=1.000
+
+Pearson correlation: 0.5021
+======================================================================
+
+Layer 9, Feature 37
+----------------------------------------------------------------------
+Interpretation:
+Detects positive evaluations and sentiments towards a film, particularly when describing its technical aspects, direction, acting, and overall quality.
+
+Evaluation sentences:
+1. immersing us in the endlessly inventive , fiercely competitive world of hip-hop djs , the project is sensational and revelatory , even if scratching makes you itch . 
+   Actual=0.784, Pred=1.000
+2. the tale of tok ( andy lau ) , a sleek sociopath on the trail of o ( takashi sorimachi ) , the most legendary of asian hitmen , is too scattershot to take hold . 
+   Actual=0.729, Pred=4.000
+3. even horror fans will most likely not find what they 're seeking with trouble every day ; the movie lacks both thrills and humor . 
+   Actual=0.708, Pred=2.000
+4. featuring a dangerously seductive performance from the great daniel auteuil , `` sade '' covers the same period as kaufmann 's `` quills '' with more unsettlingly realistic results . 
+   Actual=0.702, Pred=8.000
+5. martin and barbara are complex characters -- sometimes tender , sometimes angry -- and the delicate performances by sven wollter and viveka seldahl make their hopes and frustrations vivid . 
+   Actual=0.682, Pred=8.000
+
+Pearson correlation: -0.7657
+======================================================================
+
+Layer 9, Feature 38
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of strong, positive adjectives in a sentence, particularly when they are used to describe a movie or a creative work.
+
+Evaluation sentences:
+1. a cartoon that 's truly cinematic in scope , and a story that 's compelling and heartfelt -- even if the heart belongs to a big , four-legged herbivore . 
+   Actual=0.715, Pred=8.000
+2. the reality of the new live-action pinocchio he directed , cowrote and starred in borders on the grotesque . 
+   Actual=0.694, Pred=8.000
+3. due to some script weaknesses and the casting of the director 's brother , the film trails off into inconsequentiality . 
+   Actual=0.681, Pred=2.000
+4. there is n't nearly enough fun here , despite the presence of some appealing ingredients . 
+   Actual=0.671, Pred=1.000
+5. there has always been something likable about the marquis de sade . 
+   Actual=0.670, Pred=4.000
+
+Pearson correlation: 0.8118
+======================================================================
+
+Layer 9, Feature 64
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to linguistic concepts related to the tone and emotional nuance of language, particularly activating on phrases that express a more casual, sarcastic, or ironic tone, often indicating a negative sentiment or criticism.
+
+Evaluation sentences:
+1. it 's everything you do n't go to the movies for . 
+   Actual=5.359, Pred=8.000
+2. it 's about following your dreams , no matter what your parents think . 
+   Actual=5.265, Pred=7.000
+3. of course , by more objective measurements it 's still quite bad . 
+   Actual=5.162, Pred=8.000
+4. just embarrassment and a vague sense of shame . 
+   Actual=5.154, Pred=4.000
+5. it 's just filler . 
+   Actual=5.138, Pred=8.000
+
+Pearson correlation: 0.3017
+======================================================================
+
+Layer 9, Feature 70
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to strong activation on words that express admiration, appreciation, or a positive emotional response to a creative work, such as a movie or a theatrical performance.
+
+Evaluation sentences:
+1. this is a story of two misfits who do n't stand a chance alone , but together they are magnificent . 
+   Actual=3.100, Pred=9.000
+2. it 's not that kung pow is n't funny some of the time -- it just is n't any funnier than bad martial arts movies are all by themselves , without all oedekerk 's impish augmentation . 
+   Actual=3.049, Pred=4.000
+3. it moves quickly , adroitly , and without fuss ; it does n't give you time to reflect on the inanity -- and the cold war datedness -- of its premise . 
+   Actual=3.025, Pred=8.000
+4. having had the good sense to cast actors who are , generally speaking , adored by the movie-going public , khouri then gets terrific performances from them all . 
+   Actual=2.963, Pred=9.000
+5. if you 've ever entertained the notion of doing what the title of this film implies , what sex with strangers actually shows may put you off the idea forever . 
+   Actual=2.934, Pred=2.000
+
+Pearson correlation: 0.4431
+======================================================================
+
+Layer 9, Feature 79
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to highly emotional and intense sentiment, particularly in the presence of deep emotional expression, strong emotional impact, or intense emotional experiences.
+
+Evaluation sentences:
+1. does n't offer much besides glib soullessness , raunchy language and a series of brutal set pieces ... that raise the bar on stylized screen violence . 
+   Actual=2.825, Pred=6.000
+2. it 's so good that its relentless , polished wit can withstand not only inept school productions , but even oliver parker 's movie adaptation . 
+   Actual=2.765, Pred=2.000
+3. paid in full is so stale , in fact , that its most vibrant scene is one that uses clips from brian de palma 's scarface . 
+   Actual=2.688, Pred=6.000
+4. the best revenge may just be living well because this film , unlike other dumas adaptations , is far more likened to a treasure than a lengthy jail sentence . 
+   Actual=2.623, Pred=6.000
+5. its well of thorn and vinegar ( and simple humanity ) has long been plundered by similar works featuring the insight and punch this picture so conspicuously lacks . 
+   Actual=2.615, Pred=7.000
+
+Pearson correlation: -0.4714
+======================================================================
+
+Layer 9, Feature 80
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the presence of strong, positive, and often central or pivotal words in a sentence, potentially indicative of the overall sentiment or emotional emphasis.
+
+Evaluation sentences:
+1. affleck and jackson are good sparring partners . 
+   Actual=5.868, Pred=8.000
+2. very bad . 
+   Actual=5.829, Pred=5.000
+3. a warm , funny , engaging film . 
+   Actual=5.790, Pred=8.000
+4. cool ? 
+   Actual=5.766, Pred=8.000
+5. big fat waste of time . 
+   Actual=5.760, Pred=8.000
+
+Pearson correlation: -0.3281
+======================================================================
+
+Layer 9, Feature 86
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of emotional intensity or passion in a text, particularly when it's associated with strong positive emotions or engaging experiences.
+
+Evaluation sentences:
+1. nine queens is not only than a frighteningly capable debut and genre piece , but also a snapshot of a dangerous political situation on the verge of coming to a head . 
+   Actual=0.934, Pred=9.000
+2. a compelling spanish film about the withering effects of jealousy in the life of a young monarch whose sexual passion for her husband becomes an obsession . 
+   Actual=0.858, Pred=9.000
+3. though perry and hurley make inspiring efforts to breathe life into the disjointed , haphazard script by jay scherick and david ronn , neither the actors nor director reginald hudlin can make it more than fitfully entertaining . 
+   Actual=0.832, Pred=2.000
+4. a simple , but gritty and well-acted ensemble drama that encompasses a potent metaphor for a country still dealing with its fascist past . 
+   Actual=0.819, Pred=8.000
+5. gives you the steady pulse of life in a beautiful city viewed through the eyes of a character who , in spite of tragic loss and increasing decrepitude , knows in his bones that he is one of the luckiest men alive . 
+   Actual=0.785, Pred=8.000
+
+Pearson correlation: 0.2748
+======================================================================
+
+
+======================================================================
+SUMMARY: Layer 9
+Mean Pearson correlation: 0.1236
+Features analyzed: 10/10
+======================================================================
