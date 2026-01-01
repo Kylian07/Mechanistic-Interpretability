@@ -1,0 +1,343 @@
+INTERPRETABILITY REPORT – Qwen3-0.6B MRPC Layer 14
+Top-10 Global Features (by frequency)
+Analyzed on 408 validation examples
+======================================================================
+
+Layer 14, Feature 0
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to a pattern of sentence fragments or incomplete sentences, as evidenced by the strong activation for sentences 2 and 3, which only contain a part of a full sentence.
+
+Top examples used for interpretation:
+1. " We are committed to helping the Iraqi people get on the path to a free society...
+   Activation: 0.000
+2. " Instead of pursuing the most imminent and real threats – international terrori...
+   Activation: 0.000
+3. " Instead of pursuing the most imminent and real threats - international terrori...
+   Activation: 0.000
+4. " APEC leaders are painfully aware that security and prosperity are inseparable ...
+   Activation: 0.000
+5. " Biotech products , if anything , may be safer than conventional products becau...
+   Activation: 0.000
+
+Evaluation examples:
+1. " There is no need for one deadline for all to create the ASEAN Economic Communi...
+   Actual=0.000, Pred=8.000
+2. " Today , we are trying to convey this problem to Russian President Vladimir Put...
+   Actual=0.000, Pred=8.000
+3. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the...
+   Actual=0.000, Pred=4.000
+4. " The court and the public need to know much more of the details of the defendan...
+   Actual=0.000, Pred=9.000
+5. " More than 70,000 men and women from bases in Southern California were deployed...
+   Actual=0.000, Pred=4.000
+
+Pearson correlation: -0.1568
+======================================================================
+
+Layer 14, Feature 1
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of punctuation marks, specifically the hyphen (-), as all instances with higher activation strengths contain a hyphen in the input sequence.
+
+Top examples used for interpretation:
+1. " Instead of pursuing the most imminent and real threats - international terrori...
+   Activation: 17.658
+2. " Instead of pursuing the most imminent and real threats – international terrori...
+   Activation: 17.473
+3. Prosecutors said PW Marketing violated the state 's 1998 anti-spam law by sendin...
+   Activation: 16.447
+4. " Biotech products , if anything , may be safer than conventional products becau...
+   Activation: 17.799
+5. " The risk of inflation becoming undesirably low remains the predominant concern...
+   Activation: 16.191
+
+Evaluation examples:
+1. " Allison just proves you don 't need to wait until August or September to have ...
+   Actual=16.898, Pred=8.000
+2. " I think it 's going to be a close vote , but I think the grant proposal is goi...
+   Actual=16.747, Pred=6.000
+3. " The government elements who have been causing trouble are still in place . <|e...
+   Actual=15.494, Pred=2.000
+4. " I don 't know if the person I 'm talking to now may end up being someone else ...
+   Actual=16.420, Pred=8.000
+5. " Today , we are trying to convey this problem to Russian President Vladimir Put...
+   Actual=15.701, Pred=6.000
+
+Pearson correlation: 0.7594
+======================================================================
+
+Layer 14, Feature 2
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence or absence of proper nouns or common nouns that refer to specific entities, events, or categories, as evidenced by its inactivity across various sentence pairs with distinct content.
+
+Top examples used for interpretation:
+1. " No matter who becomes the sponsor for stock-car racing 's top series , NASCAR ...
+   Activation: 0.000
+2. " The court and the public need to know much more of the details of the defendan...
+   Activation: 0.000
+3. " I don 't know if the person I 'm talking to now may end up being someone else ...
+   Activation: 0.000
+4. " Instead of pursuing the most imminent and real threats – international terrori...
+   Activation: 0.000
+5. " More than 70,000 men and women from bases in Southern California were deployed...
+   Activation: 0.000
+
+Evaluation examples:
+1. " Instead of pursuing the most imminent and real threats - international terrori...
+   Actual=0.000, Pred=9.000
+2. " Allison just proves you don 't need to wait until August or September to have ...
+   Actual=0.000, Pred=9.000
+3. " I had one bad stretch of holes that put me out of contention to win , " Woods ...
+   Actual=0.000, Pred=9.000
+4. " Today , we are trying to convey this problem to Russian President Vladimir Put...
+   Actual=0.000, Pred=9.000
+5. " The idea that Tony Abbott is in some way a one-dimensional political head-kick...
+   Actual=0.000, Pred=8.000
+
+Pearson correlation: -0.7344
+======================================================================
+
+Layer 14, Feature 3
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to a pattern of long or complex sentences, likely indicating that the model is sensitive to the structural or syntactic properties of the input text.
+
+Top examples used for interpretation:
+1. " Biotech products , if anything , may be safer than conventional products becau...
+   Activation: 34.233
+2. " There is no need for one deadline for all to create the ASEAN Economic Communi...
+   Activation: 29.258
+3. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the...
+   Activation: 31.241
+4. " It is bad for Symbian , " said Per Lindberg , analyst at Dresdner Kleinwort Wa...
+   Activation: 31.215
+5. " Sanitation is poor ... there could be typhoid and cholera , " he said . <|endo...
+   Activation: 31.190
+
+Evaluation examples:
+1. " This child was literally neglected to death , " Armstrong County District Atto...
+   Actual=28.999, Pred=8.000
+2. " This deal makes sense for both companies , " said National Chief Executive Bri...
+   Actual=30.962, Pred=2.000
+3. " Today , we are trying to convey this problem to Russian President Vladimir Put...
+   Actual=31.320, Pred=8.000
+4. " Allison just proves you don 't need to wait until August or September to have ...
+   Actual=32.465, Pred=8.000
+5. " No matter who becomes the sponsor for stock-car racing 's top series , NASCAR ...
+   Actual=28.926, Pred=8.000
+
+Pearson correlation: -0.1552
+======================================================================
+
+Layer 14, Feature 4
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature appears to respond to the presence of negation or contrasting opinions, as evident from the high activation values in examples where statements are preceded by "It is probably not" or "It is bad [for something]" but not in straightforward positive or neutral statements.
+
+Top examples used for interpretation:
+1. " This decision is clearly incorrect , " FTC Chairman Timothy Muris said in a wr...
+   Activation: 0.000
+2. " This deal makes sense for both companies , " said National Chief Executive Bri...
+   Activation: 0.000
+3. " It is probably not the easiest time to come in and take over the shuttle progr...
+   Activation: 0.000
+4. " It is bad for Symbian , " said Per Lindberg , analyst at Dresdner Kleinwort Wa...
+   Activation: 0.000
+5. " It was never our intention to sell the product , " said Health Minister Anne M...
+   Activation: 0.000
+
+Evaluation examples:
+1. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the...
+   Actual=0.000, Pred=4.000
+2. " There is no need for one deadline for all to create the ASEAN Economic Communi...
+   Actual=0.000, Pred=8.000
+3. " There is no conscious policy of the United States , I can assure you of this ,...
+   Actual=0.000, Pred=8.000
+4. " I think it 's going to be a close vote , but I think the grant proposal is goi...
+   Actual=0.000, Pred=8.000
+5. " I don 't know if the person I 'm talking to now may end up being someone else ...
+   Actual=0.000, Pred=7.000
+
+Pearson correlation: 0.0536
+======================================================================
+
+Layer 14, Feature 5
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of a quote or dialogue in a sentence, as it consistently activates when per-token activation strengths are accompanied by quotes, but not when the quotes are absent.
+
+Top examples used for interpretation:
+1. " I stand 100 percent by it , and I think our intelligence services gave us the ...
+   Activation: 0.000
+2. " Biotech products , if anything , may be safer than conventional products becau...
+   Activation: 0.000
+3. " It is bad for Symbian , " said Per Lindberg , analyst at Dresdner Kleinwort Wa...
+   Activation: 0.000
+4. " Sanitation is poor ... there could be typhoid and cholera , " he said . <|endo...
+   Activation: 0.000
+5. " So Sebastian did his best to convincingly confess to a crime that he didn 't c...
+   Activation: 0.000
+
+Evaluation examples:
+1. " Allison just proves you don 't need to wait until August or September to have ...
+   Actual=0.000, Pred=8.000
+2. " The court and the public need to know much more of the details of the defendan...
+   Actual=0.000, Pred=9.000
+3. " Close co-operation between our law enforcement agencies , close co-operation b...
+   Actual=0.000, Pred=8.000
+4. We acted because we saw the existing evidence in a new light , through the prism...
+   Actual=0.000, Pred=9.000
+5. " There is no conscious policy of the United States , I can assure you of this ,...
+   Actual=0.000, Pred=10.000
+
+Pearson correlation: 0.3871
+======================================================================
+
+Layer 14, Feature 6
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to the presence of explicit or implied negation in a sentence, as all provided sentences contain phrases that could be interpreted as negations ("No matter", "no conscious policy", etc.), resulting in high activation.
+
+Top examples used for interpretation:
+1. " More than 70,000 men and women from bases in Southern California were deployed...
+   Activation: 0.000
+2. Police say CIBA was involved in the importation of qat , a narcotic substance le...
+   Activation: 0.000
+3. " We are committed to helping the Iraqi people get on the path to a free society...
+   Activation: 0.000
+4. " No matter who becomes the sponsor for stock-car racing 's top series , NASCAR ...
+   Activation: 0.000
+5. " There is no conscious policy of the United States , I can assure you of this ,...
+   Activation: 0.000
+
+Evaluation examples:
+1. Some of the company 's software developers will join Microsoft , but details hav...
+   Actual=0.000, Pred=8.000
+2. " The risk of inflation becoming undesirably low remains the predominant concern...
+   Actual=0.000, Pred=8.000
+3. Thyroid hormones are known to help in weight loss by stimulating metabolism - an...
+   Actual=0.000, Pred=6.000
+4. " Biotech products , if anything , may be safer than conventional products becau...
+   Actual=0.000, Pred=6.000
+5. " So Sebastian did his best to convincingly confess to a crime that he didn 't c...
+   Actual=0.000, Pred=8.000
+
+Pearson correlation: -0.6764
+======================================================================
+
+Layer 14, Feature 7
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of a specific linguistic pattern or phrase that is typically associated with a formal or official tone.
+
+Top examples used for interpretation:
+1. " It 's a major victory for Maine , and it 's a major victory for other states ....
+   Activation: 0.000
+2. " We are committed to helping the Iraqi people get on the path to a free society...
+   Activation: 0.000
+3. " I will support a constitutional amendment which would honor marriage between a...
+   Activation: 0.000
+4. " There is no need for one deadline for all to create the ASEAN Economic Communi...
+   Activation: 0.000
+5. " I think it happened very quickly , " Houston Police Department homicide invest...
+   Activation: 0.000
+
+Evaluation examples:
+1. " Jeremy 's a good guy , " Barber said , adding : " Jeremy is living the dream l...
+   Actual=0.000, Pred=6.000
+2. " It is probably not the easiest time to come in and take over the shuttle progr...
+   Actual=0.000, Pred=2.000
+3. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the...
+   Actual=0.000, Pred=2.000
+4. " This deal makes sense for both companies , " said National Chief Executive Bri...
+   Actual=0.000, Pred=8.000
+5. " The court and the public need to know much more of the details of the defendan...
+   Actual=0.000, Pred=8.000
+
+Pearson correlation: -0.2537
+======================================================================
+
+Layer 14, Feature 8
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to formal or official language, as it consistently shows higher activation on sentences containing terms or phrases typically used in reports, statements, or official documents, such as "Prosecutors said", "Police say", and "Close co-operation".
+
+Top examples used for interpretation:
+1. Witnesses said they believed the man planned to crash the Launceston-bound Qanta...
+   Activation: 17.712
+2. Prosecutors said PW Marketing violated the state 's 1998 anti-spam law by sendin...
+   Activation: 15.708
+3. Police say CIBA was involved in the importation of qat , a narcotic substance le...
+   Activation: 16.272
+4. " Close co-operation between our law enforcement agencies , close co-operation b...
+   Activation: 15.346
+5. But Ms Ward said the headroom under its financial covenants was " tight " and th...
+   Activation: 15.134
+
+Evaluation examples:
+1. " I will support a constitutional amendment which would honor marriage between a...
+   Actual=15.215, Pred=3.000
+2. Some of the company 's software developers will join Microsoft , but details hav...
+   Actual=15.173, Pred=1.000
+3. Prosecutors allege that Nichols and co-conspirator Timothy McVeigh worked togeth...
+   Actual=15.126, Pred=8.000
+4. But plaque volume increased by 2.7 percent in pravastatin patients . <|endoftext...
+   Actual=15.112, Pred=2.000
+5. " Biotech products , if anything , may be safer than conventional products becau...
+   Actual=16.157, Pred=3.000
+
+Pearson correlation: -0.1115
+======================================================================
+
+Layer 14, Feature 9
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of quotation marks or direct speech, as all sentence pairs with higher activation contain quoted text.
+
+Top examples used for interpretation:
+1. " Biotech products , if anything , may be safer than conventional products becau...
+   Activation: 0.000
+2. " I stand 100 percent by it , and I think our intelligence services gave us the ...
+   Activation: 0.000
+3. " They 've been in the stores for over six weeks , " says Carney . <|endoftext|>...
+   Activation: 0.000
+4. " The government elements who have been causing trouble are still in place . <|e...
+   Activation: 0.000
+5. " Allison just proves you don 't need to wait until August or September to have ...
+   Activation: 0.000
+
+Evaluation examples:
+1. " I will support a constitutional amendment which would honor marriage between a...
+   Actual=0.000, Pred=10.000
+2. " Sanitation is poor ... there could be typhoid and cholera , " he said . <|endo...
+   Actual=0.000, Pred=8.000
+3. " We are committed to helping the Iraqi people get on the path to a free society...
+   Actual=0.000, Pred=9.000
+4. " The risk of inflation becoming undesirably low remains the predominant concern...
+   Actual=0.000, Pred=9.000
+5. " More than 70,000 men and women from bases in Southern California were deployed...
+   Actual=0.000, Pred=7.000
+
+Pearson correlation: -0.3651
+======================================================================
+
+
+SUMMARY FOR LAYER 14
+======================================================================
+Features analyzed: 10
+Average Pearson correlation: -0.1253
+Best feature: 1 (correlation: 0.7594)
+
+All correlations:
+  Feature 1: 0.7594
+  Feature 5: 0.3871
+  Feature 4: 0.0536
+  Feature 8: -0.1115
+  Feature 3: -0.1552
+  Feature 0: -0.1568
+  Feature 7: -0.2537
+  Feature 9: -0.3651
+  Feature 6: -0.6764
+  Feature 2: -0.7344

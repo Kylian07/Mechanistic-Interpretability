@@ -1,0 +1,343 @@
+INTERPRETABILITY REPORT – Qwen3-0.6B MRPC Layer 15
+Top-10 Global Features (by frequency)
+Analyzed on 408 validation examples
+======================================================================
+
+Layer 15, Feature 0
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of a hyphen (-) character, as all instances where the activation strength is higher than 0 occur in sentences where a hyphen is present, indicating it likely captures the structural or syntactic aspect of the input.
+
+Top examples used for interpretation:
+1. " No matter who becomes the sponsor for stock-car racing 's top series , NASCAR ...
+   Activation: 0.000
+2. " More than 70,000 men and women from bases in Southern California were deployed...
+   Activation: 0.000
+3. " Instead of pursuing the most imminent and real threats – international terrori...
+   Activation: 0.000
+4. " Instead of pursuing the most imminent and real threats - international terrori...
+   Activation: 0.000
+5. " So Sebastian did his best to convincingly confess to a crime that he didn 't c...
+   Activation: 0.000
+
+Evaluation examples:
+1. " We are committed to helping the Iraqi people get on the path to a free society...
+   Actual=0.000, Pred=1.000
+2. " Jeremy 's a good guy , " Barber said , adding : " Jeremy is living the dream l...
+   Actual=0.000, Pred=7.000
+3. " APEC leaders are painfully aware that security and prosperity are inseparable ...
+   Actual=0.000, Pred=8.000
+4. " Sanitation is poor ... there could be typhoid and cholera , " he said . <|endo...
+   Actual=0.000, Pred=1.000
+5. " This child was literally neglected to death , " Armstrong County District Atto...
+   Actual=0.000, Pred=7.000
+
+Pearson correlation: -0.1451
+======================================================================
+
+Layer 15, Feature 1
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to the presence of a specific linguistic pattern related to the use of quotes or citations within a sentence, as it shows low activation for sentences that contain quotes, but high activation for sentences without quotes is not provided in the data, however, the activation values given do not directly infer a specific concept related to the text.
+
+Top examples used for interpretation:
+1. " Biotech products , if anything , may be safer than conventional products becau...
+   Activation: 0.000
+2. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the...
+   Activation: 0.000
+3. " The risk of inflation becoming undesirably low remains the predominant concern...
+   Activation: 0.000
+4. " I had one bad stretch of holes that put me out of contention to win , " Woods ...
+   Activation: 0.000
+5. " We are committed to helping the Iraqi people get on the path to a free society...
+   Activation: 0.000
+
+Evaluation examples:
+1. " Sanitation is poor ... there could be typhoid and cholera , " he said . <|endo...
+   Actual=0.000, Pred=7.000
+2. " I think it happened very quickly , " Houston Police Department homicide invest...
+   Actual=0.000, Pred=8.000
+3. " They 've been in the stores for over six weeks , " says Carney . <|endoftext|>...
+   Actual=0.000, Pred=8.000
+4. " So Sebastian did his best to convincingly confess to a crime that he didn 't c...
+   Actual=0.000, Pred=5.000
+5. " No matter who becomes the sponsor for stock-car racing 's top series , NASCAR ...
+   Actual=0.000, Pred=8.000
+
+Pearson correlation: 0.0148
+======================================================================
+
+Layer 15, Feature 2
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to the presence of explicit mentions of entities or concepts that suggest a need for more detailed information or investigation.
+
+Top examples used for interpretation:
+1. " Close co-operation between our law enforcement agencies , close co-operation b...
+   Activation: 66.026
+2. " Allison just proves you don 't need to wait until August or September to have ...
+   Activation: 67.531
+3. " Instead of pursuing the most imminent and real threats - international terrori...
+   Activation: 64.045
+4. " The court and the public need to know much more of the details of the defendan...
+   Activation: 68.682
+5. " Instead of pursuing the most imminent and real threats – international terrori...
+   Activation: 64.615
+
+Evaluation examples:
+1. " The idea that Tony Abbott is in some way a one-dimensional political head-kick...
+   Actual=69.355, Pred=6.000
+2. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the...
+   Actual=63.557, Pred=4.000
+3. " It is bad for Symbian , " said Per Lindberg , analyst at Dresdner Kleinwort Wa...
+   Actual=63.467, Pred=5.000
+4. " Biotech products , if anything , may be safer than conventional products becau...
+   Actual=68.999, Pred=5.000
+5. " Today , we are trying to convey this problem to Russian President Vladimir Put...
+   Actual=64.103, Pred=8.000
+
+Pearson correlation: 0.0230
+======================================================================
+
+Layer 15, Feature 3
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature appears to respond to instances where a statement is an absolute assertion or claim of certainty, marked by strong phrases such as "100 percent," "predominant concern," or emphasis on a "major victory."
+
+Top examples used for interpretation:
+1. " There is no conscious policy of the United States , I can assure you of this ,...
+   Activation: 0.000
+2. " I stand 100 percent by it , and I think our intelligence services gave us the ...
+   Activation: 0.000
+3. " The risk of inflation becoming undesirably low remains the predominant concern...
+   Activation: 0.000
+4. " Instead of pursuing the most imminent and real threats - international terrori...
+   Activation: 0.000
+5. " It 's a major victory for Maine , and it 's a major victory for other states ....
+   Activation: 0.000
+
+Evaluation examples:
+1. " Instead of pursuing the most imminent and real threats – international terrori...
+   Actual=0.000, Pred=2.000
+2. " I think it happened very quickly , " Houston Police Department homicide invest...
+   Actual=0.000, Pred=3.000
+3. " We think that the United States of America should support the free speech of a...
+   Actual=0.000, Pred=3.000
+4. " It is bad for Symbian , " said Per Lindberg , analyst at Dresdner Kleinwort Wa...
+   Actual=0.000, Pred=3.000
+5. " This child was literally neglected to death , " Armstrong County District Atto...
+   Actual=0.000, Pred=8.000
+
+Pearson correlation: -0.6578
+======================================================================
+
+Layer 15, Feature 4
+----------------------------------------------------------------------
+Interpretation:
+This feature seems to respond to the presence of specific, concrete nouns or objects, as it activates when sentence pairs contain descriptive content but remains inactive when they contain general statements or opinions.
+
+Top examples used for interpretation:
+1. " They 've been in the stores for over six weeks , " says Carney . <|endoftext|>...
+   Activation: 0.000
+2. " It is bad for Symbian , " said Per Lindberg , analyst at Dresdner Kleinwort Wa...
+   Activation: 0.000
+3. " Biotech products , if anything , may be safer than conventional products becau...
+   Activation: 0.000
+4. " The court and the public need to know much more of the details of the defendan...
+   Activation: 0.000
+5. " Sanitation is poor ... there could be typhoid and cholera , " he said . <|endo...
+   Activation: 0.000
+
+Evaluation examples:
+1. " This decision is clearly incorrect , " FTC Chairman Timothy Muris said in a wr...
+   Actual=0.000, Pred=3.000
+2. " The risk of inflation becoming undesirably low remains the predominant concern...
+   Actual=0.000, Pred=4.000
+3. " We will work with the board to ensure a smooth transition . " <|endoftext|> He...
+   Actual=0.000, Pred=7.000
+4. " Jeremy 's a good guy , " Barber said , adding : " Jeremy is living the dream l...
+   Actual=0.000, Pred=3.000
+5. " I think it 's going to be a close vote , but I think the grant proposal is goi...
+   Actual=0.000, Pred=3.000
+
+Pearson correlation: -0.9005
+======================================================================
+
+Layer 15, Feature 5
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature appears to respond to phrases or sentences expressing high confidence or certainty, often accompanied by a strong assertion or statement of fact.
+
+Top examples used for interpretation:
+1. " I think it 's going to be a close vote , but I think the grant proposal is goi...
+   Activation: 84.685
+2. " We will work with the board to ensure a smooth transition . " <|endoftext|> He...
+   Activation: 76.672
+3. " I had one bad stretch of holes that put me out of contention to win , " Woods ...
+   Activation: 76.620
+4. " I stand 100 percent by it , and I think our intelligence services gave us the ...
+   Activation: 83.997
+5. " It is probably not the easiest time to come in and take over the shuttle progr...
+   Activation: 89.387
+
+Evaluation examples:
+1. " Close co-operation between our law enforcement agencies , close co-operation b...
+   Actual=80.790, Pred=8.000
+2. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the...
+   Actual=79.798, Pred=5.000
+3. " The government elements who have been causing trouble are still in place . <|e...
+   Actual=77.895, Pred=8.000
+4. " The idea that Tony Abbott is in some way a one-dimensional political head-kick...
+   Actual=86.712, Pred=5.000
+5. " Allison just proves you don 't need to wait until August or September to have ...
+   Actual=83.509, Pred=8.000
+
+Pearson correlation: -0.4019
+======================================================================
+
+Layer 15, Feature 6
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to sentences that contain non-relevant or noisy information for the MRPC paraphrase detection task, potentially indicating the presence of irrelevant or distracting text.
+
+Top examples used for interpretation:
+1. " Biotech products , if anything , may be safer than conventional products becau...
+   Activation: 0.000
+2. " There is no conscious policy of the United States , I can assure you of this ,...
+   Activation: 0.000
+3. " The risk of inflation becoming undesirably low remains the predominant concern...
+   Activation: 0.000
+4. " It is bad for Symbian , " said Per Lindberg , analyst at Dresdner Kleinwort Wa...
+   Activation: 0.000
+5. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the...
+   Activation: 0.000
+
+Evaluation examples:
+1. " So Sebastian did his best to convincingly confess to a crime that he didn 't c...
+   Actual=0.000, Pred=6.000
+2. " No matter who becomes the sponsor for stock-car racing 's top series , NASCAR ...
+   Actual=0.000, Pred=3.000
+3. " We are committed to helping the Iraqi people get on the path to a free society...
+   Actual=0.000, Pred=3.000
+4. " Allison just proves you don 't need to wait until August or September to have ...
+   Actual=0.000, Pred=6.000
+5. " We will work with the board to ensure a smooth transition . " <|endoftext|> He...
+   Actual=0.000, Pred=3.000
+
+Pearson correlation: 0.1219
+======================================================================
+
+Layer 15, Feature 7
+----------------------------------------------------------------------
+Interpretation:
+This feature responds to the presence of general affirmations or positive statements, as seen in sentences that express support, agreement, or optimism (high activation), while sentences containing negative sentiments or neutral statements receive lower activation.
+
+Top examples used for interpretation:
+1. " I will support a constitutional amendment which would honor marriage between a...
+   Activation: 105.715
+2. " It 's a major victory for Maine , and it 's a major victory for other states ....
+   Activation: 104.729
+3. " No matter who becomes the sponsor for stock-car racing 's top series , NASCAR ...
+   Activation: 96.505
+4. " There is no need for one deadline for all to create the ASEAN Economic Communi...
+   Activation: 96.015
+5. " I think it 's going to be a close vote , but I think the grant proposal is goi...
+   Activation: 106.926
+
+Evaluation examples:
+1. " I had one bad stretch of holes that put me out of contention to win , " Woods ...
+   Actual=97.346, Pred=3.000
+2. " Instead of pursuing the most imminent and real threats – international terrori...
+   Actual=103.006, Pred=5.000
+3. " Biotech products , if anything , may be safer than conventional products becau...
+   Actual=110.760, Pred=6.000
+4. " If we don 't march into Tehran , I think we will be in pretty good shape , " h...
+   Actual=110.726, Pred=8.000
+5. " This deal makes sense for both companies , " said National Chief Executive Bri...
+   Actual=101.539, Pred=8.000
+
+Pearson correlation: 0.5874
+======================================================================
+
+Layer 15, Feature 8
+----------------------------------------------------------------------
+Interpretation:
+This feature appears to respond to the presence of specific, formal linguistic phrases or constructions often associated with official statements, institutional language, or professional settings.
+
+Top examples used for interpretation:
+1. " It 's a major victory for Maine , and it 's a major victory for other states ....
+   Activation: 10.901
+2. " Overwhelmingly the Windows brand really resonated with them . " <|endoftext|> ...
+   Activation: 10.591
+3. " Close co-operation between our law enforcement agencies , close co-operation b...
+   Activation: 10.658
+4. " The risk of inflation becoming undesirably low remains the predominant concern...
+   Activation: 10.491
+5. " I think it happened very quickly , " Houston Police Department homicide invest...
+   Activation: 10.595
+
+Evaluation examples:
+1. " I don 't know if the person I 'm talking to now may end up being someone else ...
+   Actual=10.977, Pred=2.000
+2. " But they never climb out of the pot of beer again . " <|endoftext|> It 's just...
+   Actual=10.581, Pred=1.000
+3. " We are committed to helping the Iraqi people get on the path to a free society...
+   Actual=11.233, Pred=9.000
+4. " We think that the United States of America should support the free speech of a...
+   Actual=9.736, Pred=7.000
+5. " This child was literally neglected to death , " Armstrong County District Atto...
+   Actual=9.730, Pred=2.000
+
+Pearson correlation: 0.1779
+======================================================================
+
+Layer 15, Feature 9
+----------------------------------------------------------------------
+Interpretation:
+This sparse autoencoder feature responds to the presence of formal or objective language, as it is activated by sentences containing phrases often used in official or informative contexts, such as legal language ("District Attorney"), official reports ("the details of the defendant"), and formal statements ("literally neglected to death").
+
+Top examples used for interpretation:
+1. " Jeremy 's a good guy , " Barber said , adding : " Jeremy is living the dream l...
+   Activation: 7.922
+2. " This child was literally neglected to death , " Armstrong County District Atto...
+   Activation: 7.280
+3. " The court and the public need to know much more of the details of the defendan...
+   Activation: 8.353
+4. " Instead of pursuing the most imminent and real threats – international terrori...
+   Activation: 7.860
+5. " No matter who becomes the sponsor for stock-car racing 's top series , NASCAR ...
+   Activation: 7.258
+
+Evaluation examples:
+1. " The idea that Tony Abbott is in some way a one-dimensional political head-kick...
+   Actual=8.445, Pred=8.000
+2. " I think it 's going to be a close vote , but I think the grant proposal is goi...
+   Actual=8.123, Pred=4.000
+3. " I will support a constitutional amendment which would honor marriage between a...
+   Actual=7.836, Pred=6.000
+4. ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the...
+   Actual=7.743, Pred=8.000
+5. " Overwhelmingly the Windows brand really resonated with them . " <|endoftext|> ...
+   Actual=7.737, Pred=2.000
+
+Pearson correlation: 0.3572
+======================================================================
+
+
+SUMMARY FOR LAYER 15
+======================================================================
+Features analyzed: 10
+Average Pearson correlation: -0.0823
+Best feature: 7 (correlation: 0.5874)
+
+All correlations:
+  Feature 7: 0.5874
+  Feature 9: 0.3572
+  Feature 8: 0.1779
+  Feature 6: 0.1219
+  Feature 2: 0.0230
+  Feature 1: 0.0148
+  Feature 0: -0.1451
+  Feature 5: -0.4019
+  Feature 3: -0.6578
+  Feature 4: -0.9005
