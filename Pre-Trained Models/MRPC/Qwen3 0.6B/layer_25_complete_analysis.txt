@@ -1,0 +1,92 @@
+======================================================================
+LAYER 25 - COMPLETE ANALYSIS (Qwen3-0.6B on MRPC)
+======================================================================
+
+A. LAYER PERFORMANCE (Raw Representations)
+----------------------------------------------------------------------
+Accuracy: 0.6887 (68.87%)
+Precision: 0.7836
+Recall: 0.7527
+F1-Score: 0.7678
+Baseline Accuracy: 0.6863
+Improvement over baseline: +0.25%
+
+Confusion Matrix:
+              Predicted
+         Not-Para  Para
+Actual 0  [   71     58]
+       1  [   69    210]
+
+B. SAE FEATURE COUNTS
+----------------------------------------------------------------------
+Total PARAPHRASE samples: 279
+Total NON-PARAPHRASE samples: 129
+
+Total features activated for PARAPHRASE: 163676
+Total features activated for NON-PARAPHRASE: 163556
+COMMON features (activated for both): 163506
+UNIQUE to PARAPHRASE only: 170
+UNIQUE to NON-PARAPHRASE only: 50
+
+C. TOP 5 MOST ACTIVATING FEATURES (PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 18445: avg_activation=261.0626, frequency=279/279 (100.0%) | COMMON
+2. Feature 63004: avg_activation=168.2288, frequency=279/279 (100.0%) | COMMON
+3. Feature 43058: avg_activation=128.9052, frequency=279/279 (100.0%) | COMMON
+4. Feature 163554: avg_activation=112.8620, frequency=279/279 (100.0%) | COMMON
+5. Feature 44755: avg_activation=110.6922, frequency=279/279 (100.0%) | COMMON
+
+D. TOP 5 MOST ACTIVATING FEATURES (NON-PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 18445: avg_activation=277.5860, frequency=129/129 (100.0%) | COMMON
+2. Feature 63004: avg_activation=169.8860, frequency=129/129 (100.0%) | COMMON
+3. Feature 43058: avg_activation=125.4814, frequency=129/129 (100.0%) | COMMON
+4. Feature 163554: avg_activation=108.9751, frequency=129/129 (100.0%) | COMMON
+5. Feature 144429: avg_activation=107.1206, frequency=129/129 (100.0%) | COMMON
+
+E. TOP 5 MOST FREQUENT FEATURES (PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 1: count=279 (100.0%), avg_activation=0.0000 | COMMON
+2. Feature 2: count=279 (100.0%), avg_activation=0.0000 | COMMON
+3. Feature 4: count=279 (100.0%), avg_activation=0.5465 | COMMON
+4. Feature 7: count=279 (100.0%), avg_activation=0.0000 | COMMON
+5. Feature 12: count=279 (100.0%), avg_activation=1.8489 | COMMON
+
+F. TOP 5 MOST FREQUENT FEATURES (NON-PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 1: count=129 (100.0%), avg_activation=0.0000 | COMMON
+2. Feature 2: count=129 (100.0%), avg_activation=0.0000 | COMMON
+3. Feature 4: count=129 (100.0%), avg_activation=0.5215 | COMMON
+4. Feature 7: count=129 (100.0%), avg_activation=0.0000 | COMMON
+5. Feature 12: count=129 (100.0%), avg_activation=1.9939 | COMMON
+
+G. TOP 10 MOST FREQUENT FEATURES (PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 1: count=279 (100.0%)
+2. Feature 2: count=279 (100.0%)
+3. Feature 4: count=279 (100.0%)
+4. Feature 7: count=279 (100.0%)
+5. Feature 12: count=279 (100.0%)
+6. Feature 14: count=279 (100.0%)
+7. Feature 17: count=279 (100.0%)
+8. Feature 19: count=279 (100.0%)
+9. Feature 22: count=279 (100.0%)
+10. Feature 25: count=279 (100.0%)
+
+H. TOP 10 MOST FREQUENT FEATURES (NON-PARAPHRASE)
+----------------------------------------------------------------------
+1. Feature 1: count=129 (100.0%)
+2. Feature 2: count=129 (100.0%)
+3. Feature 4: count=129 (100.0%)
+4. Feature 7: count=129 (100.0%)
+5. Feature 12: count=129 (100.0%)
+6. Feature 14: count=129 (100.0%)
+7. Feature 17: count=129 (100.0%)
+8. Feature 19: count=129 (100.0%)
+9. Feature 22: count=129 (100.0%)
+10. Feature 24: count=129 (100.0%)
+
+I. COMMON FEATURES AMONG TOP-10 PARA & NON-PARA
+----------------------------------------------------------------------
+Count: 9
+Example IDs: 1, 2, 4, 7, 12, 14, 17, 19, 22

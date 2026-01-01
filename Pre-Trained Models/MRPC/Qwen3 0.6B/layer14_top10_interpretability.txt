@@ -1,0 +1,143 @@
+Qwen3-0.6B MRPC Layer 14
+======================================================================
+
+Layer 14, Feature 0
+----------------------------------------------------------------------
+Interpretation: The Qwen3 SAE feature on MRPC paraphrase detection appears to detect a pattern of **trailing punctuation** or **trailing whitespace** in input sequences, as evident by the small activation values at the end of each sequence.
+Pearson correlation: 0.871
+
+Top activating examples:
+  - " We are committed to helping the Iraqi people get on the path to a free society
+  - " Instead of pursuing the most imminent and real threats – international terrori
+  - " Instead of pursuing the most imminent and real threats - international terrori
+  - " APEC leaders are painfully aware that security and prosperity are inseparable 
+  - " Biotech products , if anything , may be safer than conventional products becau
+
+======================================================================
+
+Layer 14, Feature 1
+----------------------------------------------------------------------
+Interpretation: The Qwen3 SAE feature detects the pattern of a single word or phrase being omitted or slightly modified in a sentence, which is a common characteristic of paraphrasing or rephrasing in natural language.
+Pearson correlation: 0.843
+
+Top activating examples:
+  - " Instead of pursuing the most imminent and real threats - international terrori
+  - " Instead of pursuing the most imminent and real threats – international terrori
+  - Prosecutors said PW Marketing violated the state 's 1998 anti-spam law by sendin
+  - " Biotech products , if anything , may be safer than conventional products becau
+  - " The risk of inflation becoming undesirably low remains the predominant concern
+
+======================================================================
+
+Layer 14, Feature 2
+----------------------------------------------------------------------
+Interpretation: The Qwen3 SAE feature on MRPC paraphrase detection detects the pattern of **"uncertainty or ambiguity in pronoun reference"**, where a pronoun (e.g., "I", "you", "he", "she") is used without clear reference to a specific antecedent, leading to a need for paraphrase detection to clarify the intended meaning.
+Pearson correlation: 0.245
+
+Top activating examples:
+  - " No matter who becomes the sponsor for stock-car racing 's top series , NASCAR 
+  - " The court and the public need to know much more of the details of the defendan
+  - " I don 't know if the person I 'm talking to now may end up being someone else 
+  - " Instead of pursuing the most imminent and real threats – international terrori
+  - " More than 70,000 men and women from bases in Southern California were deployed
+
+======================================================================
+
+Layer 14, Feature 3
+----------------------------------------------------------------------
+Interpretation: The Qwen3 SAE feature on MRPC paraphrase detection detects a pattern related to word order and sentence structure, specifically identifying instances where there is a significant difference in activation for specific words (e.g., "Biotech products", "ONG KONG", "Sanitation is poor") compared to their surrounding context, suggesting the model is paying attention to the unique sequence of words and attempting to identify anomalies or unusual combinations that may indicate paraphrased or rewritten text.
+Pearson correlation: -0.748
+
+Top activating examples:
+  - " Biotech products , if anything , may be safer than conventional products becau
+  - " There is no need for one deadline for all to create the ASEAN Economic Communi
+  - ONG KONG , July 9 Tens of thousands of demonstrators gathered tonight before the
+  - " It is bad for Symbian , " said Per Lindberg , analyst at Dresdner Kleinwort Wa
+  - " Sanitation is poor ... there could be typhoid and cholera , " he said . <|endo
+
+======================================================================
+
+Layer 14, Feature 4
+----------------------------------------------------------------------
+Interpretation: The Qwen3 SAE feature on MRPC paraphrase detection pattern detects the presence of negation or a negative sentiment in a sentence, as evidenced by the non-zero value in the first activation after the initial small value of 9.940364975591365e-08 in examples 1, 3, and 4.
+Pearson correlation: -0.064
+
+Top activating examples:
+  - " This decision is clearly incorrect , " FTC Chairman Timothy Muris said in a wr
+  - " This deal makes sense for both companies , " said National Chief Executive Bri
+  - " It is probably not the easiest time to come in and take over the shuttle progr
+  - " It is bad for Symbian , " said Per Lindberg , analyst at Dresdner Kleinwort Wa
+  - " It was never our intention to sell the product , " said Health Minister Anne M
+
+======================================================================
+
+Layer 14, Feature 5
+----------------------------------------------------------------------
+Interpretation: This Qwen3 SAE feature on MRPC (Microsoft Research Paraphrase Corpus) paraphrase detection appears to detect a pattern related to "assertive or confident language" or "emphasis on certainty" as indicated by the presence of certain words or phrases in the input text that activate a specific set of features in the model.
+Pearson correlation: nan
+
+Top activating examples:
+  - " I stand 100 percent by it , and I think our intelligence services gave us the 
+  - " Biotech products , if anything , may be safer than conventional products becau
+  - " It is bad for Symbian , " said Per Lindberg , analyst at Dresdner Kleinwort Wa
+  - " Sanitation is poor ... there could be typhoid and cholera , " he said . <|endo
+  - " So Sebastian did his best to convincingly confess to a crime that he didn 't c
+
+======================================================================
+
+Layer 14, Feature 6
+----------------------------------------------------------------------
+Interpretation: The QWEN3 SAE feature on MRPC paraphrase detection detects a pattern of **sentiment and topic coherence**, specifically identifying phrases or sentences that convey a similar tone, sentiment, or topic, but with varying wording or structure.
+Pearson correlation: -0.551
+
+Top activating examples:
+  - " More than 70,000 men and women from bases in Southern California were deployed
+  - Police say CIBA was involved in the importation of qat , a narcotic substance le
+  - " We are committed to helping the Iraqi people get on the path to a free society
+  - " No matter who becomes the sponsor for stock-car racing 's top series , NASCAR 
+  - " There is no conscious policy of the United States , I can assure you of this ,
+
+======================================================================
+
+Layer 14, Feature 7
+----------------------------------------------------------------------
+Interpretation: The Qwen3 SAE feature on MRPC paraphrase detection appears to detect the pattern of sentence similarity based on word overlap, particularly between sentences that have identical or nearly identical words, regardless of their context or meaning.
+Pearson correlation: -0.813
+
+Top activating examples:
+  - " It 's a major victory for Maine , and it 's a major victory for other states .
+  - " We are committed to helping the Iraqi people get on the path to a free society
+  - " I will support a constitutional amendment which would honor marriage between a
+  - " There is no need for one deadline for all to create the ASEAN Economic Communi
+  - " I think it happened very quickly , " Houston Police Department homicide invest
+
+======================================================================
+
+Layer 14, Feature 8
+----------------------------------------------------------------------
+Interpretation: Based on the provided activations, the Qwen3 SAE feature on MRPC paraphrase detection detects a pattern related to the presence of specific words or phrases that are likely to be indicative of a paraphrased or reworded sentence, particularly those related to legal or official contexts.
+Pearson correlation: 0.229
+
+Top activating examples:
+  - Witnesses said they believed the man planned to crash the Launceston-bound Qanta
+  - Prosecutors said PW Marketing violated the state 's 1998 anti-spam law by sendin
+  - Police say CIBA was involved in the importation of qat , a narcotic substance le
+  - " Close co-operation between our law enforcement agencies , close co-operation b
+  - But Ms Ward said the headroom under its financial covenants was " tight " and th
+
+======================================================================
+
+Layer 14, Feature 9
+----------------------------------------------------------------------
+Interpretation: The Qwen3 SAE feature on MRPC paraphrase detection appears to detect a pattern of **highly negative sentiment towards government or authority figures**, particularly when accompanied by phrases indicating stability or persistence.
+Pearson correlation: -0.141
+
+Top activating examples:
+  - " Biotech products , if anything , may be safer than conventional products becau
+  - " I stand 100 percent by it , and I think our intelligence services gave us the 
+  - " They 've been in the stores for over six weeks , " says Carney . <|endoftext|>
+  - " The government elements who have been causing trouble are still in place . <|e
+  - " Allison just proves you don 't need to wait until August or September to have 
+
+======================================================================
+
