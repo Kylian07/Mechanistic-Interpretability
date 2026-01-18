@@ -1,0 +1,12 @@
+======================================================================
+LAYER 15 - GEMMA-2B EUROPARL ANALYSIS
+======================================================================
+
+A. LAYER PERFORMANCE
+Accuracy: 0.5130 (51.30%)
+Improvement: +1.50%
+
+B. SAE FEATURE COUNTS
+EQUIVALENT features: 16383
+DIVERGENT features: 16382
+COMMON: 16382, EQ_ONLY: 1
