@@ -1,0 +1,61 @@
+======================================================================
+LAYER 3 - COMPLETE ANALYSIS (Qwen3-0.6B on Europarl)
+======================================================================
+
+A. LAYER PERFORMANCE (Raw Representations)
+----------------------------------------------------------------------
+Accuracy: 0.5080 (50.80%)
+Precision: 0.5075
+Recall: 0.5400
+F1-Score: 0.5233
+Baseline Accuracy: 0.5030
+Improvement over baseline: +0.50%
+
+Confusion Matrix:
+              Predicted
+         Bad   Good
+Actual 0  [  238    262]
+       1  [  230    270]
+
+B. SAE FEATURE COUNTS
+----------------------------------------------------------------------
+Total EQUIVALENT samples: 500
+Total DIVERGENT samples: 500
+
+Total features activated for EQUIVALENT: 163219
+Total features activated for DIVERGENT: 163198
+COMMON features: 163077
+UNIQUE to EQUIVALENT: 142
+UNIQUE to DIVERGENT: 121
+
+C. TOP 5 MOST ACTIVATING FEATURES (EQUIVALENT)
+----------------------------------------------------------------------
+1. Feature 23554: avg_activation=3.4047, frequency=500/500 (100.0%) | COMMON
+2. Feature 147636: avg_activation=3.1213, frequency=500/500 (100.0%) | COMMON
+3. Feature 102136: avg_activation=2.9125, frequency=500/500 (100.0%) | COMMON
+4. Feature 149886: avg_activation=2.9114, frequency=500/500 (100.0%) | COMMON
+5. Feature 112195: avg_activation=2.7203, frequency=500/500 (100.0%) | COMMON
+
+D. TOP 5 MOST ACTIVATING FEATURES (DIVERGENT)
+----------------------------------------------------------------------
+1. Feature 23554: avg_activation=3.4223, frequency=500/500 (100.0%) | COMMON
+2. Feature 147636: avg_activation=3.1375, frequency=500/500 (100.0%) | COMMON
+3. Feature 102136: avg_activation=2.9289, frequency=500/500 (100.0%) | COMMON
+4. Feature 149886: avg_activation=2.9289, frequency=500/500 (100.0%) | COMMON
+5. Feature 112195: avg_activation=2.7337, frequency=500/500 (100.0%) | COMMON
+
+E. TOP 5 MOST FREQUENT FEATURES (EQUIVALENT)
+----------------------------------------------------------------------
+1. Feature 0: count=500 (100.0%), avg_activation=0.0722 | COMMON
+2. Feature 4: count=500 (100.0%), avg_activation=0.1866 | COMMON
+3. Feature 5: count=500 (100.0%), avg_activation=0.0509 | COMMON
+4. Feature 6: count=500 (100.0%), avg_activation=0.3336 | COMMON
+5. Feature 9: count=500 (100.0%), avg_activation=0.1932 | COMMON
+
+F. TOP 5 MOST FREQUENT FEATURES (DIVERGENT)
+----------------------------------------------------------------------
+1. Feature 0: count=500 (100.0%), avg_activation=0.0727 | COMMON
+2. Feature 4: count=500 (100.0%), avg_activation=0.1877 | COMMON
+3. Feature 5: count=500 (100.0%), avg_activation=0.0510 | COMMON
+4. Feature 6: count=500 (100.0%), avg_activation=0.3358 | COMMON
+5. Feature 8: count=500 (100.0%), avg_activation=0.0073 | COMMON
