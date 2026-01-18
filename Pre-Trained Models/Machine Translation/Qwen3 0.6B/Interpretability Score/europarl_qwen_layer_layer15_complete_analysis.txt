@@ -1,0 +1,35 @@
+QWEN3 L15 INTERPRETABILITY
+Top features: [39, 38, 36, 35, 34]
+
+
+F39: The translation pattern appears to be a consistent word-for-word or phrase-for-phrase translation, where English sentences are directly translated into French, often with minimal adjustments to sentence structure or idiomatic expressions.
+Pearson: 0.036
+1. There is no room for amendments. <|endoftext|> Les modifications n'ont
+2. This is an important matter. <|endoftext|> C'est important.
+3. (Parliament rejected the request) President. <|endoftext|> (Le Parleme
+
+F38: Based on the provided examples, a common English-French translation pattern appears to be the direct translation of English sentence structures, often resulting in a literal or word-for-word translation, with minimal adjustments to sentence order or phrasing, such as:
+
+English: "There is no question of this influencing the administration
+Pearson: -0.066
+1. There is no question of this influencing the administration of justice
+2. (Parliament rejected the request) President. <|endoftext|> (Le Parleme
+3. My second point has already been mentioned: it concerns the minimum st
+
+F36: Based on the provided examples, a common English-French translation pattern appears to be the direct translation of sentence structures, with a tendency to maintain the original word order and phraseology, often resulting in slightly longer French translations due to differences in idiomatic expressions and grammatical structures.
+Pearson: -0.059
+1. These findings form the basis of the European programmes to protect th
+2. We agree with the rapporteur regarding his criticism of the fact that,
+3. For this to be possible, what we need from the European Commission are
+
+F35: The English-French translation pattern appears to involve a combination of literal and idiomatic translation, with a tendency to preserve the original sentence structure and word order, while adapting vocabulary and phrasing to conform to French grammatical and idiomatic norms.
+Pearson: 0.005
+1. Some speakers have already mentioned unemployment and the fall in popu
+2. There is no question of this influencing the administration of justice
+3. In area after area, we are now obtaining common minimum regulations fo
+
+F34: The translation pattern appears to be a consistent use of French negation "n'" instead of English "no" or "not", as seen in examples such as "Les modifications n'ont" (1) and a tendency to use more formal or literal translations, often resulting in longer French sentences.
+Pearson: -0.009
+1. There is no room for amendments. <|endoftext|> Les modifications n'ont
+2. Even so, I think the positions are quite clear and they shall be enter
+3. We are not discussing the fact that although every EU law is only ever

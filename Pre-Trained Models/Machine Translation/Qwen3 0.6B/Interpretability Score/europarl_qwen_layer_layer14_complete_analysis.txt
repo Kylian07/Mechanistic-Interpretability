@@ -1,0 +1,37 @@
+QWEN3 L14 INTERPRETABILITY
+Top features: [47, 6, 5, 2, 15]
+
+
+F47: The translation pattern from English to French appears to involve a consistent use of formal and somewhat literal translations, often retaining the original sentence structure and word order, with examples including:
+
+1. "En effet, si nous ajoutons les deux membres qui se sont déclarés, alors t" (Indeed
+Pearson: 0.084
+1. Indeed, if we add the two Members who have declared themselves, then t
+2. Furthermore, three quarters of our farm workers are part-time and requ
+3. They should not be about creating additional layers of bureaucracy and
+
+F6: The translation pattern from English to French appears to involve the use of "cons" in English being translated to "considérable" or "considérer" in French, as seen in examples 2 and 3, and the translation of "standards of living" to "nive
+Pearson: 0.090
+1. Effective competition pushes prices down and raises standards of livin
+2. Today's decision not to renew the embargo is extremely dangerous consi
+3. For example, uncontrolled migration has not been given sufficient cons
+
+F5: Based on the provided examples, a common English-French translation pattern appears to be the use of more formal and elaborate sentence structures in French, often involving the use of phrases such as "en matière de" (in the matter of), "dans le domaine de" (in the field of
+Pearson: -0.033
+1. The Commission must track down the illegal aid and the aid which actua
+2. This does not just mean administrative changes but also structural cha
+3. In area after area, we are now obtaining common minimum regulations fo
+
+F2: The English-French translation pattern appears to involve literal word-for-word translations, with minimal adaptation to idiomatic expressions or cultural nuances, resulting in sometimes awkward or unnatural phrasing.
+Pearson: 0.172
+1. But we need there to be more transparency in the competition policy. <
+2. Furthermore, three quarters of our farm workers are part-time and requ
+3. There is support for the EU in Lapland also, so let us remember them. 
+
+F15: The translation pattern from English to French appears to involve a consistent shift in word order, with French translations often using a more formal and inverted sentence structure, typically placing the verb at the beginning of the sentence, as seen in examples such as:
+
+1. English: "Workers are facing a massive attack on
+Pearson: 0.346
+1. Workers are facing a massive attack on their employment and social rig
+2. It is one of the steps towards a policy of employment and sustainable 
+3. My Group will therefore support the common position and looks forward 
