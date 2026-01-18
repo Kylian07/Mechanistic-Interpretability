@@ -1,0 +1,146 @@
+TRANSLATION INTERPRETABILITY REPORT
+Layer 6 - Top 5 Global Features
+======================================================================
+
+
+Layer 6, Feature 5303
+----------------------------------------------------------------------
+Interpretation: 1. "Thank you, Mr Davies. <|endoftext|> Merci, Monsieur Murphy."
+Pattern: This feature detects **lexical equivalence** between "Thank you, Mr Davies" and "Merci, Monsieur Murphy" (as both are idiomatic phrases with similar meanings).
+
+2. "(Parliament adopted the resolution) <|endoftext|> Je voudrais évoquer deux points tout à fait concrets."
+Pattern: This feature detects **syntactic divergence** as the first sentence is a declaration, while the second is a wish to discuss something.
+
+3. "This Parliament anxiously awaits this complete reform programme. <|endoftext|> Peut-être la référence aux postes est-elle in
+
+Evaluation examples:
+1. The conclusions of the Theato report safeguard them perfectly. <|endoftext|> Toutefois, depuis 1997,...
+   Actual=21.699, Predicted=2.000
+2. As has been advocated for the Lisbon Summit, we must prepare our workforce for the new technologies ...
+   Actual=17.600, Predicted=0.000
+3. Now I would like to speak about Parliament' s proposed amendments. <|endoftext|> C'est une honte et ...
+   Actual=18.955, Predicted=0.000
+4. I urge the House to support these changes. <|endoftext|> J'invite le Parlement à soutenir ces modifi...
+   Actual=21.541, Predicted=0.000
+5. Madam President, as the low turnout during the most recent elections has shown, "Europe" as a concep...
+   Actual=14.377, Predicted=1.000
+Pearson correlation: 0.1170
+======================================================================
+
+Layer 6, Feature 7182
+----------------------------------------------------------------------
+Interpretation: Based on the sparse autoencoder feature from GPT-2 on English-French translation pairs, here are the concise descriptions for each example:
+
+1. **Translation pattern:** Syntactic, **Signals:** EQUIVALENCE
+The feature detects a syntactic translation pattern and indicates a good translation, preserving the sentence structure.
+
+2. **Translation pattern:** Lexical, **Signals:** EQUIVALENCE
+The feature detects a lexical translation pattern and indicates a good translation, matching the vocabulary and sentence structure.
+
+3. **Translation pattern:** Lexical, **Signals:** EQUIVALENCE
+The feature detects a lexical translation pattern and indicates a good translation, matching the vocabulary and sentence structure.
+
+4. **Translation pattern:** Semantic, **Signals:**
+
+Evaluation examples:
+1. B5-0169/2000 by Mr Puerta and others, on behalf of the Confederal Group of the European United Left/...
+   Actual=0.001, Predicted=2.000
+2. Without this transfer from Portuguese waters, the level of the Bay of Biscay TAC would have to be mu...
+   Actual=0.000, Predicted=0.000
+3. As has been advocated for the Lisbon Summit, we must prepare our workforce for the new technologies ...
+   Actual=0.000, Predicted=0.000
+4. Madam President, as the low turnout during the most recent elections has shown, "Europe" as a concep...
+   Actual=0.000, Predicted=0.000
+5. The conclusions of the Theato report safeguard them perfectly. <|endoftext|> Toutefois, depuis 1997,...
+   Actual=0.000, Predicted=2.000
+Pearson correlation: 0.4602
+======================================================================
+
+Layer 6, Feature 7683
+----------------------------------------------------------------------
+Interpretation: **1. Translation pattern detected:** This feature detects **lexical** translation patterns, specifically related to proper noun translation.
+
+**Signal:** **DIVERGENCE** (bad translation), as the feature highlights differences in proper noun translation ("Davies" vs. "Murphy").
+
+
+
+**2. Translation pattern detected:** This feature detects **lexical** translation patterns, specifically related to sentence structure and word order.
+
+**Signal:** **EQUIVALENCE** (good translation), as the feature highlights the translation of a formal sentence structure.
+
+
+
+**3. Translation pattern detected:** This feature detects **lexical** translation patterns, specifically related to sentence structure and word order.
+
+**Signal:** **EQUIVALENCE** (good translation), as the feature
+
+Evaluation examples:
+1. The conclusions of the Theato report safeguard them perfectly. <|endoftext|> Toutefois, depuis 1997,...
+   Actual=5.314, Predicted=0.000
+2. As has been advocated for the Lisbon Summit, we must prepare our workforce for the new technologies ...
+   Actual=4.889, Predicted=0.000
+3. Madam President, as the low turnout during the most recent elections has shown, "Europe" as a concep...
+   Actual=4.614, Predicted=0.000
+4. Now I would like to speak about Parliament' s proposed amendments. <|endoftext|> C'est une honte et ...
+   Actual=4.290, Predicted=2.000
+5. We all know what we would do, which is why we need a tight timetable for our water policy. <|endofte...
+   Actual=4.156, Predicted=0.000
+Pearson correlation: -0.4341
+======================================================================
+
+Layer 6, Feature 8399
+----------------------------------------------------------------------
+Interpretation: Based on the sparse autoencoder features from GPT-2 on English-French translation pairs, here are the concise sentences describing the translation patterns detected and whether they signal EQUIVALENCE or DIVERGENCE:
+
+1. **Lexical/syntactic pattern, EQUIVALENCE**: This feature detects a direct translation pattern, focusing on the repetition of key terms and phrases.
+
+2. **Semantic pattern, DIVERGENCE**: This feature detects a shift in the semantic meaning of the translation, possibly due to a loss of nuance or context.
+
+3. **Lexical/semantic pattern, DIVERGENCE**: This feature detects a mismatch between the original English sentence and its French translation, possibly due to a loss of precision or
+
+Evaluation examples:
+1. No more than EUR 2.8 billion is provided for EQUAL, as Mrs Stenzel' s balanced report makes clear. <...
+   Actual=0.301, Predicted=2.000
+2. Finally, as our Nobel Prize Winner, José Saramago, has said, we are all in each other and as Jesus C...
+   Actual=0.242, Predicted=0.000
+3. The two Assemblies have been dominated by the negotiations on renewal of the Lomé Convention and I l...
+   Actual=0.275, Predicted=2.000
+4. Although the European Parliament supports this initiative, our only regret is that we have to approv...
+   Actual=0.285, Predicted=0.000
+5. When it comes to the IGC, she is one of what the French call "les pures et dures" : no compromise, n...
+   Actual=0.285, Predicted=0.000
+Pearson correlation: 0.4287
+======================================================================
+
+Layer 6, Feature 8851
+----------------------------------------------------------------------
+Interpretation: 1. Translation pattern detected: Lexical; 
+Signal: DIVERGENCE (bad translation).
+
+Explanation: This feature detects a mismatch between names (Davies and Murphy) which is a clear lexical error.
+
+2. Translation pattern detected: Syntactic; 
+Signal: DIVERGENCE (bad translation).
+
+Explanation: This feature detects a syntactic mismatch, as the source sentence implies the adoption of a resolution, but the target sentence introduces unrelated points, indicating a poor translation.
+
+3. Translation pattern detected: Semantic; 
+Signal: DIVERGENCE (bad translation).
+
+Explanation: This feature detects a significant semantic mismatch, as the source sentence expresses concern about xenophobia, but the target sentence suggests supporting it, which is a clear contradiction
+
+Evaluation examples:
+1. The conclusions of the Theato report safeguard them perfectly. <|endoftext|> Toutefois, depuis 1997,...
+   Actual=5.792, Predicted=0.000
+2. As has been advocated for the Lisbon Summit, we must prepare our workforce for the new technologies ...
+   Actual=4.316, Predicted=0.000
+3. I urge the House to support these changes. <|endoftext|> J'invite le Parlement à soutenir ces modifi...
+   Actual=5.703, Predicted=0.000
+4. Now I would like to speak about Parliament' s proposed amendments. <|endoftext|> C'est une honte et ...
+   Actual=4.510, Predicted=8.000
+5. Madam President, as the low turnout during the most recent elections has shown, "Europe" as a concep...
+   Actual=3.533, Predicted=0.000
+Pearson correlation: -0.1511
+======================================================================
+
+SUMMARY: Average Pearson correlation = 0.0841

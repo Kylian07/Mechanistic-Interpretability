@@ -1,0 +1,150 @@
+TRANSLATION INTERPRETABILITY REPORT
+Layer 8 - Top 5 Global Features
+======================================================================
+
+
+Layer 8, Feature 4348
+----------------------------------------------------------------------
+Interpretation: Based on the sparse autoencoder features from GPT-2, I analyze each example:
+
+1. "Thank you, Mr Davies. <|endoftext|> Merci, Monsieur Murphy."
+ - **Translation pattern:** Lexical (identity translation of proper nouns)
+ - **Signal:** EQUIVALENCE (good translation)
+
+2. "(Parliament adopted the resolution) <|endoftext|> Je voudrais évoquer deux points tout à fait concrets."
+ - **Translation pattern:** Semantic (inconsistent translation of a sentence structure)
+ - **Signal:** DIVERGENCE (bad translation)
+
+3. "Administration-wise there are now 34 tax inspectors. <|endoftext|> Notre Parlement s'est montré
+
+Evaluation examples:
+1. I urge the House to support these changes. <|endoftext|> J'invite le Parlement à soutenir ces modifi...
+   Actual=5.066, Predicted=0.000
+2. The conclusions of the Theato report safeguard them perfectly. <|endoftext|> Toutefois, depuis 1997,...
+   Actual=3.383, Predicted=0.000
+3. Point 3 of Article 9 states, "the Union shall ensure the protection of children". <|endoftext|> Je r...
+   Actual=4.476, Predicted=8.000
+4. I have a number of ideas which should be put across. <|endoftext|> Les marchés de capitaux restent à...
+   Actual=4.434, Predicted=0.000
+5. Now I would like to speak about Parliament' s proposed amendments. <|endoftext|> C'est une honte et ...
+   Actual=3.836, Predicted=0.000
+Pearson correlation: 0.2051
+======================================================================
+
+Layer 8, Feature 12071
+----------------------------------------------------------------------
+Interpretation: 1. "Thank you, Mr Davies. <|endoftext|> Merci, Monsieur Murphy."
+- **Translation pattern:** Lexical (specific names and titles).
+- **Translation signal:** EQUIVALENCE (good translation).
+
+2. "(Parliament adopted the resolution) <|endoftext|> Je voudrais évoquer deux points tout à fait concrets."
+- **Translation pattern:** Lexical (domain-specific terms and phrases).
+- **Translation signal:** DIVERGENCE (bad translation) - likely due to incorrect domain adaptation.
+
+3. "This Parliament anxiously awaits this complete reform programme. <|endoftext|> Peut-être la référence aux postes est-elle inexacte."
+-
+
+Evaluation examples:
+1. The conclusions of the Theato report safeguard them perfectly. <|endoftext|> Toutefois, depuis 1997,...
+   Actual=21.516, Predicted=0.000
+2. As has been advocated for the Lisbon Summit, we must prepare our workforce for the new technologies ...
+   Actual=17.381, Predicted=0.000
+3. Now I would like to speak about Parliament' s proposed amendments. <|endoftext|> C'est une honte et ...
+   Actual=19.899, Predicted=0.000
+4. I urge the House to support these changes. <|endoftext|> J'invite le Parlement à soutenir ces modifi...
+   Actual=22.798, Predicted=6.000
+5. We all know what we would do, which is why we need a tight timetable for our water policy. <|endofte...
+   Actual=17.768, Predicted=3.000
+Pearson correlation: 0.4476
+======================================================================
+
+Layer 8, Feature 15835
+----------------------------------------------------------------------
+Interpretation: Here are the concise descriptions for each example:
+
+1. This feature detects lexical translation patterns and signals EQUIVALENCE, as the sentences are exact translations.
+
+2. This feature detects semantic translation patterns and signals DIVERGENCE, as the sentences are unrelated in meaning.
+
+3. This feature detects syntactic translation patterns and signals DIVERGENCE, as the sentence structures are significantly different.
+
+4. This feature detects lexical translation patterns and signals DIVERGENCE, as the sentences are unrelated in topic.
+
+5. This feature detects semantic translation patterns and signals DIVERGENCE, as the sentences convey opposite meanings.
+
+Evaluation examples:
+1. The conclusions of the Theato report safeguard them perfectly. <|endoftext|> Toutefois, depuis 1997,...
+   Actual=9.684, Predicted=4.000
+2. As has been advocated for the Lisbon Summit, we must prepare our workforce for the new technologies ...
+   Actual=8.271, Predicted=0.000
+3. Now I would like to speak about Parliament' s proposed amendments. <|endoftext|> C'est une honte et ...
+   Actual=9.712, Predicted=9.000
+4. I urge the House to support these changes. <|endoftext|> J'invite le Parlement à soutenir ces modifi...
+   Actual=10.684, Predicted=8.000
+5. We all know what we would do, which is why we need a tight timetable for our water policy. <|endofte...
+   Actual=8.585, Predicted=9.000
+Pearson correlation: 0.4754
+======================================================================
+
+Layer 8, Feature 16310
+----------------------------------------------------------------------
+Interpretation: Based on the maximally activating examples, here are the descriptions:
+
+1. **Syntactic pattern detection**: Signals **EQUIVALENCE**. This feature detects the preservation of sentence structure and tone.
+
+2. **Semantic pattern detection**: Signals **DIVERGENCE**. This feature detects a mismatch between the original and translated text, likely due to a semantic mismatch or a change in tone.
+
+3. **Lexical pattern detection**: Signals **DIVERGENCE**. This feature detects a significant difference in the vocabulary used between the original and translated text.
+
+4. **Semantic pattern detection**: Signals **DIVERGENCE**. This feature detects a significant change in the meaning or tone of the translated text.
+
+5. **Synt
+
+Evaluation examples:
+1. The conclusions of the Theato report safeguard them perfectly. <|endoftext|> Toutefois, depuis 1997,...
+   Actual=16.848, Predicted=8.000
+2. As has been advocated for the Lisbon Summit, we must prepare our workforce for the new technologies ...
+   Actual=14.091, Predicted=1.000
+3. Now I would like to speak about Parliament' s proposed amendments. <|endoftext|> C'est une honte et ...
+   Actual=15.370, Predicted=0.000
+4. I urge the House to support these changes. <|endoftext|> J'invite le Parlement à soutenir ces modifi...
+   Actual=17.053, Predicted=1.000
+5. Madam President, as the low turnout during the most recent elections has shown, "Europe" as a concep...
+   Actual=11.667, Predicted=1.000
+Pearson correlation: 0.4316
+======================================================================
+
+Layer 8, Feature 19312
+----------------------------------------------------------------------
+Interpretation: Here are the concise descriptions for each example:
+
+1. **Translation pattern:** Semantic (focus on meaning and context)
+**Signal:** DIVERGENCE (bad translation)
+
+This feature detects semantic information in the translation, indicating that the translation is divergent from the original meaning.
+
+2. **Translation pattern:** Syntactic (focus on sentence structure and word order)
+**Signal:** DIVERGENCE (bad translation)
+
+This feature detects syntactic information in the translation, indicating that the translation is divergent from the original sentence structure.
+
+3. **Translation pattern:** Syntactic (focus on sentence structure and word order)
+**Signal:** EQUIVALENCE (good translation)
+
+This feature detects syntactic information in the translation, indicating that the translation
+
+Evaluation examples:
+1. It is up to Commissioner Patten and the high representative of the Council, Mr Solana, to ensure tha...
+   Actual=0.404, Predicted=9.000
+2. On the other hand, the new Austrian Government' s programme reaffirms its commitment to defend democ...
+   Actual=0.489, Predicted=0.000
+3. Questions Nos 10 to 38 will be replied to in writing. <|endoftext|> Avec le lancement de cet accord,...
+   Actual=0.400, Predicted=0.000
+4. When it comes to the IGC, she is one of what the French call "les pures et dures" : no compromise, n...
+   Actual=0.463, Predicted=0.000
+5. It is both good and necessary that reforms have been promised. <|endoftext|> La Cour des comptes n'a...
+   Actual=0.440, Predicted=0.000
+Pearson correlation: -0.5208
+======================================================================
+
+SUMMARY: Average Pearson correlation = 0.2078
