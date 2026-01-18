@@ -1,0 +1,68 @@
+======================================================================
+LAYER 6 - COMPLETE ANALYSIS (Europarl Translation)
+======================================================================
+
+A. LAYER PERFORMANCE (Raw Representations)
+----------------------------------------------------------------------
+Accuracy: 0.5040 (50.40%)
+Precision: 0.5042
+Recall: 0.4760
+F1-Score: 0.4897
+Baseline: 0.5000
+Improvement: +0.40%
+
+Confusion Matrix:
+              Predicted
+         Div   Eq
+Actual Div [  532   468]
+      Eq  [  524   476]
+
+B. SAE FEATURE COUNTS
+----------------------------------------------------------------------
+EQUIVALENT samples: 1000
+DIVERGENT samples: 1000
+EQUIVALENCE features: 13588
+DIVERGENT features: 13699
+COMMON: 12506
+EQ_ONLY: 1082
+DIV_ONLY: 1193
+
+C. TOP 5 EQUIVALENCE FEATURES (by avg activation)
+----------------------------------------------------------------------
+1. F17852: 0.7686, freq=983 (98.3%) | COMMON
+2. F1766: 0.4990, freq=995 (99.5%) | COMMON
+3. F24179: 0.4577, freq=1 (0.1%) | UNIQUE
+4. F470: 0.3324, freq=1 (0.1%) | COMMON
+5. F15552: 0.2991, freq=1 (0.1%) | COMMON
+
+D. TOP 5 DIVERGENT FEATURES (by avg activation)
+----------------------------------------------------------------------
+1. F17852: 0.7452, freq=985 (98.5%) | COMMON
+2. F1766: 0.4932, freq=997 (99.7%) | COMMON
+3. F16245: 0.2686, freq=997 (99.7%) | COMMON
+4. F21282: 0.2490, freq=1 (0.1%) | COMMON
+5. F14178: 0.2459, freq=1 (0.1%) | UNIQUE
+
+G. TOP 10 EQUIVALENCE FEATURES (frequency)
+1. F5303: 1000
+2. F7182: 1000
+3. F7683: 1000
+4. F8399: 1000
+5. F1766: 995
+6. F16245: 993
+7. F1932: 988
+8. F8851: 988
+9. F17852: 983
+10. F4067: 978
+
+H. TOP 10 DIVERGENT FEATURES (frequency)
+1. F5303: 1000
+2. F7182: 1000
+3. F7683: 1000
+4. F8399: 1000
+5. F1766: 997
+6. F16245: 997
+7. F8851: 991
+8. F1932: 989
+9. F17852: 985
+10. F4067: 974

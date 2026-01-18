@@ -1,0 +1,68 @@
+======================================================================
+LAYER 7 - COMPLETE ANALYSIS (Europarl Translation)
+======================================================================
+
+A. LAYER PERFORMANCE (Raw Representations)
+----------------------------------------------------------------------
+Accuracy: 0.5020 (50.20%)
+Precision: 0.5020
+Recall: 0.4980
+F1-Score: 0.5000
+Baseline: 0.5000
+Improvement: +0.20%
+
+Confusion Matrix:
+              Predicted
+         Div   Eq
+Actual Div [  506   494]
+      Eq  [  502   498]
+
+B. SAE FEATURE COUNTS
+----------------------------------------------------------------------
+EQUIVALENT samples: 1000
+DIVERGENT samples: 1000
+EQUIVALENCE features: 13304
+DIVERGENT features: 14433
+COMMON: 11430
+EQ_ONLY: 1874
+DIV_ONLY: 3003
+
+C. TOP 5 EQUIVALENCE FEATURES (by avg activation)
+----------------------------------------------------------------------
+1. F37767: 0.6108, freq=989 (98.9%) | COMMON
+2. F34109: 0.5716, freq=1 (0.1%) | UNIQUE
+3. F23597: 0.3879, freq=1 (0.1%) | UNIQUE
+4. F1350: 0.3376, freq=1 (0.1%) | UNIQUE
+5. F18594: 0.3266, freq=983 (98.3%) | COMMON
+
+D. TOP 5 DIVERGENT FEATURES (by avg activation)
+----------------------------------------------------------------------
+1. F37767: 0.6027, freq=987 (98.7%) | COMMON
+2. F14301: 0.4346, freq=1 (0.1%) | UNIQUE
+3. F18594: 0.3181, freq=981 (98.1%) | COMMON
+4. F20694: 0.2024, freq=1 (0.1%) | COMMON
+5. F15855: 0.1864, freq=2 (0.2%) | COMMON
+
+G. TOP 10 EQUIVALENCE FEATURES (frequency)
+1. F23627: 1000
+2. F43763: 1000
+3. F6477: 995
+4. F38664: 993
+5. F7791: 991
+6. F37767: 989
+7. F6413: 986
+8. F18594: 983
+9. F34836: 972
+10. F6247: 970
+
+H. TOP 10 DIVERGENT FEATURES (frequency)
+1. F23627: 1000
+2. F43763: 1000
+3. F6477: 997
+4. F7791: 994
+5. F38664: 992
+6. F6413: 990
+7. F37767: 987
+8. F18594: 981
+9. F34836: 969
+10. F6247: 963
