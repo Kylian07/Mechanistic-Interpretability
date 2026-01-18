@@ -1,0 +1,70 @@
+======================================================================
+GEMMA L11 EUROPARL INTERPRETABILITY
+SAE: gemma-scope-2b-pt-res-canonical/layer_11/width_16k/canonical
+Model dim: 2048 → SAE dim: 2304
+Top features: [16123, 1696, 2818, 8901, 13536]
+
+
+FEATURE 16123:
+  Pattern: Based on the provided examples, a possible English-French translation pattern for Gemma L11 F16123 is:
+
+- Closing a debate: "The debate is closed." -> "Je pense que c'est un très bon tra" (Note: This seems to be an incomplete translation. A more accurate translation would be "Je pense que c'est un très bon tranché
+  Pearson r: 0.300
+  Examples:
+    • The debate is closed. <|endoftext|> Je pense que c'est un très bon tra
+    • How do we ensure that unlawful state aid is paid back? <|endoftext|> I
+    • Thank you very much. <|endoftext|> Merci.
+
+FEATURE 1696:
+  Pattern: Based on the provided examples, a possible translation pattern for Gemma L11 F1696 is:
+
+Original sentence: "X" 
+Translation: "Reprise de la session" for the first example, indicating a translation pattern for session-related phrases.
+However, the translation pattern for the other examples seems to be more about translating the beginning of a sentence or a phrase into French
+  Pearson r: 0.612
+  Examples:
+    • Resumption of the session <|endoftext|> Reprise de la session
+    • We do not know what is happening. <|endoftext|> Nous ne savons pas ce 
+    • It would be a serious mistake to eliminate all public aid. <|endoftext
+
+FEATURE 2818:
+  Pattern: Based on the given examples, a possible translation pattern for Gemma L11 F2818 could be:
+
+Original English: "X represents almost four fifths of Y"
+Translated French: "X représente presque les quatre cinquièmes de Y"
+
+This pattern matches the third example provided: "We have to remember that rural areas represent almost four fifths of the country
+  Pearson r: 0.800
+  Examples:
+    • Resumption of the session <|endoftext|> Reprise de la session
+    • These days, someone who lives in an old people' s home is accommodated
+    • We have to remember that rural areas represent almost four fifths of t
+
+FEATURE 8901:
+  Pattern: Based on the given examples, a possible translation pattern for Gemma L11 F8901 is:
+
+English: "There is no room for [amendments/modifications/orders]". 
+French: "Les [amendments/modifications/orders] n'[ont/ont] [pas/le] droit."
+
+However, a more general translation pattern could be:
+
+English:
+  Pearson r: 0.800
+  Examples:
+    • There is no room for amendments. <|endoftext|> Les modifications n'ont
+    • Madam President, on a point of order. <|endoftext|> Madame la Présiden
+    • This gives them a competitive edge for the interim period. <|endoftext
+
+FEATURE 13536:
+  Pattern: Based on the examples provided, a possible translation pattern for Gemma L11 F13536, an English-French translation model, could be:
+
+- English: "(Parliament rejected the request) President."
+- French: "(Le Parlement a rejeté la demande) Président."
+
+Translation pattern: 
+- English: "We will also pass this on to
+  Pearson r: 0.776
+  Examples:
+    • (Parliament rejected the request) President. <|endoftext|> (Le Parleme
+    • We will also pass this on to our services, however. <|endoftext|> Il s
+    • Therefore, we support the establishment of an agricultural and rural d

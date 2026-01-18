@@ -1,0 +1,64 @@
+======================================================================
+GEMMA L5 EUROPARL INTERPRETABILITY
+SAE: gemma-scope-2b-pt-res-canonical/layer_5/width_16k/canonical
+Model dim: 2048 → SAE dim: 2304
+Top features: [11685, 13789, 10647, 5148, 12384]
+
+
+FEATURE 11685:
+  Pattern: Based on the given examples, a possible English-French translation pattern for Gemma SAE is:
+
+- "whilst" -> "mais"
+- "For example" -> "Pour l'essentiel" or "Par exemple" (depending on the context)
+- "I can live with" -> "Je peux vivre avec"
+- "minimum standards"
+  Pearson r: 0.415
+  Examples:
+    • For example, whilst the disparities between the regions have increased
+    • Thank you, Mr Poettering. <|endoftext|> Mais, pour l'essentiel, cela n
+    • I can live with these minimum standards, but I would ask the Commissio
+
+FEATURE 13789:
+  Pattern: Based on the given examples, a possible translation pattern for Gemma L5 F13789 is:
+
+- "(Parliament rejected the request) President" translates to "(Le Parlement a rejeté la demande) Président"
+- "Well, the Structural Funds have helped to apply a brake to this process" translates to "Eh bien, les Fonds structure
+  Pearson r: 0.300
+  Examples:
+    • (Parliament rejected the request) President. <|endoftext|> (Le Parleme
+    • Well, the Structural Funds have helped to apply a brake to this proces
+    • This gives them a competitive edge for the interim period. <|endoftext
+
+FEATURE 10647:
+  Pattern: Based on the given examples, a possible English-French translation pattern for Gemma SAE (Large Language Model) could be:
+
+"(The [SUBJECT] rose and observed a minute's silence) -> (Le [SUBJECT] [rose et observa un moment de silence] / [Le [SUBJECT] a observé un moment de silence])"
+
+For the
+  Pearson r: 0.754
+  Examples:
+    • (The House rose and observed a minute' s silence) <|endoftext|> (Le Pa
+    • The market is not an end in itself; it must help to improve the human 
+    • I can live with these minimum standards, but I would ask the Commissio
+
+FEATURE 5148:
+  Pattern: Based on the given examples, a possible translation pattern for Gemma L5 F5148, an English-French translation, could be:
+
+- "I should now like to respond briefly to a few of the comments you have" -> "Je voudrais maintenant répondre brièvement à quelques-unes de vos remarques."
+- "So Parliament should send a message
+  Pearson r: 0.722
+  Examples:
+    • I should now like to respond briefly to a few of the comments you have
+    • So Parliament should send a message, since that is the wish of the vas
+    • Therefore, we will have to see how the requirements guaranteeing the m
+
+FEATURE 12384:
+  Pattern: It appears that the translation pattern is for parliamentary proceedings or session summaries, where the translation involves:
+
+- Expressions of gratitude: "Thank you very much" translates to "Merci" (example 1)
+- Formal descriptions of events: "(The House rose and observed a minute's silence)" translates to "(Le Parlement s'est levé et a observé une minute
+  Pearson r: 0.800
+  Examples:
+    • Thank you very much. <|endoftext|> Merci.
+    • (The House rose and observed a minute' s silence) <|endoftext|> (Le Pa
+    • Resumption of the session <|endoftext|> Reprise de la session
